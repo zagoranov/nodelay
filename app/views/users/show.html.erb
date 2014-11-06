@@ -1,0 +1,31 @@
+<h4><% if @user == current_user %>
+           You 
+      <% end %></h4>
+
+<h3>Username: <%= @user.name + "_" + @user.id.to_s%></h3>
+
+<br>
+
+<% if @user != current_user %>
+<br>
+    <%= form_for([current_user, current_user.messages.build]) do |f| %> 
+    <%= f.text_area :text, placeholder: "Text", :size => '70x2' %><br>
+    <%= f.hidden_field :recipient_id, :value => @user.id %>
+    <%= f.submit "Send message", :class => 'btn btn-large btn-primary' %>
+    <% end %>   
+<br>
+
+  <table class="table table-striped">
+    <tbody>
+    <% @messages.each do |mess| %> 
+      <tr>
+      <td><strong><%= mess.user.name + "_" + mess.user.id.to_s %></strong><br>
+        <small><%= mess.created_at.strftime("%d.%m.%Y %H:%M") %><br>
+      </td>
+      <td><%= mess.text %></td>
+      </tr>
+    <% end %>
+   </tbody>
+  </table>
+
+<% end %>

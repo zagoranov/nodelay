@@ -1,0 +1,25 @@
+
+<br>
+    <%= form_for([current_user, current_user.posts.build]) do |f| %>  
+    <%= f.text_field :title, placeholder: "Title" %><br>
+    <%= f.text_area :text, placeholder: "Text", :size => '70x2' %><br>
+    <%= f.submit "Add post", :class => 'btn btn-large btn-primary' %> 
+    <% end %>   
+<br>
+<br>
+
+<table class="table table-striped">
+  <tbody>
+  <% @posts.each do |post| %> 
+    <tr>
+    <td><strong><%= post.title %></strong><br>
+      <small><%= post.created_at.strftime("%d.%m.%Y %H:%M") %><br>
+      by <%= link_to post.user.name + "_" + post.user.id.to_s, post.user %></small>
+    </td>
+    <td><%= post.text %></td>
+    <td><%= button_to("Delete", post, :method => :delete, 
+                    data: { confirm: "Confirm" }, :class => 'btn btn-mini btn-danger')  %> </td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
