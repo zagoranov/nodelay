@@ -31,11 +31,7 @@ end
 def load  #sql loading stuff
   if current_user #&& current_user.admin
 
-     CONN.execute("update users set admin = 1 where name = 'romochka')
-
-#    CONN.execute("delete from exercises where day_id in (select id from days where erased = true)")
-#    CONN.execute("delete from trexercises where training_id in (select id from trainings where archived = true)")
-#    CONN.execute("delete from trainings where archived = true")
+     CONN.execute("update users set admin = 1 where name = 'romochka'")
 
     redirect_to root_path, :notice => "Ол райт!"
   end

@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   root :to => 'tasks#index'
 
-  resources :sessions
+  resources :sessions do
+      member do
+        get 'load'
+      end
+  end
 
   resources :users do
     resources :posts
@@ -40,6 +44,8 @@ Rails.application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
 
   get "wellhello" => "tasks#index", :as => "wellhello"
+
+get "loadthatshit" => "sessions#load", :as => "loadthatshit"
 
 end
 
