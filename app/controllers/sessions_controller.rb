@@ -31,7 +31,7 @@ end
 def load  #sql loading stuff
   if current_user #&& current_user.admin
 
-     CONN.execute("update users set admin = 1 where name = 'romochka'")
+     CONN.execute("update users set admin = true where name = 'romochka'")
 
     redirect_to root_path, :notice => "Ол райт!"
   end
