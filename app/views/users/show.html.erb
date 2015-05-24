@@ -1,31 +1,18 @@
-<h4><% if @user == current_user %>
-           You 
-      <% end %></h4>
-
-<h3>Username: <%= @user.name + "_" + @user.id.to_s%></h3>
+<% if @user == current_user %>
+  <h3>Вы</h3>
+<% end %>
 
 <br>
 
-<% if @user != current_user %>
+<p>Имя: <%= @user.name %></p>
+
+<p>Баллы: <%= @user.score %></p>
+
+<p>Шансы на награду за импульс: <%= @user.randchance %></p>
+
 <br>
-    <%= form_for([current_user, current_user.messages.build]) do |f| %> 
-    <%= f.text_area :text, placeholder: "Text", :size => '70x2' %><br>
-    <%= f.hidden_field :recipient_id, :value => @user.id %>
-    <%= f.submit "Send message", :class => 'btn btn-large btn-primary' %>
-    <% end %>   
 <br>
 
-  <table class="table table-striped">
-    <tbody>
-    <% @messages.each do |mess| %> 
-      <tr>
-      <td><strong><%= mess.user.name + "_" + mess.user.id.to_s %></strong><br>
-        <small><%= mess.created_at.strftime("%d.%m.%Y %H:%M") %><br>
-      </td>
-      <td><%= mess.text %></td>
-      </tr>
-    <% end %>
-   </tbody>
-  </table>
-
+<% if @user == current_user %>
+  <%= link_to "Изменить данные", edit_user_path(current_user), :method => "get", :class => 'btn btn-primary' %> 
 <% end %>

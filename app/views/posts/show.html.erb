@@ -1,0 +1,31 @@
+<h4><%= @post.title %></h4>
+<p><%= with_new_lines @post.text %></p>
+<p>Написал <%= link_to @post.user.name, @post.user %>, <%= @post.created_at.strftime("%d.%m.%Y %H:%M") %></p>
+
+<br><br>
+
+<table class="table table-striped">
+  <tbody>
+  <% @comments.each do |comment| %> 
+    <tr><td>
+      <p><%= with_new_lines comment.text %></p>
+      <p><small>Написал <%= link_to comment.user.name, comment.user %>, <%= comment.created_at.strftime("%d.%m.%Y %H:%M") %>
+        <%= link_to "[ Ответить ]", posts_path  %>         
+       <% if current_user.admin %>    
+         <%= link_to "[ Удалить ]", [comment.post, comment], :method => :delete, 
+                    data: { confirm: "Вы серьезно?" } %> 
+        <% end %></small></p>
+    </td></tr>
+  <% end %>
+ </tbody>
+</table>
+<% if @comments.size == 0 %>
+  <em>В посте пока пусто.</em><br><br>
+<% end %>
+
+<br><br>
+
+<%= form_for([@post, @post.comments.build]) do |f| %>
+  <%= f.text_area :text, placeholder: "Комментарий", :size => '70x2' %><br>
+  <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
+<% end %>   

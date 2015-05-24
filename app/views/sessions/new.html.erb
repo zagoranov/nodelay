@@ -1,0 +1,21 @@
+<h3>Логин</h3>
+
+<br><br>
+
+<%= form_tag sessions_path do %>
+  <p>
+    E-mail<br />
+    <%= text_field_tag :email, params[:email] %>
+  </p>
+  <p>
+    Пароль<br />
+    <%= password_field_tag :password %>
+  </p>
+  <br><br>
+  <p class="button"><%= submit_tag "Войти", :class => 'btn btn-large btn-primary' %></p>
+<% end %>
+
+<br><br>
+<br><br>
+
+Если вы еще не зарегистрированы, то пройдите вот сюда: <%= link_to "Регистрация", "sign_up", :method => "get", :class => 'btn btn-large btn-primary' %> 

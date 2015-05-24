@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+    <title>Idler</title>
 
     <%= csrf_meta_tags %>
 
@@ -56,22 +56,81 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<%= posts_path %>">Buzz</a>
+        <a class="navbar-brand" href="<%= root_path %>">Idler</a>
+
+
+
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+          <% if current_user %>
+            <% if current_user.admin %>
+                <li><%= link_to "Награды/Импульсы", impulsetreattypes_path  %></li>
+                <li><%= link_to "Админ", "/admin", :target => "_blank"  %></li>
+            <% end %>            
+            <li><%= link_to "Выйти", "/log_out" %></li>
+         <%end%>
+         </ul>
         </div>
-        </div>
+
+
+      </div>
+    </div>
 
 
       <div class="container">
       <div class="row">
         <div class="col-lg-9">
           <%= bootstrap_flash %>
-          
           <%= yield %>
-
-
         </div>
 
-           
+
+        <% if current_user %>
+        <div class="col-lg-3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header"><strong><%= "Пользователь" %></strong></li>
+              <li><%= link_to current_user.name, user_path(current_user) %>
+              Баллы: <%= current_user.score %></li>
+            </ul><br>
+
+              <% taski = Task.where(user_id: current_user.id).where(done: true) %>
+              <% if taski.size > 0 %>
+              <ul class="nav nav-list">
+              <li class="nav-header"><strong>Законченные дела</strong></li> 
+              <% for task in taski.order('created_at DESC').limit(5) %>
+                <li><%= task.title %>, <small><%= task.created_at.strftime("%d.%m %H:%M") %></small>
+                </li>
+              <% end %>
+              </ul><br>
+            <% end %>
+
+              <% treati = Treat.joins(:impulse).where('user_id in (?)', current_user.id) %>
+              <% if treati.size > 0 %>
+              <ul class="nav nav-list">
+              <li class="nav-header"><strong>Свежие награды</strong></li> 
+              <% for treat in treati.order('created_at DESC').limit(5) %>
+                <li><%= treat.impulsetreattype.title %>, <small><%= treat.created_at.strftime("%d.%m %H:%M") %></small>
+                </li>
+              <% end %>
+              </ul><br>
+            <% end %>
+
+
+              <% impy = Impulse.where(user_id: current_user.id) %>
+              <% if impy.size > 0 %>
+              <ul class="nav nav-list">
+              <li class="nav-header"><strong>Импульсы</strong></li> 
+              <% for imp in impy.order('created_at DESC').limit(10) %>
+                <li><%= imp.impulsetreattype.title %>, <small><%= imp.created_at.strftime("%d.%m %H:%M") %></small>
+                </li>
+              <% end %>
+              </ul><br>
+            <% end %>
+
+          </div>
+        </div>
+      <% end %>
 
       </div>
         
@@ -86,6 +145,3 @@
   </body>
 
 </html>
-
-
-

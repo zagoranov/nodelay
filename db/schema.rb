@@ -11,38 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030142339) do
+ActiveRecord::Schema.define(version: 20150524193901) do
 
-  create_table "comments", force: true do |t|
-    t.text     "text"
-    t.integer  "user_id"
-    t.integer  "post_id"
+  create_table "impulses", force: true do |t|
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "impulsetreattype_id"
   end
 
-  create_table "commvotes", force: true do |t|
+  create_table "impulsetreattypes", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "small",       default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
-    t.integer  "comment_id"
+  end
+
+  create_table "tasks", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "done",        default: false
     t.integer  "grade"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
-  create_table "messages", force: true do |t|
-    t.text     "text"
-    t.integer  "user_id"
-    t.integer  "recipient_id"
+  create_table "treats", force: true do |t|
+    t.boolean  "done",                default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "posts", force: true do |t|
-    t.string   "title"
-    t.text     "text"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "impulse_id"
+    t.integer  "impulsetreattype_id"
   end
 
   create_table "users", force: true do |t|
@@ -50,14 +53,12 @@ ActiveRecord::Schema.define(version: 20141030142339) do
     t.datetime "lastmove"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "votes", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.integer  "grade"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.boolean  "admin"
+    t.integer  "randchance",    default: 4
+    t.integer  "score",         default: 0
   end
 
 end

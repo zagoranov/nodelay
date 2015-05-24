@@ -43,3 +43,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 #gem 'libv8'
 #gem "less-rails" 
 gem "twitter-bootstrap-rails"
+
+gem 'bcrypt'
+gem 'rails_admin'
+

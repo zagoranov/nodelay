@@ -2,12 +2,16 @@ class PostsController < ApplicationController
 
 def index
  if current_user
-   @posts = Post.all
+   @posts = Post.all.order('created_at')
  else
    redirect_to log_in_path
  end
 end
 
+def show
+  @post = Post.find(params[:id])
+  @comments = @post.comments.all.order('created_at')
+end
 
 def create
   post = current_user.posts.create(post_params)
@@ -23,12 +27,10 @@ def destroy
 end
 
 
-
-
 private
 def post_params
     params.require(:post).permit(:title, :text)
-  end
+end
 
 
 end

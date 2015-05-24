@@ -1,18 +1,45 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  root to: 'posts#index'
+  root :to => 'tasks#index'
+
+  resources :sessions
 
   resources :users do
     resources :posts
-    resources :messages    
+    resources :messages
+   
+    resources :tasks
+    resources :impulses
+    resources :impulsetreattypes  
   end
 
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
+
+  resources :tasks do
+    member do
+      get 'itsdone'
+    end
+  end
+  
+  resources :treats do
+    member do
+      get 'eatit'
+    end
+  end
+  
+  resources :impulses
+  resources :impulsetreattypes
+
 
   get "log_in" => "sessions#create", :as => "log_in"
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "sign_up" => "users#new", :as => "sign_up"
+
+  get "wellhello" => "tasks#index", :as => "wellhello"
 
 end
+

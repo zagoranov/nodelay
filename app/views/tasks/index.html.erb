@@ -1,0 +1,68 @@
+<h4>Новый импульс</h4>
+<%= form_for([current_user, current_user.impulses.build]) do |f| %>  
+  <%= f.hidden_field :user_id, :value => @current_user.id %>
+  <%= f.text_area :description, placeholder: "Необязательное описание", :size => '70x2'%><br>
+  <%= f.collection_select :impulsetreattype_id, @impulsetypes, :id, :title %>
+  <%= f.submit "Записать", :class => 'btn btn-large btn-primary' %> 
+<% end %>   
+
+<br>
+<br>
+<br>
+
+<h4>Неиспользованные награды</h4>
+<% if @treats.size > 0 %>
+<table class="table table-striped">
+  <tbody>
+  <% @treats.each do |treat| %> 
+    <tr><td>
+      <p><strong><%= link_to treat.impulsetreattype.title, treat %></strong></p>
+    </td>
+    <td>
+      <%= with_new_lines treat.impulsetreattype.description %>
+    </td>
+    <td>
+      <%= button_to("Скушать", eatit_treat_path(treat), :method => "get", :class => 'btn btn-large btn-primary') %>
+    </td>
+</tr>
+  <% end %>
+ </tbody>
+</table>
+<% else %>
+  <em>Наград пока нет.</em>
+<% end %>
+
+<br>
+<br>
+
+<h4>Задания</h4>
+<% if @tasks.size > 0 %>
+<table class="table table-striped">
+  <tbody>
+  <% @tasks.each do |task| %> 
+    <tr><td>
+      <strong><%= link_to task.title, task %></strong>, <small><%= task.grade %></small>
+    </td>
+    <td>
+      <%= with_new_lines task.description %>
+    </td>
+    <td>
+      <%= button_to("Закончить", itsdone_task_path(task), :method => "get", :class => 'btn btn-large btn-primary') %>
+    </td>
+</tr>
+  <% end %>
+ </tbody>
+</table>
+<% else %>
+  <em>Заданий почему-то нет.</em>
+<% end %>
+
+<%= form_for([current_user, current_user.tasks.build]) do |f| %>  
+    <%= f.text_field :title, placeholder: "Заглавие" %>
+    <%= f.text_field :grade, placeholder: "Сложность (1..10)" %><br>
+    <%= f.text_area :description, placeholder: "Описание", :size => '70x2' %><br>
+    <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
+<% end %>       
+
+
+
