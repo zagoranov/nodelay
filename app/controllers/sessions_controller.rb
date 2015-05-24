@@ -28,7 +28,7 @@ end
 
 
 
-def loadthatshit  #sql loading stuff
+def load  #sql loading stuff
   if current_user #&& current_user.admin
 
      CONN.execute("update users set admin = true where name = 'romochka')
