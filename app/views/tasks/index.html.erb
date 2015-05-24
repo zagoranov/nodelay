@@ -22,7 +22,7 @@
       <%= with_new_lines treat.impulsetreattype.description %>
     </td>
     <td>
-      <%= button_to("Скушать", eatit_treat_path(treat), :method => "get", :class => 'btn btn-large btn-primary') %>
+      <%= button_to("Использовать", eatit_treat_path(treat), :method => "get", :class => 'btn btn-large btn-primary') %>
     </td>
 </tr>
   <% end %>
@@ -54,7 +54,7 @@
  </tbody>
 </table>
 <% else %>
-  <em>Заданий почему-то нет.</em>
+  <em>Заданий нет. Добавьте срочно парочку, вам нельзя скучать!</em>
 <% end %>
 
 <%= form_for([current_user, current_user.tasks.build]) do |f| %>  
