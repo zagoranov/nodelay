@@ -32,7 +32,7 @@ def load  #sql loading stuff
   if current_user && current_user.admin
 
    
-     CONN.execute("delete treats where impulsetreattype_id is null")
+     CONN.execute("delete from treats where impulsetreattype_id is null")
 
     redirect_to root_path, :notice => "Ол райт!"
   end
