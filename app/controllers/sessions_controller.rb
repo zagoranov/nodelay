@@ -32,7 +32,7 @@ def load  #sql loading stuff
   if current_user && current_user.admin
 
   Treat.all do |treat|
-    if !treat.impulsetreattype
+    if treat.impulsetreattype == null || treat.impulsetreattype.title == null
       treat.destroy
     end
   end    
