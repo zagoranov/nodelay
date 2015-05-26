@@ -17,6 +17,21 @@ def index
 end
 
 
+def edit
+  @imp = Impulsetreattype.find(params[:id])
+end
+
+
+def update
+  @imp = Impulsetreattype.find(params[:id])
+  if @imp.update(impulsetreattype_params)
+    redirect_to impulsetreattypes_path
+  else
+    render 'edit'
+  end
+end
+
+
 def destroy
   imp = Impulsetreattype.find(params[:id])
   imp.destroy

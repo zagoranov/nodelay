@@ -1,0 +1,24 @@
+<h3>Задание</h3>
+
+<%= form_for @task do |f| %>
+
+  <p>
+    Заголовок:<br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    Описание<br />
+    <%= f.text_area :description, :size => "50x3" %>
+  </p>
+  <p>
+    Сложность (1..10)<br>
+    1 / <%= f.text_field :grade %>
+  </p>
+  <br><br>
+  <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %></p>
+<% end %>
+
+<br>
+<br>
+
+<%= link_to "Отмена", root_path, :method => "get", :class => 'btn btn-mini btn-danger' %> 
