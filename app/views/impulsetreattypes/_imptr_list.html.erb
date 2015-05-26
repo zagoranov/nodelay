@@ -1,0 +1,17 @@
+<h4>Список наград/импульсов</h4>
+<table class="table table-striped">
+  <tbody>
+  <% @imptts.each do |imptt| %> 
+    <tr><td>
+      <strong><%= link_to imptt.title, edit_impulsetreattype_path(imptt) %></strong>
+        <br><%= link_to "[ Удалить ]", kill_impulsetreattype_path(imptt), :method => "post", remote: true, data: { confirm: "Вы серьезно?" }  %> 
+    </td>
+  <td><%= with_new_lines imptt.description %></td>
+  <td><strong><%= imptt.small ? "Мелкое" : "Большое"  %></strong></td>
+  </tr>
+  <% end %>
+ </tbody>
+</table>
+<% if @imptts.size == 0 %>
+  <em>Наград нет. Для работы сайта нужно добавить минимум по одной маленькой и большой награде!</em>
+<% end %>

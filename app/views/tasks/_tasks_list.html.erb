@@ -1,0 +1,22 @@
+<h4>Задания</h4>
+<% if @tasks.size > 0 %>
+<table class="table table-striped">
+  <tbody>
+  <% @tasks.each do |task| %> 
+    <tr><td>
+      <strong><%= link_to task.title, edit_task_path(task) %></strong>, <small><%= task.grade %></small>
+        <br><%= link_to "[ Удалить ]",  task,  remote: true, method: :delete, data: { confirm: "Вы серьезно?" }  %> 
+    </td>
+    <td>
+      <%= with_new_lines task.description %>
+    </td>
+    <td>
+      <%= button_to("Закончить", itsdone_task_path(task), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+    </td>
+</tr>
+  <% end %>
+ </tbody>
+</table>
+<% else %>
+  <em>Заданий нет. Добавьте срочно парочку, вам нельзя скучать!</em>
+<% end %>

@@ -1,0 +1,19 @@
+<% if @treats.size > 0 %>
+<h4>Неиспользованные награды</h4>
+<table class="table table-striped">
+  <tbody>
+  <% @treats.each do |treat| %> 
+      <tr><td>
+         <p><strong><%= link_to treat.impulsetreattype.title, treat %></strong></p>
+      </td>
+      <td>
+          <%= with_new_lines treat.impulsetreattype.description %>
+      </td>
+      <td>
+           <%= button_to("Использовать", eatit_treat_path(treat), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+      </td>
+      </tr>
+  <% end %>
+ </tbody>
+</table>
+<% end %>

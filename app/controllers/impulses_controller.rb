@@ -1,6 +1,8 @@
 # encoding: UTF-8
 class ImpulsesController < ApplicationController
 
+respond_to :html, :js
+
 def new
   @impulse = current_user.impulses.new()
 end
@@ -27,15 +29,18 @@ def create
       	treat.impulsetreattype = impulse.impulsetreattype
       end	
   	  treat.save
-  	  redirect_to root_path, :notice => 'Ого! БОЛЬШАЯ награда!' 
+  	  #redirect_to root_path, :notice => 'Ого! БОЛЬШАЯ награда!' 
   	else
       treat.impulsetreattype = impulse.impulsetreattype
   	  treat.save
-  	  redirect_to root_path, :notice => 'Ого! Награда!' 
+  	  #redirect_to root_path, :notice => 'Ого! Награда!' 
   	end  
   else
-    redirect_to root_path, :notice => 'Отлично, чувак!'
-  end  
+    #redirect_to root_path, :notice => 'Отлично, чувак!'
+  end
+  respond_to do |format|
+    format.js { render partial: 'treatslistrefresh'  }
+  end
 end
 
 

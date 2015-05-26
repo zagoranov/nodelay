@@ -1,11 +1,15 @@
 # encoding: UTF-8
 class ImpulsetreattypesController < ApplicationController
 
+respond_to :html, :js
 
 def create
   imptt = current_user.impulsetreattypes.create(impulsetreattype_params)
   imptt.save
-  redirect_to impulsetreattypes_path
+  #redirect_to impulsetreattypes_path
+  respond_to do |format|
+    format.js { render partial: 'imptrrefresh'  }
+  end
 end
 
 def index
@@ -36,7 +40,10 @@ def kill
   @imp = Impulsetreattype.find(params[:id])
   @imp.erased = true
   @imp.save
-  redirect_to impulsetreattypes_path
+  #redirect_to impulsetreattypes_path
+  respond_to do |format|
+    format.js { render partial: 'imptrrefresh'  }
+  end
 end
 
 

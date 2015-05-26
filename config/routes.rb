@@ -25,20 +25,20 @@ Rails.application.routes.draw do
 
   resources :tasks do
     member do
-      get 'itsdone'
+      post 'itsdone'
     end
   end
   
   resources :treats do
     member do
-      get 'eatit'
+      post 'eatit'
     end
   end
   
   resources :impulses
   resources :impulsetreattypes do
     member do
-      get 'kill'
+      post 'kill'
     end
   end
 
@@ -48,8 +48,7 @@ Rails.application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
 
   get "wellhello" => "tasks#index", :as => "wellhello"
-
-get "loadthatshit" => "sessions#load", :as => "loadthatshit"
+  get "loadthatshit" => "sessions#load", :as => "loadthatshit"
 
 end
 

@@ -1,5 +1,5 @@
 <h4>Новый импульс</h4>
-<%= form_for([current_user, current_user.impulses.build]) do |f| %>  
+<%= form_for([current_user, current_user.impulses.build], remote: true) do |f| %>  
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.text_area :description, placeholder: "Необязательное описание", :size => '70x2'%><br>
   <%= f.collection_select :impulsetreattype_id, @impulsetypes, :id, :title %>
@@ -10,55 +10,21 @@
 <br>
 <br>
 
-<% if @treats.size > 0 %>
-<h4>Неиспользованные награды</h4>
-<table class="table table-striped">
-  <tbody>
-  <% @treats.each do |treat| %> 
-      <tr><td>
-         <p><strong><%= link_to treat.impulsetreattype.title, treat %></strong></p>
-      </td>
-      <td>
-          <%= with_new_lines treat.impulsetreattype.description %>
-      </td>
-      <td>
-           <%= button_to("Использовать", eatit_treat_path(treat), :method => "get", :class => 'btn btn-large btn-primary') %>
-      </td>
-      </tr>
-  <% end %>
- </tbody>
-</table>
-<% end %>
+<div id="treats_table">
+  <%= render "treats/treats_list" %>
+</div>
 
 <br>
 <br>
 
-<h4>Задания</h4>
-<% if @tasks.size > 0 %>
-<table class="table table-striped">
-  <tbody>
-  <% @tasks.each do |task| %> 
-    <tr><td>
-      <strong><%= link_to task.title, edit_task_path(task) %></strong>, <small><%= task.grade %></small>
-        <br><%= link_to "[ Удалить ]",  task,  method: :delete, data: { confirm: "Вы серьезно?" }  %> 
-    </td>
-    <td>
-      <%= with_new_lines task.description %>
-    </td>
-    <td>
-      <%= button_to("Закончить", itsdone_task_path(task), :method => "get", :class => 'btn btn-large btn-primary') %>
-    </td>
-</tr>
-  <% end %>
- </tbody>
-</table>
-<% else %>
-  <em>Заданий нет. Добавьте срочно парочку, вам нельзя скучать!</em>
-<% end %>
+<div id="tasks_table">
+  <%= render "tasks_list" %>
+</div>
+
 <p><strong>Добавить задание</strong></p>
-<%= form_for([current_user, current_user.tasks.build]) do |f| %>  
+<%= form_for([current_user, current_user.tasks.build], remote: true) do |f| %>  
     <%= f.text_field :title, placeholder: "Заглавие" %>
-    Сложность (1..10): <%= f.text_field :grade %><br>
+    <%= f.text_field :grade, placeholder: "Сложность (1..10)" %><br>
     <%= f.text_area :description, placeholder: "Описание", :size => '70x2' %><br>
     <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
 <% end %>       

@@ -1,9 +1,11 @@
 class TasksController < ApplicationController
 
+respond_to :html, :js
+
 def index
  if current_user
    @tasks = current_user.tasks.where(done: false)
-   @treats = Treat.joins(:impulse).where('user_id in (?)', current_user.id).where(done: false).order('created_at DESC').limit(10)
+   @treats = Treat.joins(:impulse).where('user_id in (?)', current_user.id).where(done: false).order('created_at DESC')
    @impulsetypes = Impulsetreattype.where(small: true).where('user_id in (?)', current_user.id).where(erased: false)
  else
    redirect_to log_in_path
@@ -14,7 +16,10 @@ end
 def create
   task = current_user.tasks.create(task_params)
   task.save
-  redirect_to root_path
+  #redirect_to root_path
+  respond_to do |format|
+    format.js { render partial: 'taskslistrefresh'  }
+  end
 end
 
 
@@ -24,7 +29,10 @@ def itsdone
   task.save
   current_user.score += task.grade
   current_user.save
-  redirect_to root_path
+  #redirect_to root_path
+  respond_to do |format|
+    format.js { render partial: 'taskslistrefresh'  }
+  end
 end
 
 def edit
@@ -44,7 +52,10 @@ end
 def destroy
   task = Task.find(params[:id])
   task.destroy
-  redirect_to root_path
+  #redirect_to root_path
+  respond_to do |format|
+    format.js { render partial: 'taskslistrefresh'  }
+  end
 end
 
 
