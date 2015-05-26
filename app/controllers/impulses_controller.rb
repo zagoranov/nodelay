@@ -13,17 +13,12 @@ def create
   current_user.score += 1
   current_user.save
   r = Random.rand(current_user.randchance) + 1
-  if r == 4 #урра!!! награда!!!!
+  if r == current_user.randchance #урра!!! награда!!!!
   	treat = impulse.treats.create()
-  	r = Random.rand(current_user.randchance) + 1
-  	if r == 4 #урра!!! БОЛЬШАЯ награда!!!!
-      if Rails.env.production
-        rnd = "random()"
-      else
-        rnd = "rand()"
-      end  
-      	  type = Impulsetreattype.where(small: false).where('user_id in (?)', current_user.id).order(rnd).first
-  	  if type
+  	r = Random.rand(current_user.randchance * 2) + 1
+  	if r == current_user.randchance #урра!!! БОЛЬШАЯ награда!!!!
+      type = Impulsetreattype.where(small: false).where(erased: false).where('user_id in (?)', current_user.id).order("RANDOM()").first
+      if type
   	    treat.impulsetreattype = type
       else
       	treat.impulsetreattype = impulse.impulsetreattype
@@ -39,7 +34,6 @@ def create
     #redirect_to root_path, :notice => 'Отлично, чувак!'
   end
   respond_to do |format|
-    # format.js { render partial: 'impulseslistrefresh' }
     format.js { render partial: 'imptrlistrefresh' }
   end
 end

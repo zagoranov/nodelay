@@ -31,18 +31,8 @@ end
 def load  #sql loading stuff
   if current_user && current_user.admin
 
-   tr = Treat.find_by_id(5)
-   tr.destroy
-   tr = Treat.find_by_id(6)
-   tr.destroy
-   tr = Treat.find_by_id(7)
-   tr.destroy
-   tr = Treat.find_by_id(8)
-   tr.destroy
-   tr = Treat.find_by_id(9)
-   tr.destroy
-      
-     #CONN.execute("update users set admin = true where name = 'romochka'")
+   
+     CONN.execute("delete treats where impulsetreattype_id is null")
 
     redirect_to root_path, :notice => "Ол райт!"
   end
