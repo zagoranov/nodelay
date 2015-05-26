@@ -3,6 +3,7 @@
 <table class="table table-striped">
   <tbody>
   <% @treats.each do |treat| %> 
+      <% if treat.impulsetreattype %>
       <tr><td>
          <p><strong><%= treat.impulsetreattype.title %></strong></p>
       </td>
@@ -13,6 +14,7 @@
            <%= button_to("Использовать", eatit_treat_path(treat), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
       </td>
       </tr>
+      <% end %>
   <% end %>
  </tbody>
 </table>
