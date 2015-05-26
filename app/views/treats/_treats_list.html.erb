@@ -14,6 +14,8 @@
            <%= button_to("Использовать", eatit_treat_path(treat), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
       </td>
       </tr>
+      <% else %>
+        <tr><td><p><strong><%= treat.id %></strong></p></td></tr>
       <% end %>
   <% end %>
  </tbody>
