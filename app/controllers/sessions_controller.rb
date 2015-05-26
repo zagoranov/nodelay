@@ -31,7 +31,7 @@ end
 def load  #sql loading stuff
   if current_user && current_user.admin
 
-  @treats.each do |treat|
+  Treat.all do |treat|
     if !treat.impulsetreattype
       treat.destroy
     end
