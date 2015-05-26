@@ -6,6 +6,7 @@ def index
  if current_user
    @tasks = current_user.tasks.where(done: false)
    @treats = Treat.joins(:impulse).where('user_id in (?)', current_user.id).where(done: false).order('created_at DESC')
+   @impulses = Impulse.where(user_id: current_user.id).order('created_at DESC').limit(5)
    @impulsetypes = Impulsetreattype.where(small: true).where('user_id in (?)', current_user.id).where(erased: false)
  else
    redirect_to log_in_path

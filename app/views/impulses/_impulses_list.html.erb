@@ -1,0 +1,16 @@
+<% if @impulses.size > 0 %>
+<h4>Свежие импульсы</h4>
+<table class="table table-striped">
+  <tbody>
+  <% @impulses.each do |imp| %> 
+    <tr>
+      <td><%= imp.created_at.strftime("%d.%m %H:%M") %></td>
+      <td><strong><%= imp.impulsetreattype.title %></strong></td>
+      <td><%= imp.impulsetreattype.description %></td>
+  </tr>
+  <% end %>
+ </tbody>
+</table>
+<% else %>
+  <em>Импульсов пока не зарегистрировано. Даже странно.</em>
+<% end %>

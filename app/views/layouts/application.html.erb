@@ -97,8 +97,8 @@
               <% taski = Task.where(user_id: current_user.id).where(done: true) %>
               <% if taski.size > 0 %>
               <ul class="nav nav-list">
-              <li class="nav-header"><strong>Законченные дела</strong></li> 
-              <% for task in taski.order('created_at DESC').limit(5) %>
+              <li class="nav-header"><strong>Законченные задания</strong></li> 
+              <% for task in taski.order('created_at DESC').limit(7) %>
                 <li><%= task.title %>, <small><%= task.created_at.strftime("%d.%m %H:%M") %></small>
                 </li>
               <% end %>
@@ -109,7 +109,7 @@
               <% if treati.size > 0 %>
               <ul class="nav nav-list">
               <li class="nav-header"><strong>Свежие награды</strong></li> 
-              <% for treat in treati.order('created_at DESC').limit(5) %>
+              <% for treat in treati.order('created_at DESC').limit(7) %>
                 <% if treat.impulsetreattype %> 
                   <li><%= treat.impulsetreattype.title %>, <small><%= treat.created_at.strftime("%d.%m %H:%M") %></small>
                   </li>
@@ -118,17 +118,6 @@
               </ul><br>
             <% end %>
 
-
-              <% impy = Impulse.where(user_id: current_user.id) %>
-              <% if impy.size > 0 %>
-              <ul class="nav nav-list">
-              <li class="nav-header"><strong>Импульсы</strong></li> 
-              <% for imp in impy.order('created_at DESC').limit(10) %>
-                <li><%= imp.impulsetreattype.title %>, <small><%= imp.created_at.strftime("%d.%m %H:%M") %></small>
-                </li>
-              <% end %>
-              </ul><br>
-            <% end %>
 
           </div>
         </div>

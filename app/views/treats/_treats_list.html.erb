@@ -4,7 +4,7 @@
   <tbody>
   <% @treats.each do |treat| %> 
       <tr><td>
-         <p><strong><%= link_to treat.impulsetreattype.title, treat %></strong></p>
+         <p><strong><%= treat.impulsetreattype.title %></strong></p>
       </td>
       <td>
           <%= with_new_lines treat.impulsetreattype.description %>

@@ -1,4 +1,8 @@
-<h4>Новый импульс</h4>
+<div id="impulses_table">
+  <%= render "impulses/impulses_list" %>
+</div>
+
+<p><strong>Новый импульс</strong></p>
 <%= form_for([current_user, current_user.impulses.build], remote: true) do |f| %>  
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.text_area :description, placeholder: "Необязательное описание", :size => '70x2'%><br>
