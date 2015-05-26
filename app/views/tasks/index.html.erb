@@ -16,16 +16,10 @@
   <tbody>
   <% @treats.each do |treat| %> 
       <tr><td>
-         <% if treat.impulsetreattype %> 
-             <p><strong><%= link_to treat.impulsetreattype.title, treat %></strong></p>
-          <% else %>
-              <p><%= treat.id %></p>
-          <% end %>
+         <p><strong><%= link_to treat.impulsetreattype.title, treat %></strong></p>
       </td>
       <td>
-        <% if treat.impulsetreattype %> 
           <%= with_new_lines treat.impulsetreattype.description %>
-        <% end %>
       </td>
       <td>
            <%= button_to("Использовать", eatit_treat_path(treat), :method => "get", :class => 'btn btn-large btn-primary') %>
@@ -46,6 +40,7 @@
   <% @tasks.each do |task| %> 
     <tr><td>
       <strong><%= link_to task.title, edit_task_path(task) %></strong>, <small><%= task.grade %></small>
+        <br><%= link_to "[ Удалить ]",  task,  method: :delete, data: { confirm: "Вы серьезно?" }  %> 
     </td>
     <td>
       <%= with_new_lines task.description %>
@@ -63,7 +58,7 @@
 <p><strong>Добавить задание</strong></p>
 <%= form_for([current_user, current_user.tasks.build]) do |f| %>  
     <%= f.text_field :title, placeholder: "Заглавие" %>
-    <%= f.text_field :grade, placeholder: "Сложность (1..10)" %><br>
+    Сложность (1..10): <%= f.text_field :grade %><br>
     <%= f.text_area :description, placeholder: "Описание", :size => '70x2' %><br>
     <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
 <% end %>       

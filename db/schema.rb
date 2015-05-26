@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526075417) do
+ActiveRecord::Schema.define(version: 20150526083827) do
 
   create_table "impulses", force: true do |t|
     t.text     "description"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150526075417) do
     t.string   "title"
     t.text     "description"
     t.boolean  "done",        default: false
-    t.integer  "grade"
+    t.integer  "grade",       default: 5
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
