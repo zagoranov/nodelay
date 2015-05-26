@@ -39,9 +39,8 @@ def create
     #redirect_to root_path, :notice => 'Отлично, чувак!'
   end
   respond_to do |format|
-    format.js { 
-      render partial: 'treatslistrefresh'
-    }
+    # format.js { render partial: 'impulseslistrefresh' }
+    format.js { render partial: 'imptrlistrefresh' }
   end
 end
 

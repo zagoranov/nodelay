@@ -1,0 +1,2 @@
+$("#impulses_table").html("<% @impulses = Impulse.where(user_id: current_user.id).order('created_at DESC').limit(5) %><%= escape_javascript(render partial: 'impulses_list', locals: { :@impulses => @impulses }  ) %>");
+$("#treats_table").html("<% @treats = Treat.joins(:impulse).where('user_id in (?)', current_user.id).where(done: false).order('created_at DESC') %><%= escape_javascript(render partial: 'treats/treats_list', locals: { :@treats => @treats }  ) %>"); 
