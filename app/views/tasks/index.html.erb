@@ -23,7 +23,9 @@
           <% end %>
       </td>
       <td>
+        <% if treat.impulsetreattype %> 
           <%= with_new_lines treat.impulsetreattype.description %>
+        <% end %>
       </td>
       <td>
            <%= button_to("Использовать", eatit_treat_path(treat), :method => "get", :class => 'btn btn-large btn-primary') %>
