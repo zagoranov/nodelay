@@ -15,16 +15,18 @@
 <table class="table table-striped">
   <tbody>
   <% @treats.each do |treat| %> 
-    <tr><td>
-      <p><strong><%= link_to treat.impulsetreattype.title, treat %></strong></p>
-    </td>
-    <td>
-      <%= with_new_lines treat.impulsetreattype.description %>
-    </td>
-    <td>
-      <%= button_to("Использовать", eatit_treat_path(treat), :method => "get", :class => 'btn btn-large btn-primary') %>
-    </td>
-</tr>
+    <% if treat.impulsetreattype %> 
+      <tr><td>
+        <p><strong><%= link_to treat.impulsetreattype.title, treat %></strong></p>
+      </td>
+      <td>
+          <%= with_new_lines treat.impulsetreattype.description %>
+      </td>
+      <td>
+           <%= button_to("Использовать", eatit_treat_path(treat), :method => "get", :class => 'btn btn-large btn-primary') %>
+      </td>
+      </tr>
+    <% end %>      
   <% end %>
  </tbody>
 </table>

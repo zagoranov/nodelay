@@ -110,8 +110,10 @@
               <ul class="nav nav-list">
               <li class="nav-header"><strong>Свежие награды</strong></li> 
               <% for treat in treati.order('created_at DESC').limit(5) %>
-                <li><%= treat.impulsetreattype.title %>, <small><%= treat.created_at.strftime("%d.%m %H:%M") %></small>
-                </li>
+                <% if treat.impulsetreattype %> 
+                  <li><%= treat.impulsetreattype.title %>, <small><%= treat.created_at.strftime("%d.%m %H:%M") %></small>
+                  </li>
+                  <% end %>
               <% end %>
               </ul><br>
             <% end %>
