@@ -36,7 +36,11 @@ Rails.application.routes.draw do
   end
   
   resources :impulses
-  resources :impulsetreattypes
+  resources :impulsetreattypes do
+    member do
+      get 'kill'
+    end
+  end
 
 
   get "log_in" => "sessions#new", :as => "log_in"

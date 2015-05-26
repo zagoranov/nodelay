@@ -17,7 +17,7 @@
     <tr><td>
       <strong><%= link_to imptt.title, edit_impulsetreattype_path(imptt) %></strong>
       <% if current_user.admin %>    
-        <br><%= link_to "[ Удалить ]", imptt, :method => :delete, data: { confirm: "Вы серьезно?" }  %> 
+        <br><%= link_to "[ Удалить ]", kill_impulsetreattype_path(imptt), data: { confirm: "Вы серьезно?" }  %> 
       <% end %>
     </td>
   <td><%= with_new_lines imptt.description %></td>

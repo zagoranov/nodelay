@@ -10,7 +10,7 @@ end
 
 def index
  if current_user  
-    @imptts = Impulsetreattype.where('user_id in (?)', current_user.id)  
+    @imptts = Impulsetreattype.where('user_id in (?)', current_user.id).where(erased: false)
  else
     redirect_to log_in_path
  end  
@@ -29,6 +29,14 @@ def update
   else
     render 'edit'
   end
+end
+
+
+def kill
+  @imp = Impulsetreattype.find(params[:id])
+  @imp.erased = true
+  @imp.save
+  redirect_to impulsetreattypes_path
 end
 
 
