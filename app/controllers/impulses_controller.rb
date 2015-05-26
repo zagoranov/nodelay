@@ -15,7 +15,12 @@ def create
   	treat = impulse.treats.create()
   	r = Random.rand(current_user.randchance) + 1
   	if r == 4 #урра!!! БОЛЬШАЯ награда!!!!
-  	  type = Impulsetreattype.where(small: false).where('user_id in (?)', current_user.id).order("RAND()").first
+      if Rails.env.production
+        rnd = "random()"
+      else
+        rnd = "rand()"
+      end  
+      	  type = Impulsetreattype.where(small: false).where('user_id in (?)', current_user.id).order(rnd).first
   	  if type
   	    treat.impulsetreattype = type
       else
