@@ -24,6 +24,10 @@ Rails.application.routes.draw do
   end
 
   resources :tasks do
+    collection do
+      get 'help'
+      get 'tldr'
+    end
     member do
       post 'itsdone'
     end
@@ -48,7 +52,9 @@ Rails.application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "sign_up" => "users#new", :as => "sign_up"
 
-  get "wellhello" => "tasks#index", :as => "wellhello"
+  get "wellhello" => "tasks#synopsys", :as => "wellhello"
+  get "tldr" => "tasks#help", :as => "tldr"
+  
   get "loadthatshit" => "sessions#load", :as => "loadthatshit"
 
 end

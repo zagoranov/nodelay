@@ -72,12 +72,16 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
           <% if current_user %>
-            <li><%= link_to "Награды/Импульсы", impulsetreattypes_path  %></li>          
+            <li><%= link_to "Главная", root_path  %></li>
+            <li><%= link_to "Награды/Импульсы", impulsetreattypes_path  %></li>
             <% if current_user.admin %>
                 <li><%= link_to "Админ", "/admin", :target => "_blank"  %></li>
             <% end %>            
             <li><%= link_to "Выйти", "/log_out" %></li>
+         <%else%>   
+            <li><%= link_to "Войти", "/log_in" %></li>
          <%end%>
+          <li><%= link_to "Помощь", wellhello_path  %></li>                     
          </ul>
         </div>
 
