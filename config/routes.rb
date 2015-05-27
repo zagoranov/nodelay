@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :impulsetreattypes do
     member do
       post 'kill'
+      get 'buy'
     end
   end
 

@@ -37,13 +37,30 @@ end
 
 
 def kill
-  @imp = Impulsetreattype.find(params[:id])
-  @imp.erased = true
-  @imp.save
+  imptr = Impulsetreattype.find(params[:id])
+  imptr.erased = true
+  imptr.save
   #redirect_to impulsetreattypes_path
   respond_to do |format|
     format.js { render partial: 'imptrrefresh'  }
   end
+end
+
+def buy
+  imptr = Impulsetreattype.find(params[:id])
+  impulse = current_user.impulses.create()
+  impulse.impulsetreattype = imptr
+  impulse.save
+  treat = impulse.treats.create()
+  treat.impulsetreattype = imptr
+  treat.save
+  if imptr.small
+    current_user.score -= 50
+  else
+    current_user.score -= 150
+  end  
+  current_user.save
+  redirect_to impulsetreattypes_path, :notice => 'Покупка совершена, используйте аккуратно!' 
 end
 
 

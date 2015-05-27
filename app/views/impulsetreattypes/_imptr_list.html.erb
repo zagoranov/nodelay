@@ -4,11 +4,18 @@
   <% @imptts.each do |imptt| %> 
     <tr><td>
       <strong><%= link_to imptt.title, edit_impulsetreattype_path(imptt) %></strong>
-        <br><%= link_to "[ Удалить ]", kill_impulsetreattype_path(imptt), :method => "post", remote: true, data: { confirm: "Вы серьезно?" }  %> 
+        <br><%= imptt.url==nil ? "" : imptt.url  %>
     </td>
   <td><%= with_new_lines imptt.description %></td>
-  <td><strong><%= imptt.small ? "Мелкое" : "Большое"  %></strong></td>
-  <td><%= imptt.url==nil ? "" : imptt.url  %></td>  
+  <td><strong><%= imptt.small ? "Мелкое" : "Большое"  %></strong>
+        <br><%= link_to "[ Удалить ]", kill_impulsetreattype_path(imptt), :method => "post", remote: true, data: { confirm: "Вы серьезно?" }  %>  </td>
+   
+   <td><% if imptt.small %>
+      <%= link_to "Купить (50)", buy_impulsetreattype_path(imptt), :class => 'btn btn-large btn-primary', :disabled => current_user.score<49 %>
+      <% else %>
+      <%= link_to "Купить (150)", buy_impulsetreattype_path(imptt), :class => 'btn btn-large btn-primary', :disabled => current_user.score<149  %>
+    <% end %></td>
+
   </tr>
   <% end %>
  </tbody>

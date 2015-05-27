@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class TasksController < ApplicationController
 
 respond_to :html, :js
@@ -16,6 +17,9 @@ end
 
 def create
   task = current_user.tasks.create(task_params)
+  if task.grade > 10
+    task.grade = 10
+  end  
   task.save
   #redirect_to root_path
   respond_to do |format|
