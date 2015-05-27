@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526083827) do
+ActiveRecord::Schema.define(version: 20150527105405) do
 
   create_table "impulses", force: true do |t|
     t.text     "description"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150526083827) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "erased",      default: false
+    t.string   "url"
   end
 
   create_table "tasks", force: true do |t|

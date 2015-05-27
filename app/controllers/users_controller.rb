@@ -46,7 +46,7 @@ end
 
 
 def update
-  @user = User.find(params[:id])
+  @user = current_user
   if @user.update(user_params)
     redirect_to @user
   else

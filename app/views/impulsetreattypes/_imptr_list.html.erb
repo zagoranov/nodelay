@@ -8,6 +8,7 @@
     </td>
   <td><%= with_new_lines imptt.description %></td>
   <td><strong><%= imptt.small ? "Мелкое" : "Большое"  %></strong></td>
+  <td><%= imptt.url==nil ? "" : imptt.url  %></td>  
   </tr>
   <% end %>
  </tbody>

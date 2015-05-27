@@ -1,6 +1,7 @@
 <h4>Добавить награду</h4>
     <%= form_for([current_user, current_user.impulsetreattypes.build], remote: true) do |f| %>  
-    <%= f.text_field :title, placeholder: "Заглавие" %><br>
+    <%= f.text_field :title, placeholder: "Заглавие" %>
+    <%= f.text_field :url, placeholder: "Необязательная ссылка" %><br>
     <%= f.text_area :description, placeholder: "Описание", :size => '70x2' %><br>
     <%= f.radio_button :small, true, :checked => true %> Мелкая награда/импульс (почитать интернет, поиграть в игру, заглянуть в холодильник)<br>
     <%= f.radio_button :small, false, :checked => false %> Большая награда (посетить тот классный ресторан, сходить на массаж, театр, концерт)<br>

@@ -55,7 +55,7 @@ end
 
 private
   def impulsetreattype_params
-    params.require(:impulsetreattype).permit(:title, :description, :small, :user_id)
+    params.require(:impulsetreattype).permit(:title, :description, :small, :user_id, :url)
   end
 
 end

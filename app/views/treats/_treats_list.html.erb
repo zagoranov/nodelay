@@ -9,9 +9,12 @@
       </td>
       <td>
           <%= with_new_lines treat.impulsetreattype.description %>
+         <% if treat.impulsetreattype.url!=nil %> 
+            <br><small><%= link_to treat.impulsetreattype.url, treat.impulsetreattype.url, id: treat.id.to_s, :target => "_blank"  %></small>
+          <% end %>
       </td>
       <td>
-           <%= button_to("Использовать", eatit_treat_path(treat), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+        <%= link_to "Использовать", eatit_treat_path(treat), :method => "post", remote: true, :class => 'btn btn-large btn-primary', onclick: "document.getElementById('"+ treat.id.to_s + "').click()" %>
       </td>
       </tr>
       <% else %>
