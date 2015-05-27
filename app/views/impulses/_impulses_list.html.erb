@@ -5,8 +5,8 @@
   <% @impulses.each do |imp| %> 
     <tr>
       <td><%= imp.created_at.strftime("%d.%m %H:%M") %></td>
-      <td><strong><%= imp.impulsetreattype.title %></strong></td>
-      <td><%= imp.impulsetreattype.description %></td>
+      <td><%= imp.impulsetreattype.title %></td>
+      <td><small><%= imp.impulsetreattype.description %></small></td>
   </tr>
   <% end %>
  </tbody>

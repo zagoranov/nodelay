@@ -5,7 +5,7 @@
   <% @treats.each do |treat| %> 
       <% if treat.impulsetreattype %>
       <tr><td>
-         <strong><%= treat.impulsetreattype.title %></strong><br>
+         <%= treat.impulsetreattype.title %><br>
          <small><%= treat.impulsetreattype.small ? "Мелкое" : "Большое"  %></small>
       </td>
       <td>

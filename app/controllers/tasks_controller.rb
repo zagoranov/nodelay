@@ -17,6 +17,9 @@ end
 
 def create
   task = current_user.tasks.create(task_params)
+  if task.grade == nil
+    task.grade = 5
+  end  
   if task.grade > 10
     task.grade = 10
   end  
