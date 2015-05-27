@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
 def new
   if current_user
-    redirect_to root_path, :notice => 'Привет, лентяй!'
+    redirect_to root_path, :notice => 'Привет, прокрастинатор!'
   end 
   @user = User.new
 end
@@ -14,7 +14,7 @@ def create
   @user.admin = false
   if @user.save
      session[:user_id] = @user.id
-     redirect_to impulsetreattypes_path, :notice => "Заполните импульсы/награды!"
+     redirect_to impulsetreattypes_path, :notice => "Чтобы это всё заработало, нужно заполнить импульсы/награды!"
   else
     render "new"
   end
