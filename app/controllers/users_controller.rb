@@ -34,7 +34,6 @@ end
 def show
  if current_user
     @user = User.find(params[:id])
-    @messages = Message.where(recipient_id: current_user.id).order('created_at DESC')
  else 
     redirect_to '/log_in'
  end
