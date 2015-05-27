@@ -4,7 +4,7 @@
   <% @imptts.each do |imptt| %> 
     <tr><td>
       <strong><%= link_to imptt.title, edit_impulsetreattype_path(imptt) %></strong>
-        <br><%= imptt.url==nil ? "" : imptt.url  %>
+        <br><small><%= imptt.url==nil ? "" : imptt.url  %></small>
     </td>
   <td><%= with_new_lines imptt.description %></td>
   <td><strong><%= imptt.small ? "Мелкое" : "Большое"  %></strong>
