@@ -99,7 +99,7 @@
               <ul class="nav nav-list">
               <li class="nav-header"><strong>Законченные задания</strong></li> 
               <% for task in taski %>
-                <li><%= task.title %>, <small><%= task.created_at.strftime("%d.%m %H:%M") %></small>
+                <li><%= task.title %><% if task.description!="" %>: <i><%= task.description %></i><% end %>, <small><%= task.created_at.strftime("%d.%m %H:%M") %></small>
                 </li>
               <% end %>
               </ul><br>

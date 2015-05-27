@@ -14,7 +14,7 @@ end
 
 def index
  if current_user  
-    @imptts = Impulsetreattype.where('user_id in (?)', current_user.id).where(erased: false)
+    @imptts = Impulsetreattype.where('user_id in (?)', current_user.id).where(erased: false).order('title')
  else
     redirect_to log_in_path
  end  
