@@ -6,6 +6,7 @@ def new
     redirect_to root_path, :notice => 'Привет, прокрастинатор!'
   end 
   @user = User.new
+  @backimage = "nodoshit.jpg"
 end
 
 

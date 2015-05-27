@@ -7,7 +7,7 @@
   
   <% if @user.errors.any? %>
     <div class="error_messages">
-      <h2>Случилась ошибка!</h2>
+      <span style="color:white"><h2>Случилась ошибка!</h2></span>
       <ul>
         <% for message in @user.errors.full_messages %>
           <li><%= message %></li>
@@ -21,6 +21,10 @@
 <% end %>
 
 <br><br>
+<br><br>
 
-Если вы уже зарегистрированы, то пройдите вот сюда: <%= link_to "Логин", "log_in" %> 
+<span style="color:white">
+Здравствуйте. Вас приветствует Idler - бесплатный сервис по борьбе с прокрастинаторством .
+<br><br>
+Если вы уже зарегистрированы, то пройдите вот сюда:</span> <%= link_to "Логин", "log_in" %> 
 

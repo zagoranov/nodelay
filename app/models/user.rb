@@ -20,8 +20,7 @@ attr_accessor :password
          uniqueness: true
   
   validates :name, 
-         presence: true,
-         uniqueness: true
+         presence: true
   
   def self.authenticate(email, password)
     user = find_by_email(email)

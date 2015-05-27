@@ -1,19 +1,19 @@
 <%= form_for @user do |f| %>
 
   <p>
-    Ник<br />
+    <span style="color:white">Имя</span><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    E-mail<br />
+    <span style="color:white">E-mail</span><br />
     <%= f.text_field :email %>
   </p>
   <p>
-    Пароль<br />
+    <span style="color:white">Пароль</span><br />
     <%= f.password_field :password %>
   </p>
   <p>
-    Еще раз раз пароль<br />
+    <span style="color:white">Еще раз раз пароль</span><br />
     <%= f.password_field :password_confirmation %>
   </p>
   <br>  

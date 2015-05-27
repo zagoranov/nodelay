@@ -1,14 +1,15 @@
+
 <h3>Логин</h3>
 
 <br><br>
 
 <%= form_tag sessions_path do %>
   <p>
-    E-mail<br />
+    <span style="color:white">E-mail</span>    <br />
     <%= text_field_tag :email, params[:email] %>
   </p>
   <p>
-    Пароль<br />
+    <span style="color:white">Пароль</span> <br />
     <%= password_field_tag :password %>
   </p>
   <br><br>
@@ -18,4 +19,8 @@
 <br><br>
 <br><br>
 
-Если вы еще не зарегистрированы, то пройдите вот сюда: <%= link_to "Регистрация", "sign_up" %> 
+<span style="color:white">
+  Здравствуйте. Вас приветствует Idler - бесплатный сервис по борьбе с прокрастинаторством .
+  <br><br>
+  Если вы еще не зарегистрированы, то перейдите в раздел:</span> <%= link_to "Регистрация", "sign_up" %>
+
