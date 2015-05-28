@@ -4,7 +4,9 @@
   <tbody>
   <% @treats.each do |treat| %> 
       <% if treat.impulsetreattype %>
-      <tr><td>
+      <tr>
+        <td><img src="<%= asset_path("sweets_"+treat.icon+".png") %>" width="50" ></td>      
+        <td>
          <%= treat.impulsetreattype.title %><br>
          <small><%= treat.impulsetreattype.small ? "Мелкое" : "Большое"  %></small>
       </td>
@@ -15,7 +17,7 @@
           <% end %>
       </td>
       <td>
-        <%= link_to "Использовать", eatit_treat_path(treat), :method => "post", remote: true, :class => 'btn btn-large btn-primary', onclick: "document.getElementById('"+ treat.id.to_s + "').click()" %>
+        <%= link_to "Съесть", eatit_treat_path(treat), :method => "post", remote: true, :class => 'btn btn-large btn-primary', onclick: "document.getElementById('"+ treat.id.to_s + "').click()" %>
       </td>
       </tr>
       <% else %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527105405) do
+ActiveRecord::Schema.define(version: 20150528150211) do
 
   create_table "impulses", force: true do |t|
     t.text     "description"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150527105405) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "icon",        default: "001"
   end
 
   create_table "treats", force: true do |t|
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150527105405) do
     t.datetime "updated_at"
     t.integer  "impulse_id"
     t.integer  "impulsetreattype_id"
+    t.string   "icon",                default: "01"
   end
 
   create_table "users", force: true do |t|

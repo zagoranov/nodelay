@@ -25,7 +25,17 @@ def create
   end  
   if task.grade > 10
     task.grade = 10
-  end  
+  end
+  r = Random.rand(171) + 1
+  if r < 10
+    task.icon = "00" + r.to_s
+  else
+    if r < 100
+      task.icon = "0" + r.to_s
+    else  
+      task.icon = r.to_s
+    end 
+  end
   task.save
   #redirect_to root_path
   respond_to do |format|
@@ -63,10 +73,10 @@ end
 def destroy
   task = Task.find(params[:id])
   task.destroy
-  #redirect_to root_path
-  respond_to do |format|
-    format.js { render partial: 'taskslistrefresh'  }
-  end
+  redirect_to root_path
+  #respond_to do |format|
+  #  format.js { render partial: 'taskslistrefresh'  }
+  #end
 end
 
 

@@ -21,4 +21,11 @@
 <br>
 <br>
 
+
+<%= link_to "Удалить",  @task,  method: :delete, data: { confirm: "Вы серьезно?" }, :class => 'btn btn-mini btn-danger'  %> </td>
+
+
+<br>
+<br>
+
 <%= link_to "Отмена", root_path, :method => "get", :class => 'btn btn-mini btn-danger' %> 
