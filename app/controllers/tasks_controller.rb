@@ -14,6 +14,9 @@ def index
  end
 end
 
+def list
+   @tasks = current_user.tasks.order('created_at DESC')
+end
 
 def create
   task = current_user.tasks.create(task_params)

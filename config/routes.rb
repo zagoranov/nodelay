@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     collection do
       get 'help'
       get 'tldr'
+      get 'list'      
     end
     member do
       post 'itsdone'

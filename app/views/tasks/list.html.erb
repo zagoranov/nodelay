@@ -1,0 +1,25 @@
+<h4>Задания</h4>
+<br><br>
+<% if @tasks.size > 0 %>
+<table class="table table-striped">
+  <tbody>
+  <% @tasks.each do |task| %> 
+    <tr>
+      <td><%= task.created_at.strftime("%d.%m %H:%M") %></td>
+      <td><strong><%= link_to task.title, edit_task_path(task) %></strong></td>
+      <td><small><%= task.grade %></small></td>      
+      <td><%= with_new_lines task.description %></td>
+    <td>
+      <% if task.done? %>
+          Закончено
+       <% else %> 
+          Не закончено
+       <% end %> 
+    </td>
+</tr>
+  <% end %>
+ </tbody>
+</table>
+<% else %>
+  <em>Заданий нет. Добавьте срочно парочку, вам нельзя скучать!</em>
+<% end %>

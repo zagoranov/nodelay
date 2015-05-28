@@ -3,6 +3,10 @@ class ImpulsesController < ApplicationController
 
 respond_to :html, :js
 
+def index
+   @impulses = Impulse.where(user_id: current_user.id).order('created_at DESC')
+end
+
 def new
   @impulse = current_user.impulses.new()
 end

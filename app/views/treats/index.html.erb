@@ -1,0 +1,35 @@
+<h4>Награды</h4>
+<br><br>
+
+<% if @treats.size > 0 %>
+<table class="table table-striped">
+  <tbody>
+  <% @treats.each do |treat| %> 
+      <% if treat.impulsetreattype %>
+      <tr>
+       <td><%= treat.created_at.strftime("%d.%m %H:%M")  %></td>
+        <td>
+         <%= treat.impulsetreattype.title %><br>
+         <small><%= treat.impulsetreattype.small ? "Мелкое" : "Большое"  %></small>
+      </td>
+      <td>
+          <%= with_new_lines treat.impulsetreattype.description %>
+         <% if treat.impulsetreattype.url!=nil %> 
+            <br><small><%= treat.impulsetreattype.url %></small>
+          <% end %>
+      </td>
+      <td>
+         <% if treat.done? %>
+            Использован
+         <% else %>
+            Не использован
+        <% end %>
+      </td>
+      </tr>
+      <% else %>
+        <tr><td><p><strong><%= treat.id %></strong></p></td></tr>
+      <% end %>
+  <% end %>
+ </tbody>
+</table>
+<% end %>
