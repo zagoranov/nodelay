@@ -83,7 +83,7 @@ end
 
 private
 def task_params
-    params.require(:task).permit(:title, :description, :done, :grade)
+    params.require(:task).permit(:title, :description, :done, :grade, :icon)
 end
 
 
