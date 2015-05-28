@@ -11,7 +11,6 @@
 <p>Шансы на награду за импульс: 1 / <%= @user.randchance %></p>
 
 <br>
-<br>
 
 <% if @user == current_user %>
   <%= link_to "Изменить данные", edit_user_path(current_user), :method => "get", :class => 'btn btn-primary' %> 
@@ -20,11 +19,12 @@
 <br>
 <br>
 <br>
+<br>
+
 <h4>История</h4><br>
   <%= link_to "Задания", list_tasks_path, :method => "get" %><br><br>
   <%= link_to "Импульсы", impulses_path, :method => "get" %><br><br>
   <%= link_to "Награды", treats_path, :method => "get" %> 
-  <br>
-<br>
+
 <br>
 <br>

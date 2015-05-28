@@ -104,7 +104,7 @@
             <ul class="nav nav-list">
               <li class="nav-header"><strong><%= "Пользователь" %></strong></li>
               <li><%= link_to current_user.name, user_path(current_user) %>
-              Баллы: <%= current_user.score %></li>
+              Баллы: <strong><%= current_user.score %></strong></li>
             </ul><br>
 
               <% taski = Task.where(user_id: current_user.id).where(done: true).order('created_at DESC').limit(7) %>

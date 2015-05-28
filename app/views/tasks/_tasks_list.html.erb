@@ -11,7 +11,7 @@
     <td><small><%= task.grade %></small></td>      
     <td><%= with_new_lines task.description %></td>
     <td>
-      <%= button_to("Повержен", itsdone_task_path(task), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+      <%= button_to("Победить", itsdone_task_path(task), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
     </td>
 </tr>
   <% end %>
@@ -20,3 +20,6 @@
 <% else %>
   <em>Заданий нет. Добавьте срочно парочку, вам нельзя скучать!</em>
 <% end %>
+
+<br>
+<br>

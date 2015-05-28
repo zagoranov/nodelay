@@ -40,10 +40,10 @@ def kill
   imptr = Impulsetreattype.find(params[:id])
   imptr.erased = true
   imptr.save
-  #redirect_to impulsetreattypes_path
-  respond_to do |format|
-    format.js { render partial: 'imptrrefresh'  }
-  end
+  redirect_to impulsetreattypes_path
+  #respond_to do |format|
+  #  format.js { render partial: 'imptrrefresh'  }
+  #end
 end
 
 def buy

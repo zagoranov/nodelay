@@ -13,7 +13,6 @@
       <% else %>
       <%= link_to "Купить (150)", buy_impulsetreattype_path(imptt), :class => 'btn btn-large btn-primary', :disabled => current_user.score<149  %>
     <% end %></td>
-   <td><%= link_to "Удалить", kill_impulsetreattype_path(imptt), :method => "post", remote: true, data: { confirm: "Вы серьезно?" }, :class => 'btn btn-mini btn-danger'  %> </td>
   </tr>
   <% end %>
  </tbody>
