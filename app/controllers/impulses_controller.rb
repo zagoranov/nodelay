@@ -19,7 +19,7 @@ def create
   r = Random.rand(current_user.randchance) + 1
   if r == current_user.randchance #урра!!! награда!!!!
   	treat = impulse.treats.create()
-    rr = Random.rand(19) + 1
+    rr = Random.rand(18) + 1
     if rr < 10
       treat.icon = "0" + rr.to_s
     else
