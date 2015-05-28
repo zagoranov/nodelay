@@ -1,11 +1,11 @@
 <% if @treats.size > 0 %>
-<h4>Неиспользованные награды</h4>
+<h4>Неиспользованные награды <%= link_to "...", treats_path, :method => "get" %> </h4>
 <table class="table table-striped">
   <tbody>
   <% @treats.each do |treat| %> 
       <% if treat.impulsetreattype %>
       <tr>
-        <td><img src="<%= asset_path("sweets_"+treat.icon+".png") %>" width="50" ></td>      
+        <td><img src="<%= asset_path("sweets_"+treat.icon+".png") %>" width="50" ></td>
         <td>
          <%= treat.impulsetreattype.title %><br>
          <small><%= treat.impulsetreattype.small ? "Мелкое" : "Большое"  %></small>

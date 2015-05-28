@@ -1,5 +1,5 @@
 <% if @impulses.size > 0 %>
-<h4>Свежие импульсы</h4>
+<h4>Свежие импульсы <%= link_to "...", impulses_path, :method => "get" %></h4>
 <table class="table table-striped">
   <tbody>
   <% @impulses.each do |imp| %> 

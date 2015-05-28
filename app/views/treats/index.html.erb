@@ -7,6 +7,7 @@
   <% @treats.each do |treat| %> 
       <% if treat.impulsetreattype %>
       <tr>
+      <td><img src="<%= asset_path("sweets_"+treat.icon+".png") %>" width="50" ></td>
        <td><%= treat.created_at.strftime("%d.%m %H:%M")  %></td>
         <td>
          <%= treat.impulsetreattype.title %><br>
