@@ -11,6 +11,7 @@ end
 def eatit
   treat = Treat.find(params[:id])
   treat.done = true
+  treat.donedt = DateTime.now
   treat.save
   #redirect_to root_path
   respond_to do |format|

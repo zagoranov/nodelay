@@ -47,6 +47,7 @@ end
 def itsdone
   task = Task.find(params[:id])
   task.done = true
+  task.donedt = DateTime.now
   task.save
   current_user.score += task.grade
   current_user.save

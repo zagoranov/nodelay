@@ -12,7 +12,7 @@
       <td><%= with_new_lines task.description %></td>
     <td>
       <% if task.done? %>
-          Побежден
+          Побежден, <%= task.donedt.strftime("%d.%m %H:%M") %>
        <% else %> 
           Не побежден
        <% end %> 

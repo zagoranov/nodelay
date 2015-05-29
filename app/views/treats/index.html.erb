@@ -21,7 +21,7 @@
       </td>
       <td>
          <% if treat.done? %>
-            Съеден
+            Съеден, <%= treat.donedt.strftime("%d.%m %H:%M") %>
          <% else %>
             Не съеден
         <% end %>
