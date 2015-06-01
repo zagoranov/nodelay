@@ -105,9 +105,9 @@
               <li class="nav-header"><strong><%= "Пользователь" %></strong></li>
               <li><%= link_to current_user.name, user_path(current_user) %>
               Баллы: <strong><%= current_user.score %></strong></li>
-            <br>
+            
             <li><%= link_to "Другие пользователи", users_path  %></li>
-            </ul><br>
+            </ul>
 
               <% taski = Task.where(user_id: current_user.id).where(done: true).order('donedt DESC').limit(5) %>
               <% if taski.size > 0 %>
