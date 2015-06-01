@@ -1,23 +1,14 @@
 <% if @user == current_user %>
-  <h3>Вы</h3>
+         <h4>Вы</h4>
 <% end %>
 
+<div id ="prof_details">
+  <%= render 'profile_part' %>
+</div>
+
+<br>  
 <br>
 
-<p>Имя: <%= @user.name %></p>
-
-<p>Баллы: <%= @user.score %></p>
-
-<p>Шансы на награду за импульс: 1 / <%= @user.randchance %></p>
-
-<br>
-
-<% if @user == current_user %>
-  <%= link_to "Изменить данные", edit_user_path(current_user), :method => "get", :class => 'btn btn-primary' %> 
-<% end %>
-
-<br>
-<br>
 <br>
 <br>
 
@@ -25,6 +16,24 @@
   <%= link_to "Задания", list_tasks_path, :method => "get" %><br><br>
   <%= link_to "Импульсы", impulses_path, :method => "get" %><br><br>
   <%= link_to "Награды", treats_path, :method => "get" %> 
+
+<br>  
+<br>
+<br>  
+<br>
+
+<h4>Комментарии</h4>
+<br>
+    <%= form_for([@user, @user.given_comments.build], remote: true) do |f| %>  
+    <%= f.text_area :comment, placeholder: "Текст комментария", :size => "50x2" %><br />
+    <%= f.hidden_field :user_id, :value => @user.id %>  <%= f.hidden_field :commenter_id, :value => @current_user.id %>
+      <%= f.submit "Отправить", :class => 'btn btn-primary' %>
+<% end %>
+<br />
+
+<div id ="wallochka">
+  <%= render 'comments_part' %>
+</div>
 
 <br>
 <br>

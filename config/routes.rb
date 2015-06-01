@@ -11,16 +11,11 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :posts
-    resources :messages
-   
     resources :tasks
     resources :impulses
     resources :impulsetreattypes  
-  end
 
-  resources :posts do
-    resources :comments
+    resources :profilecomments
   end
 
   resources :tasks do
@@ -47,6 +42,14 @@ Rails.application.routes.draw do
       get 'buy'
     end
   end
+
+  resources :friendships do
+    member do         
+      post 'wellhello'
+      post 'byebye'
+    end
+  end
+
 
 
   get "log_in" => "sessions#new", :as => "log_in"

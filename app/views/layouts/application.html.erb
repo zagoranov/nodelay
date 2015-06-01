@@ -106,6 +106,8 @@
               <li><%= link_to current_user.name, user_path(current_user) %>
               Баллы: <strong><%= current_user.score %></strong></li>
             </ul><br>
+            <li><%= link_to "Другие пользователи", users_path  %></li>
+            </ul><br>
 
               <% taski = Task.where(user_id: current_user.id).where(done: true).order('created_at DESC').limit(7) %>
               <% if taski.size > 0 %>
