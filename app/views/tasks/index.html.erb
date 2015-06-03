@@ -3,11 +3,16 @@
 </div>
 
 <p><strong>Новый импульс</strong></p>
-<%= form_for([current_user, current_user.impulses.build], remote: true) do |f| %>  
+
+<% if current_user.impulsetreattypes.where(erased: false).size > 0 %>  
+  <%= form_for([current_user, current_user.impulses.build], remote: true) do |f| %>  
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.text_area :description, placeholder: "Необязательное описание", :size => '70x2'%><br>
   <%= f.collection_select :impulsetreattype_id, @impulsetypes, :id, :title %>
   <%= f.submit "Записать", :class => 'btn btn-large btn-primary' %> 
+  <% end %>   
+<% else %>   
+  <em>Для записи импульсов вам сначала нужно создать их <%= link_to "типы", impulsetreattypes_path %>!</em>  
 <% end %>   
 
 <br>
