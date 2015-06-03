@@ -108,6 +108,7 @@
             
             <li><%= link_to "Другие пользователи", users_path  %></li>
             </ul>
+            <br>
 
               <% taski = Task.where(user_id: current_user.id).where(done: true).order('donedt DESC').limit(5) %>
               <% if taski.size > 0 %>
