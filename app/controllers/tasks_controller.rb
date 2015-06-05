@@ -5,7 +5,7 @@ respond_to :html, :js
 
 def index
  if current_user
-   @tasks = current_user.tasks.where(done: false).order('title, grade')
+   @tasks = current_user.tasks.where(done: false).order('actual desc, title, grade')
    @treats = Treat.joins(:impulse).where('user_id in (?)', current_user.id).where(done: false).order('created_at DESC')
    @impulses = Impulse.where(user_id: current_user.id).order('created_at DESC').limit(5)
    @impulsetypes = Impulsetreattype.where(small: true).where('user_id in (?)', current_user.id).where(erased: false).order('title')
@@ -57,6 +57,25 @@ def itsdone
   end
 end
 
+def delay
+  task = Task.find(params[:id])
+  task.actual = false
+  task.save
+  respond_to do |format|
+    format.js { render partial: 'taskslistrefresh'  }
+  end
+end
+
+def undelay
+  task = Task.find(params[:id])
+  task.actual = true
+  task.save
+  respond_to do |format|
+    format.js { render partial: 'taskslistrefresh'  }
+  end
+end
+
+
 def edit
   @task = Task.find(params[:id])
 end
@@ -84,7 +103,7 @@ end
 
 private
 def task_params
-    params.require(:task).permit(:title, :description, :done, :grade, :icon)
+    params.require(:task).permit(:title, :description, :done, :grade, :icon, :actual)
 end
 
 

@@ -1,1 +1,1 @@
-$("#tasks_table").html("<% @tasks = current_user.tasks.where(done: false).order('title, grade') %><%= escape_javascript(render partial: 'tasks_list', locals: { :@tasks => @tasks }  ) %>"); 
+$("#tasks_table").html("<% @tasks = current_user.tasks.where(done: false).order('actual desc, title, grade') %><%= escape_javascript(render partial: 'tasks_list', locals: { :@tasks => @tasks }  ) %>"); 

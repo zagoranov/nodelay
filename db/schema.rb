@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601100711) do
+ActiveRecord::Schema.define(version: 20150605085633) do
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150601100711) do
     t.integer  "user_id"
     t.string   "icon",        default: "001"
     t.datetime "donedt"
+    t.boolean  "actual",      default: true
   end
 
   create_table "treats", force: true do |t|

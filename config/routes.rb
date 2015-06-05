@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     end
     member do
       post 'itsdone'
+      post 'delay'
+      post 'undelay'
     end
   end
   

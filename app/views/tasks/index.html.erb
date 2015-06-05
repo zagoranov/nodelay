@@ -33,7 +33,8 @@
 <p><strong>Добавить задание</strong></p>
 <%= form_for([current_user, current_user.tasks.build], remote: true) do |f| %>  
     <%= f.text_field :title, placeholder: "Группа" %>
-    Сложность (1..10): <%= f.text_field :grade, placeholder: "Сложность (1..10)" %><br>
+    Сложность (1..10): <%= f.text_field :grade, placeholder: "Сложность (1..10)" %>
+    <%= f.check_box :actual %> Актуальное<br>
     <%= f.text_area :description, placeholder: "Задание", :size => '70x2' %><br>
     <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
 <% end %>       

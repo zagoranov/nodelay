@@ -1,8 +1,13 @@
 <h4>Актуальные задания <%= link_to "...", list_tasks_path, :method => "get" %></h4>
 <% if @tasks.size > 0 %>
+<% n = false %>
 <table class="table table-striped">
   <tbody>
   <% @tasks.each do |task| %> 
+    <% if !n && !task.actual %>
+      <% n = true %>
+      <tr><td><h4>Отложенные</h4></tr>
+    <% end %>
     <tr>
       <td><img src="<%= asset_path("monsters_"+task.icon+".png") %>" width="70" ></td>
       <td>
@@ -12,6 +17,13 @@
     <td><%= with_new_lines task.description %></td>
     <td>
       <%= button_to("Победить", itsdone_task_path(task), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+    </td>
+    <td>
+      <% if task.actual? %>
+            <%= button_to("Отложить", delay_task_path(task), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+      <% else %>
+            <%= button_to("В актуальные", undelay_task_path(task), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+      <% end %>
     </td>
 </tr>
   <% end %>
