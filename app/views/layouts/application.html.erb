@@ -105,7 +105,6 @@
               <li class="nav-header"><strong><%= "Пользователь" %></strong></li>
               <li><%= link_to current_user.name, user_path(current_user) %>
               Баллы: <strong><%= current_user.score %></strong></li>
-            
             <li><%= link_to "Другие пользователи", users_path  %></li>
             </ul>
             <br>
@@ -134,6 +133,18 @@
               </ul><br>
             <% end %>
 
+            <% if current_user.friendships %>            
+              <ul class="nav nav-list">
+              <li class="nav-header"><strong>Друзья-чемпионы</strong></li> 
+                <% @fr = current_user.friendships.collect(&:friend_id)
+                  frnds = User.where('id in (?)', @fr).order('score DESC').limit(5)  %>
+                <% for uu in frnds %>
+                <li><strong><%= uu.score %></strong> баллов у 
+                <strong><%= link_to uu.name, uu %></strong> 
+                </li>
+              <% end %>
+              </ul><br>
+            <% end %>
 
             <% if current_user.inverse_friendships %>            
               <ul class="nav nav-list">

@@ -14,6 +14,9 @@
     Сложность (1..10)<br>
     1 / <%= f.text_field :grade %>
   </p>
+  <p>
+      <%= f.check_box :actual %> Актуальное
+  </p>
   <br><br>
   <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %></p>
 <% end %>

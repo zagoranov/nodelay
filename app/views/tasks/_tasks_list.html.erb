@@ -6,7 +6,7 @@
   <% @tasks.each do |task| %> 
     <% if !n && !task.actual %>
       <% n = true %>
-      <tr><td><h4>Отложенные</h4></tr>
+      <tr><td><h4>Отложенные</h4></td><td></td><td></td><td></td><td></td><td></td></tr>
     <% end %>
     <tr>
       <td><img src="<%= asset_path("monsters_"+task.icon+".png") %>" width="70" ></td>
@@ -15,9 +15,13 @@
       </td>
     <td><small><%= task.grade %></small></td>      
     <td><%= with_new_lines task.description %></td>
+    
     <td>
-      <%= button_to("Победить", itsdone_task_path(task), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+      <% if task.actual? %>
+      <%= button_to("Победить", itsdone_task_path(task), :method => "post", remote: true, :class => 'btn btn-mini btn-danger') %>
+      <% end %>
     </td>
+
     <td>
       <% if task.actual? %>
             <%= button_to("Отложить", delay_task_path(task), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
