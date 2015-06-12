@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class TasksController < ApplicationController
-  before_action :set_product, only: [:itsdone, :delay, :undelay, :update, :destroy, :tobox, :outofbox]
+  before_action :set_product, only: [:itsdone, :delay, :undelay, :edit, :update, :destroy, :tobox, :outofbox]
 
 respond_to :html, :js
 
