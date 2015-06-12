@@ -1,0 +1,26 @@
+<h4>Долгий ящик</h4>
+
+<% if @boxtasks.size > 0 %>
+<table class="table table-striped">
+  <tbody>
+  <% @boxtasks.each do |task| %> 
+    <tr>
+      <td><img src="<%= asset_path("monsters_"+task.icon+".png") %>" width="70" ></td>
+      <td>
+        <strong><%= link_to task.title, edit_task_path(task) %></strong>
+      </td>
+    <td><small><%= task.grade %></small></td>      
+    <td><%= with_new_lines task.description %></td>
+    <td>
+      <%= button_to("Из коробки!", outofbox_task_path(task), :class => 'btn btn-default') %>
+    </td>
+ </tr>
+  <% end %>
+ </tbody>
+</table>
+<% else %>
+  <em>Долгий ящик пуст.</em>
+<% end %>
+
+<br>
+<br>

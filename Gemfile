@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.1'
+gem 'rails', '4.2.1'
+
 
 group :production do
 	gem 'pg'
@@ -39,6 +40,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 #gem "less-rails" 
 gem "twitter-bootstrap-rails"
 
-gem 'bcrypt'
+gem 'bcrypt', '~> 3.1.9'
 gem 'rails_admin'
-
+gem 'responders', '~> 2.0' 
+gem 'coffee-script-source', '1.8.0'

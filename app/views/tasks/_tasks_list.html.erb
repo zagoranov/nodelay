@@ -18,15 +18,17 @@
     
     <td>
       <% if task.actual? %>
-      <%= button_to("Победить", itsdone_task_path(task), :method => "post", remote: true, :class => 'btn btn-mini btn-danger') %>
+        <%= button_to("Победить", itsdone_task_path(task), :method => "post", remote: true, :class => 'btn btn-mini btn-danger') %>
+      <% else %>
+        <%= button_to("В актуальные", undelay_task_path(task), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
       <% end %>
     </td>
 
     <td>
       <% if task.actual? %>
-            <%= button_to("Отложить", delay_task_path(task), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+          <%= button_to("Отложить", delay_task_path(task), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
       <% else %>
-            <%= button_to("В актуальные", undelay_task_path(task), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+          <%= button_to("В долгий ящик", tobox_task_path(task), :method => "post", remote: true, :class => 'btn btn-default') %>
       <% end %>
     </td>
 </tr>

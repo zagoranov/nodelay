@@ -22,12 +22,15 @@ Rails.application.routes.draw do
     collection do
       get 'help'
       get 'tldr'
-      get 'list'      
+      get 'list'
+      get 'longbox'
     end
     member do
       post 'itsdone'
       post 'delay'
       post 'undelay'
+      post 'tobox'
+      post 'outofbox'
     end
   end
   
@@ -62,6 +65,8 @@ Rails.application.routes.draw do
   get "tldr" => "tasks#help", :as => "tldr"
   
   get "loadthatshit" => "sessions#load", :as => "loadthatshit"
+  
+  get "longbox" => "tasks#longbox", :as => "longbox"
 
 end
 

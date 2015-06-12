@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605085633) do
+ActiveRecord::Schema.define(version: 20150612165707) do
 
-  create_table "friendships", force: true do |t|
+  create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "impulses", force: true do |t|
+  create_table "impulses", force: :cascade do |t|
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -28,18 +28,18 @@ ActiveRecord::Schema.define(version: 20150605085633) do
     t.integer  "impulsetreattype_id"
   end
 
-  create_table "impulsetreattypes", force: true do |t|
-    t.string   "title"
+  create_table "impulsetreattypes", force: :cascade do |t|
+    t.string   "title",       limit: 255
     t.text     "description"
-    t.boolean  "small",       default: true
+    t.boolean  "small",                   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.boolean  "erased",      default: false
-    t.string   "url"
+    t.boolean  "erased",                  default: false
+    t.string   "url",         limit: 255
   end
 
-  create_table "profilecomments", force: true do |t|
+  create_table "profilecomments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "commenter_id"
     t.text     "comment"
@@ -47,40 +47,41 @@ ActiveRecord::Schema.define(version: 20150605085633) do
     t.datetime "updated_at"
   end
 
-  create_table "tasks", force: true do |t|
-    t.string   "title"
+  create_table "tasks", force: :cascade do |t|
+    t.string   "title",       limit: 255
     t.text     "description"
-    t.boolean  "done",        default: false
-    t.integer  "grade",       default: 5
+    t.boolean  "done",                    default: false
+    t.integer  "grade",                   default: 5
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "icon",        default: "001"
+    t.string   "icon",        limit: 255, default: "001"
     t.datetime "donedt"
-    t.boolean  "actual",      default: true
+    t.boolean  "actual",                  default: true
+    t.boolean  "longbox",                 default: false
   end
 
-  create_table "treats", force: true do |t|
-    t.boolean  "done",                default: false
+  create_table "treats", force: :cascade do |t|
+    t.boolean  "done",                            default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "impulse_id"
     t.integer  "impulsetreattype_id"
-    t.string   "icon",                default: "01"
+    t.string   "icon",                limit: 255, default: "01"
     t.datetime "donedt"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "name"
+  create_table "users", force: :cascade do |t|
+    t.string   "name",          limit: 255
     t.datetime "lastmove"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
-    t.string   "password_hash"
-    t.string   "password_salt"
+    t.string   "email",         limit: 255
+    t.string   "password_hash", limit: 255
+    t.string   "password_salt", limit: 255
     t.boolean  "admin"
-    t.integer  "randchance",    default: 4
-    t.integer  "score",         default: 0
+    t.integer  "randchance",                default: 4
+    t.integer  "score",                     default: 0
   end
 
 end

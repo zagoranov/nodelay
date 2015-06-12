@@ -1,11 +1,12 @@
 # encoding: UTF-8
 class TasksController < ApplicationController
+  before_action :set_product, only: [:itsdone, :delay, :undelay, :update, :destroy, :tobox, :outofbox]
 
 respond_to :html, :js
 
 def index
  if current_user
-   @tasks = current_user.tasks.where(done: false).order('actual desc, title, grade')
+   @tasks = current_user.tasks.where(done: false).where(longbox: false).order('actual desc, title, grade')
    @treats = Treat.joins(:impulse).where('user_id in (?)', current_user.id).where(done: false).order('created_at DESC')
    @impulses = Impulse.where(user_id: current_user.id).order('created_at DESC').limit(5)
    @impulsetypes = Impulsetreattype.where(small: true).where('user_id in (?)', current_user.id).where(erased: false).order('title')
@@ -37,52 +38,72 @@ def create
     end 
   end
   task.save
-  #redirect_to root_path
   respond_to do |format|
+    format.html { redirect_to root_path, notice: 'Задача добавлена!' }
     format.js { render partial: 'taskslistrefresh'  }
   end
+
 end
 
 
 def itsdone
-  task = Task.find(params[:id])
-  task.done = true
-  task.donedt = DateTime.now
-  task.save
-  current_user.score += task.grade
+  @task.done = true
+  @task.donedt = DateTime.now
+  @task.save
+  current_user.score += @task.grade
   current_user.save
   #redirect_to root_path
   respond_to do |format|
     format.js { render partial: 'taskslistrefresh'  }
+    format.html { redirect_to root_path, notice: 'Задача побеждена!' }
   end
 end
 
 def delay
-  task = Task.find(params[:id])
-  task.actual = false
-  task.save
+  @task.actual = false
+  @task.save
   respond_to do |format|
     format.js { render partial: 'taskslistrefresh'  }
+    format.html { redirect_to root_path, notice: 'Задача отложена.' }
   end
 end
 
 def undelay
-  task = Task.find(params[:id])
-  task.actual = true
-  task.save
+  @task.actual = true
+  @task.save
   respond_to do |format|
     format.js { render partial: 'taskslistrefresh'  }
+    format.html { redirect_to root_path, notice: 'Задача актуализирована.' }
+  end
+end
+
+
+def tobox
+  @task.longbox = true
+  @task.save
+  respond_to do |format|
+    format.js { render partial: 'taskslistrefresh'  }
+    format.html { redirect_to root_path, notice: 'Задача отложена.' }
+  end
+end
+
+
+def outofbox
+  @task.longbox = false
+  @task.save
+  respond_to do |format|
+    format.js { render partial: 'taskslistrefresh'  }
+    format.html { redirect_to longbox_path, notice: 'Задача перенесена.' }
   end
 end
 
 
 def edit
-  @task = Task.find(params[:id])
+  #@task = Task.find(params[:id])
 end
 
 
 def update
-  @task = Task.find(params[:id])
   if @task.update(task_params)
     redirect_to root_path
   else
@@ -91,19 +112,25 @@ def update
 end
 
 def destroy
-  task = Task.find(params[:id])
-  task.destroy
+  @task.destroy
   redirect_to root_path
   #respond_to do |format|
   #  format.js { render partial: 'taskslistrefresh'  }
   #end
 end
 
-
+def longbox
+  @boxtasks = current_user.tasks.where(done: false).where(longbox: true).order('actual desc, title, grade')
+end
 
 private
+    def set_product
+      @task = Task.find(params[:id])
+    end
+
+
 def task_params
-    params.require(:task).permit(:title, :description, :done, :grade, :icon, :actual)
+    params.require(:task).permit(:title, :description, :done, :grade, :icon, :actual, :longbox)
 end
 
 
