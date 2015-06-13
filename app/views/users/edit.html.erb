@@ -1,26 +1,29 @@
 <h3>Вы</h3>
 
+<br>
+<br>
+
 <%= form_for @user do |f| %>
 
   <p>
-    Имя:<br>
+    <strong>Имя</strong><br>
     <%= f.text_field :name %>
   </p>
   <p>
-    Емейл/логин<br />
+    <strong>Емейл/логин</strong><br />
     <%= f.text_field :email %>
   </p>
   <p>
-    Пароль:<br />
+    <strong>Пароль</strong><br />
     <%= f.password_field :password %>
   </p>
   <p>
-    Еще раз пароль:<br />
+    <strong>Еще раз пароль</strong><br />
     <%= f.password_field :password_confirmation %>
   </p>
   <p>
-    Шанс на награду за импульс (1..10)<br>
-    1 / <%= f.text_field :randchance %>
+    <strong>Шанс на награду за импульс (1..10)</strong><br>
+    1 / <%= f.number_field :randchance %>
   </p>
   <br>  
   <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %></p>
@@ -28,5 +31,6 @@
 
 <br>
 <br>
-
+<br>
+<br>
 <%= link_to "Отмена", current_user, :method => "get", :class => 'btn btn-mini btn-danger' %> 

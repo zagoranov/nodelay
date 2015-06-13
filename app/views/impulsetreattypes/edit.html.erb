@@ -1,16 +1,19 @@
 <h3>Награда/импульс</h3>
 
+<br>
+<br>
+
 <%= form_for @imp do |f| %>
   <p>
-    Заголовок:<br>
+    <strong>Заголовок</strong><br>
     <%= f.text_field :title %>
   </p>
   <p>
-    Описание<br />
+    <strong>Описание</strong><br />
     <%= f.text_area :description, :size => "50x3" %>
   </p>
   <p>
-    Ссылка:<br>
+    <strong>Ссылка</strong><br>
     <%= f.text_field :url %>
   </p>
   <p>
@@ -22,6 +25,7 @@
   <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %></p>
 <% end %>
 
+<br>
 <br>
 <br>
 <%= link_to "Удалить", kill_impulsetreattype_path(@imp), :method => "get", data: { confirm: "Вы серьезно?" }, :class => 'btn btn-mini btn-danger'  %>

@@ -1,21 +1,28 @@
 <h3>Задание</h3>
 
+<br>
+
+<img src="<%= asset_path("monsters_"+@task.icon+".png") %>" width="111">
+
+<br>
+<br>
+
 <%= form_for @task do |f| %>
 
   <p>
-    Проект<br>
+    <strong>Проект</strong><br>
     <%= f.text_field :title %>
   </p>
   <p>
-    Задание<br />
-    <%= f.text_area :description, :size => "50x3" %>
+    <strong>Задание</strong><br />
+    <%= f.text_area :description, :size => "60x5" %>
   </p>
   <p>
-    Сложность (1..10)<br>
-    1 / <%= f.text_field :grade %>
+    <strong>Сложность (1..10)</strong><br>
+    <%= f.number_field :grade %>
   </p>
   <p>
-      <%= f.check_box :actual %> Актуальное
+      <%= f.check_box :actual %> <strong>Актуальное</strong>
   </p>
   <br><br>
   <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %></p>
