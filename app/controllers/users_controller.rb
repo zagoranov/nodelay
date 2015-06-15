@@ -15,6 +15,7 @@ def create
   @user.admin = false
   if @user.save
      session[:user_id] = @user.id
+     UserMailer.newreg_email(@user).deliver
      redirect_to impulsetreattypes_path, :notice => "Чтобы это всё заработало, нужно заполнить импульсы/награды!"
   else
     render "new"
