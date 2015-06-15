@@ -1,2 +1,0 @@
-class CommvotesController < ApplicationController
-end

@@ -16,6 +16,10 @@
 	          link_to "Подписаться", wellhello_friendship_path(id: user.id, from: "list"), remote: true, method: "post",:class => 'btn btn-primary' 
           end %>
       </td> 
+      <% if current_user.admin? %>
+      <td><%= link_to "Удалить", user, method: :delete, data: { confirm: "Вы уверены, что хотите удалить это классного человека?" },:class => 'btn btn-mini btn-danger' %>
+      </td> 
+      <% end %>
     </tr>
    <%end %>
  <% end %>

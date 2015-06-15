@@ -1,6 +1,7 @@
 # encoding: UTF-8
 class UsersController < ApplicationController
 
+
 def new
   if current_user
     redirect_to root_path, :notice => 'Привет, прокрастинатор!'
@@ -24,11 +25,16 @@ end
 
 
 def index
-  if params[:search]
-    @users = User.search(params[:search]).order("created_at DESC")
-  else
-    @users = User.limit(30).order("RANDOM()")
-  end
+  if current_user  
+    if params[:search]
+      @users = User.search(params[:search]).order("created_at DESC")
+    else
+      @users = User.limit(30).order("RANDOM()")
+    end
+ else 
+  redirect_to '/log_in'
+ end
+
 end
 
 
@@ -42,18 +48,33 @@ end
 
 
 def edit
-  @user = current_user
+  if current_user
+    @user = current_user
+  else 
+    redirect_to '/log_in'
+  end
 end
 
 
 def update
+  if current_user  
   @user = current_user
   if @user.update(user_params)
     redirect_to @user
   else
     render 'edit'
   end
+ else 
+    redirect_to '/log_in'
+ end
 end
+
+def destroy
+  user = User.find(params[:id])
+  user.destroy
+  redirect_to users_path
+end
+
 
 
 def current_admin
