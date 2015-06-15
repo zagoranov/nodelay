@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "announcer@nodelay.ru"
+  default from: "announcer@inter-activity.ru"
 
   def newreg_email(user)   # Нотификатор Админу про новый запрос
     @user = user
