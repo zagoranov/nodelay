@@ -24,6 +24,11 @@
   <p>
       <%= f.check_box :actual %> <strong>Актуальное</strong>
   </p>
+  <p>
+      <%= f.check_box :calendarity %> <strong>Календарное, дата: </strong>
+      <%= f.date_select :dt, { :default => DateTime.now.to_date, :use_month_names => ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", t(:nov), t(:dec)], :order => [:day, :month, :year] } %>
+  </p>
+
   <br><br>
   <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %></p>
 <% end %>
