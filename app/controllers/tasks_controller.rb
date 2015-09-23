@@ -130,7 +130,7 @@ private
 
 
 def task_params
-    params.require(:task).permit(:title, :description, :done, :grade, :icon, :actual, :longbox)
+    params.require(:task).permit(:title, :description, :done, :grade, :icon, :actual, :longbox, :calendarity, :dt)
 end
 
 

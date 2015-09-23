@@ -12,6 +12,9 @@
       <td><img src="<%= asset_path("monsters_"+task.icon+".png") %>" width="70" ></td>
       <td>
       <strong><%= link_to task.title, edit_task_path(task) %></strong>
+      <% if task.calendarity %>
+        <br><%= task.dt.strftime("%d.%m %H:%M") %> 
+      <% end %>
       </td>
     <td><small><%= task.grade %></small></td>      
     <td><%= with_new_lines task.description %></td>

@@ -36,8 +36,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 
 # New stuff!!!!!!!!
-#gem 'libv8'
-#gem "less-rails" 
 gem "twitter-bootstrap-rails"
 
 gem 'bcrypt', '~> 3.1.9'

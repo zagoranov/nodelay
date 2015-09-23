@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612165707) do
+ActiveRecord::Schema.define(version: 20150923114212) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20150612165707) do
     t.datetime "donedt"
     t.boolean  "actual",                  default: true
     t.boolean  "longbox",                 default: false
+    t.datetime "dt"
+    t.boolean  "calendarity",             default: false
   end
 
   create_table "treats", force: :cascade do |t|
