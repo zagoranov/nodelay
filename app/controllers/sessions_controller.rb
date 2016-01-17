@@ -32,19 +32,24 @@ end
 def load  #sql loading stuff
   if current_user && current_user.admin
 
-     Task.all.where(done: true).each do |imptt|
-       imptt.donedt = DateTime.now
-       imptt.save
-     end
-     Treat.all.where(done: true).each do |imptt|
-       imptt.donedt = DateTime.now
-       imptt.save
-     end
+     #Task.all.where(done: true).each do |imptt|
+     #  imptt.donedt = DateTime.now
+     #  imptt.save
+     #end
+     #Treat.all.where(done: true).each do |imptt|
+     #  imptt.donedt = DateTime.now
+     #  imptt.save
+     #end
+     
      #CONN.execute("update tasks set donedt ='2015-05-29 00:00:00' where done ")  
      #CONN.execute("update treats set donedt = '2015-05-29 00:00:00' where done")  
      #CONN.execute("delete from treats where impulsetreattype_id is null")
      #CONN.execute("delete from impulses where impulsetreattype_id is null")
      #CONN.execute("delete from treats where impulsetreattype_id is null")
+
+     CONN.execute("delete from treats where done")
+     CONN.execute("delete from tasks where done")
+     CONN.execute("delete from impulses")
 
     redirect_to root_path, :notice => "Ол райт!"
   end
