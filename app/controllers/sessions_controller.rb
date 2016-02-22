@@ -47,9 +47,7 @@ def load  #sql loading stuff
      #CONN.execute("delete from impulses where impulsetreattype_id is null")
      #CONN.execute("delete from treats where impulsetreattype_id is null")
 
-     CONN.execute("delete from treats where done")
-     CONN.execute("delete from tasks where done")
-     CONN.execute("delete from impulses")
+     CONN.execute("delete from tasks")
 
     redirect_to root_path, :notice => "Ол райт!"
   end
