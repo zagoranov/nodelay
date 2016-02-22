@@ -1,1 +1,0 @@
-$("#imptr_table").html("<% @imptts = Impulsetreattype.where('user_id in (?)', current_user.id).where(erased: false).order('title') %><%= escape_javascript(render partial: 'imptr_list', locals: { :@imptts => @imptts }  ) %>"); 

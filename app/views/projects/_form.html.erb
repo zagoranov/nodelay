@@ -1,0 +1,13 @@
+<%= form_for @project do |f| %>
+  <p>
+    <strong>Проект</strong><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <strong>Тип (1..6)</strong><br>
+    <%= f.number_field :tip %>
+  </p>
+
+  <br><br>
+  <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %></p>
+<% end %>

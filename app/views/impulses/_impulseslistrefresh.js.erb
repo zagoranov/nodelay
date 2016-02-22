@@ -1,1 +1,0 @@
-$("#impulses_table").html("<% @impulses = Impulse.where(user_id: current_user.id).order('created_at DESC').limit(5) %><%= escape_javascript(render partial: 'impulses_list', locals: { :@impulses => @impulses }  ) %>");

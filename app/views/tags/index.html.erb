@@ -1,0 +1,20 @@
+<p><strong>Добавить тэг</strong></p>
+<%= form_for([current_user, current_user.tags.build]) do |f| %>  
+    <%= f.text_field :name %>
+    <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
+<% end %>       
+
+<br><br><br><br>
+
+<% if @tags.size > 0 %>
+<h4>Тэги</h4>
+<table class="table table-striped">
+  <tbody>
+  <% @tags.each do |tag| %> 
+    <tr>
+      <td><%= tag.name %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+<% end %>

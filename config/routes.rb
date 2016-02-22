@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  root :to => 'tasks#index'
+  root :to => 'tasks#gtd'
 
   resources :sessions do
       member do
@@ -11,42 +11,34 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :tasks
-    resources :impulses
-    resources :impulsetreattypes  
-
+    resources :projects
     resources :profilecomments
   end
 
+  resources :projects do  
+    resources :tasks
+  end
+
+  resources :tags
+
   resources :tasks do
+    resources :tags        
     collection do
-      get 'help'
-      get 'tldr'
-      get 'list'
-      get 'longbox'
+      get 'gtd'
+      get 'inbox'
+      get 'calendar'
+      get 'delayed'
+      get 'links'
+      get 'delegated'
+      get 'someday'
     end
     member do
       post 'itsdone'
       post 'delay'
       post 'undelay'
-      post 'tobox'
-      post 'outofbox'
     end
   end
   
-  resources :treats do
-    member do
-      post 'eatit'
-    end
-  end
-  
-  resources :impulses
-  resources :impulsetreattypes do
-    member do
-      get 'kill'
-      get 'buy'
-    end
-  end
 
   resources :friendships do
     member do         
@@ -61,12 +53,9 @@ Rails.application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "sign_up" => "users#new", :as => "sign_up"
 
-  get "wellhello" => "tasks#synopsys", :as => "wellhello"
   get "tldr" => "tasks#help", :as => "tldr"
   
   get "loadthatshit" => "sessions#load", :as => "loadthatshit"
   
-  get "longbox" => "tasks#longbox", :as => "longbox"
-
 end
 

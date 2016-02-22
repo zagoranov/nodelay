@@ -1,0 +1,81 @@
+<% if @caltoday.size > 0 %>
+<h4>Сегодня</h4>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Когда</th>
+    <th>Объект</th>
+    <th>Действие</th>
+    <th>Приоритет</th>
+    <th>Проект</th>    
+  </tr>
+  </thead>
+  <tbody>
+  <% @caltoday.each do |tsk| %> 
+    <tr>
+      <td><%= link_to tsk.dt.strftime("%d.%m.%y %H:%M"), edit_task_path(tsk) %></td>
+      <td><%= tsk.object %></td>
+      <td><%= tsk.action %></td>
+      <td><%= tsk.grade %></td>
+      <td><%= link_to tsk.project.name, edit_project_path(tsk.project) %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+<% end %>
+
+
+<% if @caltomorrow.size > 0 %>
+<h4>Завтра</h4>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Когда</th>
+    <th>Объект</th>
+    <th>Действие</th>
+    <th>Приоритет</th>
+    <th>Проект</th>    
+  </tr>
+  </thead>
+  <tbody>
+  <% @caltomorrow.each do |tsk| %> 
+    <tr>
+      <td><%= link_to tsk.dt.strftime("%d.%m.%y %H:%M"), edit_task_path(tsk) %></td>
+      <td><%= tsk.object %></td>
+      <td><%= tsk.action %></td>
+      <td><%= tsk.grade %></td>
+      <td><%= link_to tsk.project.name, edit_project_path(tsk.project) %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+<% end %>
+
+
+<% @showproject = true %>
+<div id="list_table">
+  <%= render 'list' %>
+</div>
+
+<br><br><br><br>
+
+<p><strong>Добавить задание</strong></p>
+<%= form_for(@task) do |f| %>  
+    <%= f.collection_select :project_id, @projects, :id, :name %><br>
+    <%= f.text_field :object, placeholder: "Объект" %>
+    Приоритет (1..3): <%= f.number_field :grade, placeholder: "Приоритет (1..3)" %>
+    <%= f.check_box :actual %> Актуальное<br>
+    <%= f.text_area :action, placeholder: "Действие", :size => '70x2' %><br>
+    <%= f.check_box :calendarity %> Календарное, дата: <%= f.datetime_select :dt, { :default => DateTime.now, :use_month_names => ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"], :order => [:day, :month, :year, :hour, :minute] } %><br><br>
+    <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
+<% end %>  
+
+<br><br><br><br>
+
+
+<p><strong>Добавить проект</strong></p>
+<%= form_for([current_user, current_user.projects.build]) do |f| %>  
+    <%= f.text_field :name, placeholder: "Название" %>
+    Тип (1..6): <%= f.number_field :tip, placeholder: "Тип (1..6)" %><br><br>
+    <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
+<% end %>       

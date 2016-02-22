@@ -1,0 +1,39 @@
+<br><br>
+<% if @tasks.size > 0 %>
+  <h4>Задания</h4>
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Создано</th>
+    <th>Объект</th>
+    <th>Действие</th>
+    <th>Приоритет</th>
+    <% if(@showproject) %>
+      <th>Проект</th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <% @tasks.each do |tsk| %> 
+    <tr>
+      <td><%= link_to tsk.created_at.strftime("%d.%m.%y %H:%M"), edit_task_path(tsk) %></td>
+      <td><% if(tsk.project.name == "Links") %>
+        <%= link_to tsk.object, tsk.object %>
+      <%else%>
+        <%= tsk.object %>
+      <%end%></td>
+      <td><%= tsk.action %></td>
+      <td><%= tsk.grade %></td>
+      <% if(@showproject) %> 
+        <td><%= link_to tsk.project.name, edit_project_path(tsk.project) %></td>
+      <% end %>
+      <td><% if(tsk.actual) %>
+ <%= button_to("Отложить", delay_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+      <% else %>
+<%= button_to("В актуальные", undelay_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+       <% end %></td>
+    </tr>
+  <% end %>
+  </tbody>
+  </table>
+<% end %>

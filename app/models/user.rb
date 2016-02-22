@@ -8,15 +8,9 @@ class User < ActiveRecord::Base
   has_many :received_comments, :class_name => "Profilecomment", :foreign_key => "user_id"
   has_many :given_comments, :class_name => "Profilecomment", :foreign_key => "commenter_id"
 
-  has_many :posts
-  has_many :comments
-  has_many :messages
-  has_many :votes
-  has_many :goals
-  has_many :tasks
-  has_many :impulses
-  has_many :impulsetreattypes
 
+  has_many :tasks
+  has_many :projects
 
 attr_accessor :password
   before_save :encrypt_password

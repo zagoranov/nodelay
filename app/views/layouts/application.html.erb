@@ -69,9 +69,12 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
           <% if current_user %>
-            <li><%= link_to "Главная", root_path  %></li>
-            <li><%= link_to "Награды/Импульсы", impulsetreattypes_path  %></li>
-            <li><%= link_to "Долгий ящик", longbox_path  %></li>            
+                <li><%= link_to "Inbox", inbox_tasks_path  %></li>
+                <li><%= link_to "Calendar", calendar_tasks_path  %></li>
+                <li><%= link_to "Delayed", delayed_tasks_path  %></li>
+                <li><%= link_to "Links", links_tasks_path  %></li>
+                <li><%= link_to "Delegated", delegated_tasks_path  %></li>
+                <li><%= link_to "Someday", someday_tasks_path  %></li>
             <% if current_user.admin %>
                 <li><%= link_to "Админ", "/admin", :target => "_blank"  %></li>
             <% end %>            
@@ -79,7 +82,6 @@
          <%else%>   
             <li><%= link_to "Войти", "/log_in" %></li>
          <%end%>
-          <li><%= link_to "Помощь", wellhello_path  %></li>                     
          </ul>
         </div>
 
@@ -102,47 +104,17 @@
             <ul class="nav nav-list">
               <li class="nav-header"><strong><%= "Пользователь" %></strong></li>
               <li><%= link_to current_user.name, user_path(current_user) %>
-              Баллы: <strong><%= current_user.score %></strong></li>
+
             <li><%= link_to "Другие пользователи", users_path  %></li>
             </ul>
-            <br>
-
-              <% taski = Task.where(user_id: current_user.id).where(done: true).order('donedt DESC').limit(5) %>
-              <% if taski.size > 0 %>
+    
+             <br>
               <ul class="nav nav-list">
-              <li class="nav-header"><strong>Законченные задания</strong></li> 
-              <% for task in taski %>
-                <li><%= task.title %><% if task.description!="" %>: <i><%= task.description %></i><% end %>, <small><%= task.created_at.strftime("%d.%m %H:%M") %></small>
-                </li>
-              <% end %>
+              <li class="nav-header"><strong>Stuff</strong></li> 
+                <li><%= link_to "Projects", projects_path  %></li>
+                <li><%= link_to "--Tags", users_path  %></li>
               </ul><br>
-            <% end %>
 
-              <% treati = Treat.joins(:impulse).where('user_id in (?)', current_user.id).order('donedt DESC').limit(7) %>
-              <% if treati.size > 0 %>
-              <ul class="nav nav-list">
-              <li class="nav-header"><strong>Свежие награды</strong></li> 
-              <% for treat in treati %>
-                <% if treat.impulsetreattype %> 
-                  <li><%= treat.impulsetreattype.title %>, <small><%= treat.created_at.strftime("%d.%m %H:%M") %></small>
-                  </li>
-                  <% end %>
-              <% end %>
-              </ul><br>
-            <% end %>
-
-            <% if current_user.friendships %>            
-              <ul class="nav nav-list">
-              <li class="nav-header"><strong>Друзья-чемпионы</strong></li> 
-                <% @fr = current_user.friendships.collect(&:friend_id)
-                  frnds = User.where('id in (?)', @fr).order('score DESC').limit(5)  %>
-                <% for uu in frnds %>
-                <li><strong><%= uu.score %></strong> баллов у 
-                <strong><%= link_to uu.name, uu %></strong> 
-                </li>
-              <% end %>
-              </ul><br>
-            <% end %>
 
             <% if current_user.inverse_friendships %>            
               <ul class="nav nav-list">
@@ -178,7 +150,7 @@
         
       <footer>
         <br><br><br>
-        <p><small>&copy; Labile Mobile, 2014 - 2015</small> </p>
+        <p><small>&copy; Labile Mobile, 2016</small> </p>
 
        </footer>
 
@@ -187,12 +159,6 @@
 <noindex>
   <!-- Google Analytics -->
   <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-7464139-11', 'auto');
-  ga('send', 'pageview');
   </script>
 </noindex>
 

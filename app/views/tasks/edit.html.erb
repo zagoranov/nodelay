@@ -1,24 +1,23 @@
 <h3>Задание</h3>
 
-<br>
-
-<img src="<%= asset_path("monsters_"+@task.icon+".png") %>" width="111">
-
-<br>
-<br>
+<br><br>
 
 <%= form_for @task do |f| %>
 
   <p>
     <strong>Проект</strong><br>
-    <%= f.text_field :title %>
+    <%= f.collection_select :project_id, @projects, :id, :name, prompt: true %><br>
   </p>
   <p>
-    <strong>Задание</strong><br />
-    <%= f.text_area :description, :size => "60x5" %>
+    <strong>Объект</strong><br>
+    <%= f.text_field :object %>
   </p>
   <p>
-    <strong>Сложность (1..10)</strong><br>
+    <strong>Действие</strong><br />
+    <%= f.text_area :action, :size => "60x5" %>
+  </p>
+  <p>
+    <strong>Приоритет (1..3)</strong><br>
     <%= f.number_field :grade %>
   </p>
   <p>
@@ -38,7 +37,33 @@
 
 <br>
 <br>
+
+<%= link_to "Отмена", :back, :method => "get", :class => 'btn btn-mini btn-danger' %> 
+
+<br>
+<br>
 <br>
 <br>
 
-<%= link_to "Отмена", root_path, :method => "get", :class => 'btn btn-mini btn-danger' %> 
+
+<% if @tags.size > 0 %>
+<h4>Тэги</h4>
+<table class="table table-striped">
+  <tbody>
+  <% @tags.each do |tag| %> 
+    <tr>
+      <td><%= tag.name %></td>  
+      <td><%= link_to "Удалить", tag,  method: :delete, :class => 'btn btn-mini btn-danger'  %> </td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+<% end %>
+
+<br>
+
+<p><strong>Добавить тэг</strong></p>
+<%= form_for([@task, @task.tags.build]) do |f| %>  
+    <%= f.text_field :name, placeholder: "Новый тэг" %>
+    <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
+<% end %>       
