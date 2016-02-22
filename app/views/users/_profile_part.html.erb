@@ -2,9 +2,6 @@
 <h4>С нами с <%= @user.created_at.strftime("%d.%m.%Y") %></h4>
 
 <br>
-<p>Баллы: <%= @user.score %></p>
-<p>Шансы на награду за импульс: 1 / <%= @user.randchance %></p>
-<br>
 
 <% if @user == current_user %>
       <%= button_to("Изменить данные", edit_user_path(@user), :method => "get",  :class => 'btn btn-primary') %>

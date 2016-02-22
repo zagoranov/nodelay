@@ -17,7 +17,7 @@ def create
   if @user.save
      session[:user_id] = @user.id
      UserMailer.newreg_email(@user).deliver
-     redirect_to impulsetreattypes_path, :notice => "Чтобы это всё заработало, нужно заполнить импульсы/награды!"
+     redirect_to impulsetreattypes_path, :notice => "Всё готово!"
   else
     render "new"
   end
@@ -34,7 +34,6 @@ def index
  else 
   redirect_to '/log_in'
  end
-
 end
 
 
@@ -84,7 +83,7 @@ end
 
 private
 def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :randchance)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
 end

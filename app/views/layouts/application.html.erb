@@ -112,7 +112,12 @@
               <ul class="nav nav-list">
               <li class="nav-header"><strong>Stuff</strong></li> 
                 <li><%= link_to "Projects", projects_path  %></li>
-                <li><%= link_to "--Tags", users_path  %></li>
+                <li>
+                  <%= form_tag(tagsearch_tasks_path, :method => "get", id: "search-form") do %>
+                    <%= text_field_tag :search, params[:search], placeholder: "Поиск по тэгу" %>
+                    <%= submit_tag "Искать", :name => nil, :class => 'btn btn-mini' %>
+                  <% end %>
+                </li>
               </ul><br>
 
 

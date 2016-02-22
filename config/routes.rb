@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       get 'links'
       get 'delegated'
       get 'someday'
+      get 'tagsearch'
     end
     member do
       post 'itsdone'

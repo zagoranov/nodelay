@@ -10,6 +10,7 @@ def gtd
   @caltomorrow = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and  Date(tasks.dt) = date(\'now\', \'+1 day\')', current_user.id, false, false, true, true).order('tasks.grade')
   @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, false).order('tasks.grade')
   @projects = current_user.projects.all
+  @task = Task.new
 end
 
 def inbox
@@ -25,15 +26,27 @@ def delayed
 end
 
 def links
-   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and tasks.actual = ? and projects.name = ?', current_user.id, false, true, "Links").order('tasks.grade')
+  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and tasks.actual = ? and projects.name = ?', current_user.id, false, true, "Links").order('tasks.grade')
 end
 
 def delegated
-   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and tasks.actual = ? and projects.name = ?', current_user.id, false, true, "Delegated").order('tasks.grade')
+  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and tasks.actual = ? and projects.name = ?', current_user.id, false, true, "Delegated").order('tasks.grade')
 end
 
 def someday
-   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and tasks.actual = ? and projects.name = ?', current_user.id, false, true, "Someday").order('tasks.grade')  
+  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and tasks.actual = ? and projects.name = ?', current_user.id, false, true, "Someday").order('tasks.grade')
+end
+
+def tagsearch
+  if current_user
+    if params[:search]
+      @tasks = Task.select('tasks.*').joins(:tasks_tags).joins(:tags).joins(:project).where('tags.name = ? and projects.user_id = ?', params[:search], current_user.id).uniq
+    else
+      @tasks = Task.limit(30).order("RANDOM()")
+    end
+ else 
+  redirect_to '/log_in'
+ end
 end
 
 

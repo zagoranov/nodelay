@@ -21,10 +21,6 @@
     <strong>Еще раз пароль</strong><br />
     <%= f.password_field :password_confirmation %>
   </p>
-  <p>
-    <strong>Шанс на награду за импульс (1..10)</strong><br>
-    1 / <%= f.number_field :randchance %>
-  </p>
   <br>  
   <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %></p>
 <% end %>

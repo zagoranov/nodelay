@@ -13,10 +13,14 @@ end
 
 
 def index
- if current_user
-   @tags = current_user.tags.order('created_at')
- else
-   redirect_to log_in_path
+  if current_user  
+    if params[:search]
+      @tags = Tag.search(params[:search])
+    else
+      @tags = Tag.limit(30).order("RANDOM()")
+    end
+ else 
+  redirect_to '/log_in'
  end
 end
 
