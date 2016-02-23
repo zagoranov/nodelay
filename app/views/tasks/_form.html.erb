@@ -1,4 +1,4 @@
-<p><strong>Добавить задание</strong></p>
+<h4>Добавить задание</h4>
 <%= form_for(@task) do |f| %>  
     <%= f.collection_select :project_id, @projects, :id, :name %><br>
     <%= f.text_field :object, placeholder: "Объект" %>
@@ -8,4 +8,4 @@
     <%= f.text_area :description, placeholder: "Описание", :size => '70x2' %><br>
     <%= f.check_box :calendarity %> Календарное, дата: <%= f.datetime_select :dt, { :default => DateTime.now, :use_month_names => ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"], :order => [:day, :month, :year, :hour, :minute] } %><br><br>
     <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
-<% end %>  
+<% end %> 

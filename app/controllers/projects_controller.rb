@@ -21,7 +21,7 @@ end
 
 def index
  if current_user
-   @projects = current_user.projects.order('tip')
+   @projects = current_user.projects.order('tip, created_at')
  else
    redirect_to log_in_path
  end

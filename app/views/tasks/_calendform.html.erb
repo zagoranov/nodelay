@@ -1,0 +1,19 @@
+<table class="table table-striped">
+  <tbody>
+  <% @daytasks.each do |tsk| %> 
+    <tr>
+      <td><%= link_to tsk.dt.strftime("%H:%M"), edit_task_path(tsk) %></td>
+      <td><%= tsk.object %></td>
+      <td><%= tsk.action %></td>
+      <td><%= tsk.grade %></td>
+      <td><%= link_to tsk.project.name, edit_project_path(tsk.project) %></td>
+      <td><% if(tsk.actual) %>
+        <%= button_to("Отложить", delay_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+      <% else %>
+        <%= button_to("В актуальные", undelay_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+      <% end %></td>
+      <td><%= button_to("Завершить", itsdone_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>

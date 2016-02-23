@@ -2,21 +2,10 @@
 <% if @tasks.size > 0 %>
   <h4>Задания</h4>
   <table class="table table-striped">
-  <thead>
-  <tr>
-    <th>Создано</th>
-    <th>Объект</th>
-    <th>Действие</th>
-    <th>Приоритет</th>
-    <% if(@showproject) %>
-      <th>Проект</th>
-    <% end %>
-  </tr>
-  </thead>
   <tbody>
   <% @tasks.each do |tsk| %> 
     <tr>
-      <td><%= link_to tsk.created_at.strftime("%d.%m.%y %H:%M"), edit_task_path(tsk) %></td>
+      <td><%= link_to tsk.created_at.strftime("%d.%m.%Y"), edit_task_path(tsk) %></td>
       <td><% if(tsk.project.name == "Links") %>
         <%= link_to tsk.object, ext_link(tsk.object) %>
       <%else%>
@@ -41,4 +30,6 @@
   <% end %>
   </tbody>
   </table>
+<% else %>  
+  <em> Список пуст. </em>
 <% end %>

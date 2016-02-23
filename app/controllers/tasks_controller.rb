@@ -11,11 +11,11 @@ def gtd
       date_str = 'tasks.dt::date = current_date'
       date_str2 = 'tasks.dt::date = current_date + 1'
     else
-      date_str = 'Date(tasks.dt) = Date(\'now\')'
+      date_str = 'Date(tasks.dt) <= Date(\'now\')'
       date_str2 = 'Date(tasks.dt) = Date(\'now\', \'+1 day\')'
     end
-    @caltoday = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str, current_user.id, false, false, true, true).order('tasks.grade')
-    @caltomorrow = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str2, current_user.id, false, false, true, true).order('tasks.grade')
+    @caltoday = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str, current_user.id, false, false, true, true).order('tasks.dt, tasks.grade')
+    @caltomorrow = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str2, current_user.id, false, false, true, true).order('tasks.dt, tasks.grade')
     @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, false).order('tasks.grade')
     @projects = current_user.projects.all
     @task = Task.new
