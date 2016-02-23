@@ -6,11 +6,22 @@ before_action :set_product, only: [:itsdone, :delay, :undelay, :edit, :update, :
 respond_to :html, :js
 
 def gtd
-  @caltoday = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and  Date(tasks.dt) = date(\'now\')', current_user.id, false, false, true, true).order('tasks.grade')
-  @caltomorrow = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and  Date(tasks.dt) = date(\'now\', \'+1 day\')', current_user.id, false, false, true, true).order('tasks.grade')
-  @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, false).order('tasks.grade')
-  @projects = current_user.projects.all
-  @task = Task.new
+  if current_user  
+    if Rails.env.production? 
+      date_str = 'tasks.dt::date = current_date'
+      date_str2 = 'tasks.dt::date = current_date + 1'
+    else
+      date_str = 'Date(tasks.dt) = Date(\'now\')'
+      date_str2 = 'Date(tasks.dt) = Date(\'now\', \'+1 day\')'
+    end
+    @caltoday = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str, current_user.id, false, false, true, true).order('tasks.grade')
+    @caltomorrow = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str2, current_user.id, false, false, true, true).order('tasks.grade')
+    @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, false).order('tasks.grade')
+    @projects = current_user.projects.all
+    @task = Task.new
+ else 
+  redirect_to '/log_in'
+ end
 end
 
 def inbox

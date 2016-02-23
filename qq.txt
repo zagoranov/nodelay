@@ -1,0 +1,101 @@
+2016-02-23T07:10:32.542997+00:00 app[web.1]: Started GET "/tasks/inbox" for 91.77.205.47 at 2016-02-23 07:10:32 +0000
+2016-02-23T07:10:32.680305+00:00 app[web.1]:   Rendered tasks/_list.html.erb (42.8ms)
+2016-02-23T07:10:32.680377+00:00 app[web.1]:   Rendered tasks/inbox.html.erb within layouts/application (44.6ms)
+2016-02-23T07:10:32.717962+00:00 app[web.1]: Completed 200 OK in 173ms (Views: 66.6ms | ActiveRecord: 26.9ms)
+2016-02-23T07:10:32.725511+00:00 heroku[router]: at=info method=GET path="/tasks/inbox" host=www.nodelay.ru request_id=6f93faea-9611-4f13-a5ec-c421836a1133 fwd="91.77.205.47" dyno=web.1 connect=0ms service=186ms status=200 bytes=6558
+2016-02-23T07:10:32.545026+00:00 app[web.1]: Processing by TasksController#inbox as HTML
+2016-02-23T07:10:41.837407+00:00 heroku[router]: at=info method=GET path="/images/favicon.ico" host=www.nodelay.ru request_id=08d1b3d8-e158-4042-b2d8-ecf9f5b0caa2 fwd="91.77.205.47" dyno=web.1 connect=0ms service=5ms status=404 bytes=1758
+2016-02-23T07:10:41.837587+00:00 app[web.1]: Started GET "/images/favicon.ico" for 91.77.205.47 at 2016-02-23 07:10:41 +0000
+2016-02-23T07:10:41.841159+00:00 app[web.1]: 
+2016-02-23T07:10:41.841164+00:00 app[web.1]: ActionController::RoutingError (No route matches [GET] "/images/favicon.ico"):
+2016-02-23T07:10:41.841166+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+2016-02-23T07:10:41.841167+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+2016-02-23T07:10:41.841172+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.2.1/lib/rails/rack/logger.rb:20:in `call'
+2016-02-23T07:10:41.841169+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.2.1/lib/active_support/tagged_logging.rb:68:in `block in tagged'
+2016-02-23T07:10:41.841173+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.6.4/lib/rack/methodoverride.rb:22:in `call'
+2016-02-23T07:10:41.841178+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.2.1/lib/rails/engine.rb:518:in `call'
+2016-02-23T07:10:41.841167+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.2.1/lib/rails/rack/logger.rb:38:in `call_app'
+2016-02-23T07:10:41.841180+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/thin-1.6.4/lib/thin/connection.rb:86:in `block in pre_process'
+2016-02-23T07:10:41.841182+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/thin-1.6.4/lib/thin/connection.rb:84:in `pre_process'
+2016-02-23T07:10:41.841168+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.2.1/lib/rails/rack/logger.rb:20:in `block in call'
+2016-02-23T07:10:41.841174+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.6.4/lib/rack/runtime.rb:18:in `call'
+2016-02-23T07:10:41.841177+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.6.4/lib/rack/sendfile.rb:113:in `call'
+2016-02-23T07:10:41.841170+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.2.1/lib/active_support/tagged_logging.rb:26:in `tagged'
+2016-02-23T07:10:41.841175+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.2.1/lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+2016-02-23T07:10:41.841171+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.2.1/lib/active_support/tagged_logging.rb:68:in `tagged'
+2016-02-23T07:10:41.841172+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/request_id.rb:21:in `call'
+2016-02-23T07:10:41.841178+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.2.1/lib/rails/application.rb:164:in `call'
+2016-02-23T07:10:41.841183+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/thin-1.6.4/lib/thin/connection.rb:39:in `receive_data'
+2016-02-23T07:10:41.841185+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/thin-1.6.4/lib/thin/backends/base.rb:73:in `start'
+2016-02-23T07:10:41.841185+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/eventmachine-1.0.9.1/lib/eventmachine.rb:193:in `run'
+2016-02-23T07:10:41.841188+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.6.4/lib/rack/server.rb:286:in `start'
+2016-02-23T07:10:41.841187+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.6.4/lib/rack/handler/thin.rb:19:in `run'
+2016-02-23T07:10:41.841188+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.2.1/lib/rails/commands/server.rb:80:in `start'
+2016-02-23T07:10:41.841176+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/static.rb:113:in `call'
+2016-02-23T07:10:41.841179+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.6.4/lib/rack/content_length.rb:15:in `call'
+2016-02-23T07:10:41.841182+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/thin-1.6.4/lib/thin/connection.rb:53:in `process'
+2016-02-23T07:10:41.841186+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/thin-1.6.4/lib/thin/server.rb:162:in `start'
+2016-02-23T07:10:41.841189+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:75:in `tap'
+2016-02-23T07:10:41.841181+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/thin-1.6.4/lib/thin/connection.rb:84:in `catch'
+2016-02-23T07:10:41.841192+00:00 app[web.1]:   bin/rails:4:in `require'
+2016-02-23T07:10:41.841184+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/eventmachine-1.0.9.1/lib/eventmachine.rb:193:in `run_machine'
+2016-02-23T07:10:41.841190+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:75:in `server'
+2016-02-23T07:10:41.841193+00:00 app[web.1]:   bin/rails:4:in `<main>'
+2016-02-23T07:10:41.841191+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+2016-02-23T07:10:41.841192+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.2.1/lib/rails/commands.rb:17:in `<top (required)>'
+2016-02-23T07:10:41.841193+00:00 app[web.1]: 
+2016-02-23T07:10:41.841193+00:00 app[web.1]: 
+2016-02-23T07:10:41.841189+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:80:in `block in server'
+2016-02-23T07:10:44.152673+00:00 heroku[router]: at=info method=GET path="/" host=www.nodelay.ru request_id=7252a53e-3eba-49b6-a356-a1749ac336e3 fwd="91.77.205.47" dyno=web.1 connect=0ms service=19ms status=500 bytes=1683
+2016-02-23T07:10:44.139152+00:00 app[web.1]: Started GET "/" for 91.77.205.47 at 2016-02-23 07:10:44 +0000
+2016-02-23T07:10:44.153909+00:00 app[web.1]: PG::UndefinedFunction: ERROR:  function date(unknown, unknown) does not exist
+2016-02-23T07:10:44.153914+00:00 app[web.1]: LINE 1: ...and tasks.calendarity = 't' and  Date(tasks.dt) = date('now'...
+2016-02-23T07:10:44.153916+00:00 app[web.1]:                                                              ^
+2016-02-23T07:10:44.153917+00:00 app[web.1]: HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2016-02-23T07:10:44.153919+00:00 app[web.1]: : SELECT COUNT(*) FROM "tasks" INNER JOIN "projects" ON "projects"."id" = "tasks"."project_id" WHERE (projects.user_id = 1 and projects.done = 'f' and tasks.done = 'f' and tasks.actual = 't' and tasks.calendarity = 't' and  Date(tasks.dt) = date('now', '+1 day'))
+2016-02-23T07:10:44.154608+00:00 app[web.1]:   Rendered tasks/gtd.html.erb within layouts/application (6.1ms)
+2016-02-23T07:10:44.156547+00:00 app[web.1]: 
+2016-02-23T07:10:44.156549+00:00 app[web.1]: ActionView::Template::Error (PG::UndefinedFunction: ERROR:  function date(unknown, unknown) does not exist
+2016-02-23T07:10:44.156551+00:00 app[web.1]: LINE 1: ...and tasks.calendarity = 't' and  Date(tasks.dt) = date('now'...
+2016-02-23T07:10:44.156553+00:00 app[web.1]: : SELECT COUNT(*) FROM "tasks" INNER JOIN "projects" ON "projects"."id" = "tasks"."project_id" WHERE (projects.user_id = 1 and projects.done = 'f' and tasks.done = 'f' and tasks.actual = 't' and tasks.calendarity = 't' and  Date(tasks.dt) = date('now', '+1 day'))):
+2016-02-23T07:10:44.156552+00:00 app[web.1]: HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2016-02-23T07:10:44.156551+00:00 app[web.1]:                                                              ^
+2016-02-23T07:10:44.156554+00:00 app[web.1]:     25: <% end %>
+2016-02-23T07:10:44.156554+00:00 app[web.1]:     26: 
+2016-02-23T07:10:44.156556+00:00 app[web.1]:     28: <% if @caltomorrow.size > 0 %>
+2016-02-23T07:10:44.156555+00:00 app[web.1]:     27: 
+2016-02-23T07:10:44.156556+00:00 app[web.1]:     29: <h4>Завтра</h4>
+2016-02-23T07:10:44.156557+00:00 app[web.1]:     31:   <thead>
+2016-02-23T07:10:44.156557+00:00 app[web.1]:     30: <table class="table table-striped">
+2016-02-23T07:10:44.156558+00:00 app[web.1]:   app/views/tasks/gtd.html.erb:28:in `_app_views_tasks_gtd_html_erb___4340742782092412871_70043104761220'
+2016-02-23T07:10:44.156559+00:00 app[web.1]: 
+2016-02-23T07:10:44.380960+00:00 app[web.1]: Started GET "/" for 91.77.205.47 at 2016-02-23 07:10:44 +0000
+2016-02-23T07:10:44.156559+00:00 app[web.1]: 
+2016-02-23T07:10:44.154811+00:00 app[web.1]: Completed 500 Internal Server Error in 13ms (ActiveRecord: 3.7ms)
+2016-02-23T07:10:44.141534+00:00 app[web.1]: Processing by TasksController#gtd as HTML
+2016-02-23T07:10:44.383099+00:00 app[web.1]: Processing by TasksController#gtd as HTML
+2016-02-23T07:10:44.409913+00:00 heroku[router]: at=info method=GET path="/" host=www.nodelay.ru request_id=32601b59-e1d3-47b2-aa13-042721db2df3 fwd="91.77.205.47" dyno=web.1 connect=1ms service=35ms status=500 bytes=1683
+2016-02-23T07:10:44.405127+00:00 app[web.1]: PG::UndefinedFunction: ERROR:  function date(unknown, unknown) does not exist
+2016-02-23T07:10:44.405133+00:00 app[web.1]: LINE 1: ...and tasks.calendarity = 't' and  Date(tasks.dt) = date('now'...
+2016-02-23T07:10:44.405134+00:00 app[web.1]:                                                              ^
+2016-02-23T07:10:44.405135+00:00 app[web.1]: HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2016-02-23T07:10:44.405136+00:00 app[web.1]: : SELECT COUNT(*) FROM "tasks" INNER JOIN "projects" ON "projects"."id" = "tasks"."project_id" WHERE (projects.user_id = 1 and projects.done = 'f' and tasks.done = 'f' and tasks.actual = 't' and tasks.calendarity = 't' and  Date(tasks.dt) = date('now', '+1 day'))
+2016-02-23T07:10:44.406050+00:00 app[web.1]:   Rendered tasks/gtd.html.erb within layouts/application (17.3ms)
+2016-02-23T07:10:44.413319+00:00 app[web.1]: 
+2016-02-23T07:10:44.413323+00:00 app[web.1]: ActionView::Template::Error (PG::UndefinedFunction: ERROR:  function date(unknown, unknown) does not exist
+2016-02-23T07:10:44.413331+00:00 app[web.1]: LINE 1: ...and tasks.calendarity = 't' and  Date(tasks.dt) = date('now'...
+2016-02-23T07:10:44.413332+00:00 app[web.1]:                                                              ^
+2016-02-23T07:10:44.413333+00:00 app[web.1]: HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2016-02-23T07:10:44.413334+00:00 app[web.1]: : SELECT COUNT(*) FROM "tasks" INNER JOIN "projects" ON "projects"."id" = "tasks"."project_id" WHERE (projects.user_id = 1 and projects.done = 'f' and tasks.done = 'f' and tasks.actual = 't' and tasks.calendarity = 't' and  Date(tasks.dt) = date('now', '+1 day'))):
+2016-02-23T07:10:44.413335+00:00 app[web.1]:     25: <% end %>
+2016-02-23T07:10:44.413336+00:00 app[web.1]:     26: 
+2016-02-23T07:10:44.413337+00:00 app[web.1]:     27: 
+2016-02-23T07:10:44.413337+00:00 app[web.1]:     28: <% if @caltomorrow.size > 0 %>
+2016-02-23T07:10:44.413338+00:00 app[web.1]:     29: <h4>Завтра</h4>
+2016-02-23T07:10:44.413338+00:00 app[web.1]:     30: <table class="table table-striped">
+2016-02-23T07:10:44.413339+00:00 app[web.1]:     31:   <thead>
+2016-02-23T07:10:44.413341+00:00 app[web.1]: 
+2016-02-23T07:10:44.413340+00:00 app[web.1]:   app/views/tasks/gtd.html.erb:28:in `_app_views_tasks_gtd_html_erb___4340742782092412871_70043105162940'
+2016-02-23T07:10:44.413340+00:00 app[web.1]: 
+2016-02-23T07:10:44.406373+00:00 app[web.1]: Completed 500 Internal Server Error in 23ms (ActiveRecord: 11.3ms)
+2016-02-23T07:10:45.228240+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=www.nodelay.ru request_id=ea488c25-eef2-497c-9479-062fb0a3e9fd fwd="91.77.205.47" dyno=web.1 connect=0ms service=1ms status=304 bytes=62
