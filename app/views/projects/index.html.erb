@@ -1,5 +1,8 @@
+<h3>Проекты</h3>
+
+<br>
+
 <% if @projects.size > 0 %>
-<h4>Проекты</h4>
 <table class="table table-striped">
   <tbody>
   <% @projects.each do |proj| %> 
@@ -12,7 +15,10 @@
   <% end %>
  </tbody>
 </table>
+<% else %>  
+  <em> Список пуст. </em>
 <% end %>
+
 
 <div id="new_project">
   <%= render 'projects/shortform' %>

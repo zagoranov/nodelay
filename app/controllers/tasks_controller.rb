@@ -14,9 +14,9 @@ def gtd
       date_str = 'Date(tasks.dt) <= Date(\'now\')'
       date_str2 = 'Date(tasks.dt) = Date(\'now\', \'+1 day\')'
     end
-    @caltoday = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str, current_user.id, false, false, true, true).order('tasks.dt, tasks.grade')
-    @caltomorrow = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str2, current_user.id, false, false, true, true).order('tasks.dt, tasks.grade')
-    @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, false).order('tasks.grade')
+    @caltoday = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str, current_user.id, false, false, true, true).order('tasks.dt, tasks.grade desc')
+    @caltomorrow = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str2, current_user.id, false, false, true, true).order('tasks.dt, tasks.grade desc')
+    @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, false).order('tasks.grade desc')
     @projects = current_user.projects.all
     @task = Task.new
  else 
@@ -25,27 +25,27 @@ def gtd
 end
 
 def inbox
-   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Inbox").order('tasks.grade')
+   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Inbox").order('tasks.grade desc')
 end
 
 def calendar
-  @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, true).order('tasks.dt')
+  @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, true).order('tasks.dt, tasks.grade desc')
 end
 
 def delayed
-  @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ?', current_user.id, false, false, false).order('tasks.grade')
+  @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ?', current_user.id, false, false, false).order('tasks.grade desc')
 end
 
 def links
-  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Links").order('tasks.grade')
+  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Links").order('tasks.grade desc')
 end
 
 def delegated
-  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Delegated").order('tasks.grade')
+  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Delegated").order('tasks.grade desc')
 end
 
 def someday
-  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Someday").order('tasks.grade')
+  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Someday").order('tasks.grade desc')
 end
 
 def donelist
@@ -56,7 +56,7 @@ end
 def tagsearch
   if current_user
     if params[:search]
-      @tasks = Task.select('tasks.*').joins(:tasks_tags).joins(:tags).joins(:project).where('tags.name = ? and projects.user_id = ?', params[:search], current_user.id).uniq
+      @tasks = Task.select('tasks.*').joins(:tasks_tags).joins(:tags).joins(:project).where('tags.name = ? and projects.user_id = ? and tasks.done = ?', params[:search], current_user.id, false).uniq
     else
       @tasks = Task.limit(30).order("RANDOM()")
     end
