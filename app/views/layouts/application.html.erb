@@ -71,10 +71,11 @@
           <% if current_user %>
                 <li><%= link_to "Inbox", inbox_tasks_path  %></li>
                 <li><%= link_to "Calendar", calendar_tasks_path  %></li>
-                <li><%= link_to "Delayed", delayed_tasks_path  %></li>
                 <li><%= link_to "Links", links_tasks_path  %></li>
                 <li><%= link_to "Delegated", delegated_tasks_path  %></li>
                 <li><%= link_to "Someday", someday_tasks_path  %></li>
+                <li><%= link_to "Delayed", delayed_tasks_path  %></li>
+                <li><%= link_to "Сделано", donelist_tasks_path  %></li>
             <% if current_user.admin %>
                 <li><%= link_to "Админ", "/admin", :target => "_blank"  %></li>
             <% end %>            

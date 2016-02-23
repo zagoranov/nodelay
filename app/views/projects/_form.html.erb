@@ -1,11 +1,15 @@
 <%= form_for @project do |f| %>
   <p>
-    <strong>Проект</strong><br>
+    <strong>Название</strong><br>
     <%= f.text_field :name %>
   </p>
   <p>
     <strong>Тип (1..6)</strong><br>
     <%= f.number_field :tip %>
+  </p>
+  <p>
+    <strong>Описание</strong><br>
+    <%= f.text_area :description , :size => '70x4'%>
   </p>
 
   <br><br>

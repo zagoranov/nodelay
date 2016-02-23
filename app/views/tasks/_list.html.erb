@@ -18,7 +18,7 @@
     <tr>
       <td><%= link_to tsk.created_at.strftime("%d.%m.%y %H:%M"), edit_task_path(tsk) %></td>
       <td><% if(tsk.project.name == "Links") %>
-        <%= link_to tsk.object, tsk.object %>
+        <%= link_to tsk.object, ext_link(tsk.object) %>
       <%else%>
         <%= tsk.object %>
       <%end%></td>
@@ -31,6 +31,11 @@
  <%= button_to("Отложить", delay_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
       <% else %>
 <%= button_to("В актуальные", undelay_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+       <% end %></td>
+      <td><% if(tsk.done) %>
+ <%= button_to("Вернуть", undone_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+      <% else %>
+<%= button_to("Завершить", itsdone_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
        <% end %></td>
     </tr>
   <% end %>

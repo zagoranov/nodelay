@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222163205) do
+ActiveRecord::Schema.define(version: 20160223150416) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20160222163205) do
 
   create_table "tasks", force: :cascade do |t|
     t.boolean  "done",        default: false
-    t.integer  "grade",       default: 3
+    t.integer  "grade",       default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "donedt"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20160222163205) do
     t.integer  "project_id"
     t.string   "object"
     t.string   "action"
+    t.text     "description"
   end
 
   create_table "tasks_tags", force: :cascade do |t|

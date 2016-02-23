@@ -1,6 +1,16 @@
 # encoding: UTF-8
 module ApplicationHelper
 
+
+def ext_link(link)
+ if link.include?("http://")
+  puts link
+ else
+  link.insert(0, "http://")
+  link
+ end
+end
+
 def with_new_lines(string)
    (h(string).gsub(/\n/, '<br/>')).html_safe
 end

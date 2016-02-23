@@ -55,7 +55,7 @@ end
 
 
 def project_params
-    params.require(:project).permit(:name, :tip, :user_id)
+    params.require(:project).permit(:name, :tip, :description)
 end
 
 

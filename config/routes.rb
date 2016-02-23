@@ -32,9 +32,11 @@ Rails.application.routes.draw do
       get 'delegated'
       get 'someday'
       get 'tagsearch'
+      get 'donelist'
     end
     member do
       post 'itsdone'
+      post 'undone'      
       post 'delay'
       post 'undelay'
     end

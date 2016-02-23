@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class TasksController < ApplicationController
   
-before_action :set_product, only: [:itsdone, :delay, :undelay, :edit, :update, :destroy, :tobox, :outofbox]
+before_action :set_product, only: [:itsdone, :undone, :delay, :undelay, :edit, :update, :destroy]
   
 respond_to :html, :js
 
@@ -25,7 +25,7 @@ def gtd
 end
 
 def inbox
-   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and tasks.actual = ? and projects.name = ?', current_user.id, false, true, "Inbox").order('tasks.grade')
+   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Inbox").order('tasks.grade')
 end
 
 def calendar
@@ -37,16 +37,21 @@ def delayed
 end
 
 def links
-  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and tasks.actual = ? and projects.name = ?', current_user.id, false, true, "Links").order('tasks.grade')
+  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Links").order('tasks.grade')
 end
 
 def delegated
-  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and tasks.actual = ? and projects.name = ?', current_user.id, false, true, "Delegated").order('tasks.grade')
+  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Delegated").order('tasks.grade')
 end
 
 def someday
-  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and tasks.actual = ? and projects.name = ?', current_user.id, false, true, "Someday").order('tasks.grade')
+  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Someday").order('tasks.grade')
 end
+
+def donelist
+  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ?', current_user.id, true).order('tasks.donedt DESC').limit(20)
+end
+
 
 def tagsearch
   if current_user
@@ -101,6 +106,18 @@ def itsdone
   end
 end
 
+def undone
+  @task.done = false
+  @task.save
+  current_user.save
+  #redirect_to root_path
+  respond_to do |format|
+    format.html { redirect_to root_path, notice: 'Задача вернулась!' }
+    format.js { render partial: 'taskslistrefresh'  }
+  end
+end
+
+
 def delay
   @task.actual = false
   @task.save
@@ -151,7 +168,7 @@ end
 
 
 def task_params
-    params.require(:task).permit(:object, :action, :done, :grade, :actual, :calendarity, :project_id, :dt)
+    params.require(:task).permit(:object, :action, :done, :grade, :actual, :calendarity, :project_id, :dt, :description)
 end
 
 
