@@ -3,12 +3,12 @@
   <% @daytasks.each do |tsk| %> 
     <tr>
       <td><% if tsk.dt.to_date >= DateTime.now.to_date %>
-        <%= link_to tsk.dt.strftime("%H:%M"), edit_task_path(tsk) %>
+        <%= tsk.dt.strftime("%H:%M") %>
       <% else %>
-        <%= link_to tsk.dt.strftime("%d.%m %H:%M"), edit_task_path(tsk) %>
+        <%= tsk.dt.strftime("%d.%m %H:%M") %>
       <% end %>
       </td>
-      <td><%= tsk.object %></td>
+      <td><%= link_to tsk.object, edit_task_path(tsk) %></td>
       <td><%= tsk.action %></td>
       <td><%= tsk.grade %></td>
       <td><%= link_to tsk.project.name, edit_project_path(tsk.project) %></td>
