@@ -6,13 +6,14 @@
   <tbody>
   <% @tasks.each do |tsk| %> 
     <tr>
-      <td><%= link_to tsk.created_at.strftime("%d.%m.%Y"), edit_task_path(tsk) %></td>
+      <td><% if task.calendarity %>
+         <%= tsk.dt.strftime("%d.%m.%Y") %>  
+      <% end %></td>
+      <td><%= link_to tsk.object, edit_task_path(tsk) %></td>
       <td><% if(tsk.project.name == "Links") %>
-        <%= link_to tsk.object, ext_link(tsk.object) %>
-      <%else%>
-        <%= tsk.object %>
-      <%end%></td>
-      <td><%= tsk.action %></td>
+              <%= link_to tsk.action, ext_link(tsk.action) %>
+          <%else%>
+              <%= tsk.action %><%end%></td>
       <td><%= tsk.grade %></td>
       <% if(@showproject) %> 
         <td><%= link_to tsk.project.name, edit_project_path(tsk.project) %></td>
