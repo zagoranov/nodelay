@@ -6,8 +6,8 @@
   <tbody>
   <% @tasks.each do |tsk| %> 
     <tr>
-      <td><% if task.calendarity %>
-         <%= tsk.dt.strftime("%d.%m.%Y") %>  
+      <td><% if tsk.calendarity %>
+         <%= tsk.dt.strftime("%d.%m.%y %H:%M") %>  
       <% end %></td>
       <td><%= link_to tsk.object, edit_task_path(tsk) %></td>
       <td><% if(tsk.project.name == "Links") %>
