@@ -43,3 +43,4 @@ gem 'bcrypt', '~> 3.1.9'
 gem 'rails_admin'
 gem 'responders', '~> 2.0' 
 gem 'coffee-script-source', '1.8.0'
+

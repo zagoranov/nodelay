@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223155123) do
+ActiveRecord::Schema.define(version: 20160225210057) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20160223155123) do
     t.string   "object"
     t.string   "action"
     t.text     "description"
+    t.string   "schedulerid"
   end
 
   create_table "tasks_tags", force: :cascade do |t|
@@ -81,6 +82,8 @@ ActiveRecord::Schema.define(version: 20160223155123) do
     t.string   "password_hash", limit: 255
     t.string   "password_salt", limit: 255
     t.boolean  "admin"
+    t.string   "schedule_url"
+    t.boolean  "schedules",                 default: false
   end
 
 end

@@ -1,5 +1,10 @@
 # encoding: UTF-8
 class TasksController < ApplicationController
+
+#require 'rubygems'
+#require 'net/http'
+#require 'uri'
+
   
 before_action :set_product, only: [:itsdone, :undone, :delay, :undelay, :edit, :update, :destroy]
   
@@ -8,7 +13,7 @@ respond_to :html, :js
 def gtd
   if current_user  
     if Rails.env.production? 
-      date_str = 'tasks.dt::date = current_date'
+      date_str = 'tasks.dt::date <= current_date'
       date_str2 = 'tasks.dt::date = current_date + 1'
     else
       date_str = 'Date(tasks.dt) <= Date(\'now\')'
@@ -85,13 +90,22 @@ def create
     if task.grade > 3
       task.grade = 3
     end
+
+    #if (task.calendarity && current_user.schedules)
+      #Delayed::Job.enqueue TelegramJob.new(task.object + " " + task.action)
+      #Delayed::Job.enqueue(TelegramJob.new(task.object + " " + task.action), 0, task.dt.getutc)
+      #task.schedulerid = sch_id
+    #end
+
     task.save
+
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Задача добавлена!' }
       format.js { render partial: 'listrefresh'  }
     end
   end
 end
+
 
 
 def itsdone
