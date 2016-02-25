@@ -1,23 +1,5 @@
-<% if @caltoday.size > 0 %>
-  <h4>Сегодня (<%= DateTime.now.strftime("%d.%m.%Y") %>)</h4>
-  <% @daytasks = @caltoday %>
-  <div id="today_tasks">
-    <%= render 'calendform' %>
-  </div>
-<% end %>
-
-<% if @caltomorrow.size > 0 %>
-<h4>Завтра (<%= DateTime.now.tomorrow.strftime("%d.%m.%Y") %>)</h4>
-  <% @daytasks = @caltomorrow %>
-  <div id="today_tasks">
-    <%= render 'calendform' %>
-  </div>
-<% end %>
-
-
-<% @showproject = true %>
-<div id="list_table">
-  <%= render 'list' %>
+<div id="agenda">
+  <%= render 'agendaform' %>
 </div>
 
 <br><br>

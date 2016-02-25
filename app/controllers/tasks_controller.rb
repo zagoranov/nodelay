@@ -88,7 +88,7 @@ def create
     task.save
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Задача добавлена!' }
-      format.js { render partial: 'taskslistrefresh'  }
+      format.js { render partial: 'listrefresh'  }
     end
   end
 end
@@ -98,22 +98,18 @@ def itsdone
   @task.done = true
   @task.donedt = DateTime.now
   @task.save
-  current_user.save
-  #redirect_to root_path
   respond_to do |format|
-    format.html { redirect_to root_path, notice: 'Задача побеждена!' }
-    format.js { render partial: 'taskslistrefresh'  }
+    format.html { redirect_to :back, notice: 'Задача побеждена!' }
+    format.js { render partial: 'listrefresh'  }
   end
 end
 
 def undone
   @task.done = false
   @task.save
-  current_user.save
-  #redirect_to root_path
   respond_to do |format|
-    format.html { redirect_to root_path, notice: 'Задача вернулась!' }
-    format.js { render partial: 'taskslistrefresh'  }
+    format.html { redirect_to :back, notice: 'Задача вернулась!' }
+    format.js { render partial: 'listrefresh'  }
   end
 end
 
@@ -122,8 +118,8 @@ def delay
   @task.actual = false
   @task.save
   respond_to do |format|
-    format.js { render partial: 'taskslistrefresh'  }
-    format.html { redirect_to root_path, notice: 'Задача отложена.' }
+    format.js { render partial: 'listrefresh'  }
+    format.html { redirect_to :back, notice: 'Задача отложена.' }
   end
 end
 
@@ -131,8 +127,8 @@ def undelay
   @task.actual = true
   @task.save
   respond_to do |format|
-    format.js { render partial: 'taskslistrefresh'  }
-    format.html { redirect_to root_path, notice: 'Задача актуализирована.' }
+    format.js { render partial: 'listrefresh'  }
+    format.html { redirect_to :back, notice: 'Задача актуализирована.' }
   end
 end
 
