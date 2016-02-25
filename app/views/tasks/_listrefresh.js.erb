@@ -1,7 +1,7 @@
 $("#agenda").html("<% 
 
     if Rails.env.production? 
-      date_str = 'tasks.dt::date = current_date'
+      date_str = 'tasks.dt::date <= current_date'
       date_str2 = 'tasks.dt::date = current_date + 1'
     else
       date_str = 'Date(tasks.dt) <= Date(\'now\')'
