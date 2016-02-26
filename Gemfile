@@ -44,3 +44,4 @@ gem 'rails_admin'
 gem 'responders', '~> 2.0' 
 gem 'coffee-script-source', '1.8.0'
 
+gem 'google_calendar'

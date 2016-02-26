@@ -1,9 +1,8 @@
 # encoding: UTF-8
 class TasksController < ApplicationController
 
-#require 'rubygems'
-#require 'net/http'
-#require 'uri'
+require 'rubygems'
+require 'google_calendar'
 
   
 before_action :set_product, only: [:itsdone, :undone, :delay, :undelay, :edit, :update, :destroy]
@@ -91,11 +90,29 @@ def create
       task.grade = 3
     end
 
-    #if (task.calendarity && current_user.schedules)
+    if (task.calendarity && current_user.schedules)
       #Delayed::Job.enqueue TelegramJob.new(task.object + " " + task.action)
       #Delayed::Job.enqueue(TelegramJob.new(task.object + " " + task.action), 0, task.dt.getutc)
       #task.schedulerid = sch_id
-    #end
+
+      cal = Google::Calendar.new(:client_id     => "908360000371-2redmtuq4v9g9qmi0fbqfuv6rahj1h37.apps.googleusercontent.com", 
+          :client_secret => "T2u33KCgyo3LNXybzvAB9U8r",
+          :calendar      => "pijammer@gmail.com",
+          :redirect_url  => "http://www.nodelay.ru" # this is what Google uses for 'applications'
+          )
+
+  has_token = $stdin.gets.chomp
+
+  if has_token.downcase != 'y'
+
+      event = cal.create_event do |e|
+        e.title = 'A Cool Event'
+        e.start_time = Time.now
+        e.end_time = Time.now + (60 * 60) # seconds * min
+      end
+      puts event
+
+    end
 
     task.save
 
