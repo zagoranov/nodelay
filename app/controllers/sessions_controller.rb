@@ -43,10 +43,12 @@ def load  #sql loading stuff
      
      Project.all do |pr|
         pr.projecttip_id = 1
+        pr.save
      end
 
      Task.all do |pr|
         pr.tasktip_id = 1
+        pr.save
      end
 
      #CONN.execute("insert into tasktips (name) values (\"Низкий\")")
