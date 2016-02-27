@@ -3,7 +3,7 @@
 <h4>Добавить проект</h4>
 <%= form_for([current_user, current_user.projects.build]) do |f| %>  
     <%= f.text_field :name, placeholder: "Название" %>
-    Тип (1..6): <%= f.number_field :tip, placeholder: "Тип (1..6)" %><br>
+    Тип: <%= f.collection_select :projecttip_id, Projecttip.all, :id, :name %><br>
     <%= f.text_area :description, placeholder: "Описание", :size => '70x2' %><br><br>
     <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
 <% end %>       

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225210057) do
+ActiveRecord::Schema.define(version: 20160227083100) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,9 +35,13 @@ ActiveRecord::Schema.define(version: 20160225210057) do
     t.datetime "lastmove"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "tip",         default: 1
-    t.boolean  "done",        default: false
+    t.boolean  "done",          default: false
     t.datetime "donedt"
+    t.integer  "projecttip_id"
+  end
+
+  create_table "projecttips", force: :cascade do |t|
+    t.text "name"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -54,7 +58,6 @@ ActiveRecord::Schema.define(version: 20160225210057) do
 
   create_table "tasks", force: :cascade do |t|
     t.boolean  "done",        default: false
-    t.integer  "grade",       default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "donedt"
@@ -66,11 +69,16 @@ ActiveRecord::Schema.define(version: 20160225210057) do
     t.string   "action"
     t.text     "description"
     t.string   "schedulerid"
+    t.integer  "tasktip_id"
   end
 
   create_table "tasks_tags", force: :cascade do |t|
     t.integer "task_id"
     t.integer "tag_id"
+  end
+
+  create_table "tasktips", force: :cascade do |t|
+    t.text "name"
   end
 
   create_table "users", force: :cascade do |t|

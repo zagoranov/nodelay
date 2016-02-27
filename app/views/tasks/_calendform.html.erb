@@ -10,7 +10,9 @@
       </td>
       <td><%= link_to tsk.object, edit_task_path(tsk) %></td>
       <td><%= tsk.action %></td>
-      <td><%= tsk.grade %></td>
+      <td><%= if tsk.tasktip
+                tsk.tasktip.name 
+              end  %></td>
       <td><%= link_to tsk.project.name, edit_project_path(tsk.project) %></td>
       <td><% if(tsk.actual) %>
         <%= button_to("Отложить", delay_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>

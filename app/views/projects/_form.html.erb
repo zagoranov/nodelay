@@ -4,8 +4,8 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <strong>Тип (1..6)</strong><br>
-    <%= f.number_field :tip %>
+    <strong>Тип</strong><br>
+    <%= f.collection_select :projecttip_id, Projecttip.all, :id, :name %>
   </p>
   <p>
     <strong>Описание</strong><br>

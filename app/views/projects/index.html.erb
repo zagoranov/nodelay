@@ -9,7 +9,9 @@
     <tr>
       <td><%= link_to proj.name, edit_project_path(proj) %></td>
       <td><%= proj.description %></td>
-      <td><%= proj.tip %></td>      
+      <td><%= if proj.projecttip 
+                proj.projecttip.name 
+              end %></td>      
       <td><%= proj.created_at.strftime("%d.%m.%Y") %></td>
     </tr>
   <% end %>

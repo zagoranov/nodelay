@@ -21,7 +21,7 @@ end
 
 def index
  if current_user
-   @projects = current_user.projects.order('tip, created_at')
+   @projects = current_user.projects.order('projecttip_id, created_at')
  else
    redirect_to log_in_path
  end
@@ -29,7 +29,7 @@ end
 
 
 def edit
-  @tasks = @project.tasks.where(done: false).order('tasks.grade')
+  @tasks = @project.tasks.where(done: false).order('tasks.tasktip_id')
 end
 
 def update
@@ -55,7 +55,7 @@ end
 
 
 def project_params
-    params.require(:project).permit(:name, :tip, :description)
+    params.require(:project).permit(:name, :projecttip_id, :description)
 end
 
 
