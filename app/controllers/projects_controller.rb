@@ -8,12 +8,6 @@ respond_to :html, :js
 
 def create
   project = current_user.projects.create(project_params)
-  if project.tip == nil
-    project.tip = 1
-  end  
-  if project.tip > 6
-    project.tip = 6
-  end
   project.save
   redirect_to root_path, :notice => "Проект добавлен!"
 end

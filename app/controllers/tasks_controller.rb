@@ -79,13 +79,6 @@ def create
   if current_user
     proj = Project.find(task_params[:project_id])
     task = proj.tasks.create(task_params)
-    if task.grade == nil
-      task.grade = 1
-    end  
-    if task.grade > 3
-      task.grade = 3
-    end
-
     if (task.calendarity && current_user.schedules)
       #Delayed::Job.enqueue TelegramJob.new(task.object + " " + task.action)
       #Delayed::Job.enqueue(TelegramJob.new(task.object + " " + task.action), 0, task.dt.getutc)
