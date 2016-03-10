@@ -1,5 +1,5 @@
 <h4>Добавить задание</h4>
-<%= form_for(@task) do |f| %>  
+<%= form_for(@task, remote: true) do |f| %>  
     Проект: <%= f.collection_select :project_id, @projects, :id, :name %><br>
     <%= f.text_field :object, placeholder: "Объект" %>
     Приоритет: <%= f.collection_select :tasktip_id, Tasktip.all, :id, :name %><br>

@@ -84,9 +84,7 @@ def create
       #Delayed::Job.enqueue(TelegramJob.new(task.object + " " + task.action), 0, task.dt.getutc)
       #task.schedulerid = sch_id
     end
-
     task.save
-
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Задача добавлена!' }
       format.js { render partial: 'listrefresh'  }

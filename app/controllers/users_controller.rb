@@ -16,7 +16,8 @@ def create
   @user.admin = false
   if @user.save
      session[:user_id] = @user.id
-     UserMailer.newreg_email(@user).deliver
+     #UserMailer.newreg_email(@user).deliver    #mail notification
+     pontificate(@user)                         #telegram notification
      redirect_to impulsetreattypes_path, :notice => "Всё готово!"
   else
     render "new"
