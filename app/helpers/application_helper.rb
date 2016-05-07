@@ -59,5 +59,24 @@ def week_day(dd)
   return tr
   end 
 
+def week_day2(dd)
+  case dd
+    when 0
+     tr = "Воскресенье"
+    when 1
+     tr = "Понедельник"   
+    when 2 
+     tr = "Вторник"    
+    when 3
+     tr = "Среда"
+    when 4
+     tr = "Четверг"
+    when 5
+     tr = "Пятница"
+    else
+     tr = "Суббота"
+   end
+  return tr
+  end 
 
 end

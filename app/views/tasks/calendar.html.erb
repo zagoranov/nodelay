@@ -1,6 +1,38 @@
 <h3>Календарь</h3>
 
+
+<!--
 <% @showproject = true %>
 <div id="list_table">
   <%= render 'list' %>
 </div>
+-->
+
+
+<table class="table">
+  <tbody>
+  <% sdate = nil %>
+  <% @tasks.each do |tsk| %> 
+  <% if tsk.dt.to_date >= DateTime.now.to_date 
+  	   day_date = tsk.dt.to_date 
+  	 else 
+  	   day_date = DateTime.now.to_date 
+  	 end %>
+  <% if sdate != day_date %>
+    <tr> <td> <h4><%=  tsk.dt.strftime("%d.%m.%Y") %>
+    <% if day_date == DateTime.now.to_date %> Сегодня!<% end %> (<%= week_day2(day_date.wday) %>)
+    </h4> </td> <td></td> <td></td> <td></td> <td></td></tr>
+    <% sdate = day_date %>
+  <% end %>
+    <tr>
+      <td><%= tsk.dt.strftime("%H:%M") %></td>
+      <td><%= link_to tsk.object, edit_task_path(tsk) %></td>
+      <td><%= tsk.action %></td>
+      <td><%= if tsk.tasktip
+                tsk.tasktip.name 
+              end  %></td>
+      <td><%= link_to tsk.project.name, edit_project_path(tsk.project) %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
