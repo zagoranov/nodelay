@@ -9,7 +9,7 @@ respond_to :html, :js
 def create
   project = current_user.projects.create(project_params)
   project.save
-  redirect_to root_path, :notice => "Проект добавлен!"
+  redirect_to projects_path, :notice => "Проект добавлен!"
 end
 
 
@@ -28,7 +28,7 @@ end
 
 def update
   if @project.update(project_params)
-    redirect_to root_path
+    redirect_to projects_path
   else
     render 'edit'
   end
@@ -36,7 +36,7 @@ end
 
 def destroy
   @project.destroy
-  redirect_to root_path
+  redirect_to projects_path
   #respond_to do |format|
   #  format.js { render partial: 'taskslistrefresh'  }
   #end
