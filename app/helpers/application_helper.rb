@@ -3,8 +3,8 @@ module ApplicationHelper
 
 
 def ext_link(link)
- if link.include?("http://")
-  puts link
+ if link.include?("http")
+  link
  else
   link.insert(0, "http://")
   link
@@ -58,6 +58,7 @@ def week_day(dd)
    end
   return tr
   end 
+
 
 def week_day2(dd)
   case dd

@@ -1,7 +1,5 @@
-<br><br>
 <% if @tasks.size > 0 %>
 <% is_root = (request.env['PATH_INFO'] == root_path) %>
-  <h4>Задания</h4>
   <table class="table table-striped">
   <tbody>
   <% @tasks.each do |tsk| %> 

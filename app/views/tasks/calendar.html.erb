@@ -1,5 +1,5 @@
 <h3>Календарь</h3>
-
+<br>
 
 <table class="table">
   <tbody>
@@ -11,9 +11,9 @@
   	   day_date = DateTime.now.to_date 
   	 end %>
   <% if sdate != day_date %>
-    <tr> <td> <h4><%=  tsk.dt.strftime("%d.%m.%Y") %>
-    <% if day_date == DateTime.now.to_date %> Сегодня!<% end %> </h4> </td>
-    <td><h4><%= week_day2(day_date.wday) %></h4></td> <td></td> <td></td> <td></td></tr>
+    <tr> <td> <h4><%=  tsk.dt.strftime("%d.%m.%Y") %></h4> </td>
+    <td><h4><%= week_day2(day_date.wday) %></h4></td> 
+    <td><h4><% if day_date == DateTime.now.to_date %> Сегодня!<% end %></h4></td> <td></td> <td></td></tr>
     <% sdate = day_date %>
   <% end %>
     <tr>
