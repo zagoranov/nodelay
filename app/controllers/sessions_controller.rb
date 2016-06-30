@@ -41,23 +41,20 @@ def load  #sql loading stuff
      #  imptt.save
      #end
      
-     Project.all do |pr|
-        pr.projecttip_id = 1
-        pr.save
-     end
+     #Project.all do |pr|
+     #   pr.projecttip_id = 1
+     #   pr.save
+     #end
 
-     Task.all do |pr|
-        pr.tasktip_id = 1
-        pr.save
-     end
+     #Task.all do |pr|
+     #   pr.tasktip_id = 1
+     #   pr.save
+     #end
 
      #CONN.execute("insert into tasktips (name) values (\"Низкий\")")
-     #CONN.execute("insert into projecttips (name) values(\"Текущие дела\")"
-     #CONN.execute("update tasks set tasktip_id = 1")  
      #CONN.execute("update projects set projecttip_id = 1")  
      #CONN.execute("delete from treats where impulsetreattype_id is null")
-     #CONN.execute("delete from impulses where impulsetreattype_id is null")
-     #CONN.execute("delete from treats where impulsetreattype_id is null")
+    CONN.execute("delete from tasks where done = true")
 
 
     redirect_to root_path, :notice => "Ол райт!"

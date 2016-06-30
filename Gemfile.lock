@@ -205,6 +205,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   sqlite3
+  therubyracer
   thin
   turbolinks
   twitter-bootstrap-rails

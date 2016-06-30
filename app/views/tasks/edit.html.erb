@@ -1,7 +1,6 @@
 <h4>Задание</h4>
 
 <br><br>
-
 <%= form_for @task do |f| %>
   <p>
     <strong>Проект</strong><br>
@@ -31,6 +30,8 @@
       <%= f.check_box :calendarity %> <strong>Календарное, дата: </strong>
       <%= f.datetime_select :dt, { :default => DateTime.now, :use_month_names => ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"], :order => [:day, :month, :year, :hour, :minute] } %>
   </p>
+
+   <p><strong>Создано:</strong> <%= @task.created_at.strftime("%d.%m.%y %H:%M") %></p>
 
   <br><br>
   <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %>
