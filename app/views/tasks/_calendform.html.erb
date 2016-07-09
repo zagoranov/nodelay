@@ -1,19 +1,29 @@
 <table class="table table-striped">
   <tbody>
   <% @daytasks.each do |tsk| %> 
+
+    <%   @sizetag1 = ""
+    @sizetag2 = ""
+    if tsk.tasktip.name == "Высокий"
+       @sizetag1 = "<strong>"
+       @sizetag2 = "</strong>"
+    else 
+      if tsk.tasktip.name == "Низкий" 
+        @sizetag1 = "<small>"
+        @sizetag2 = "</small>"
+      end 
+    end %>
+
     <tr>
-      <td><% if tsk.dt.to_date >= DateTime.now.to_date %>
+      <td><%= raw @sizetag1 %><% if tsk.dt.to_date >= DateTime.now.to_date %>
         <%= tsk.dt.strftime("%H:%M") %>
       <% else %>
         <%= tsk.dt.strftime("%d.%m %H:%M") %>
       <% end %>
-      </td>
-      <td><%= link_to tsk.object, edit_task_path(tsk) %></td>
-      <td><%= tsk.action %></td>
-      <td><%= if tsk.tasktip
-                tsk.tasktip.name 
-              end  %></td>
-      <td><%= link_to tsk.project.name, edit_project_path(tsk.project) %></td>
+      <%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %><%= link_to tsk.object, edit_task_path(tsk) %><%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %><%= tsk.action %><%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %><%= link_to tsk.project.name, edit_project_path(tsk.project) %><%= raw @sizetag2 %></td>
       <td><% if(tsk.actual) %>
         <%= button_to("Отложить", delay_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
       <% else %>

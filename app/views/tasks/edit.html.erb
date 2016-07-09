@@ -41,9 +41,9 @@
 
 <br><br>
 
-<%= link_to "Удалить",  @task,  method: :delete, data: { confirm: "Вы серьезно?" }, :class => 'btn btn-mini btn-danger'  %> </td>
+<%= link_to "Удалить",  @task,  method: :delete, data: { confirm: "Вы серьезно?" }, :class => 'btn btn-mini btn-danger'  %> 
+<%= link_to "Завершить", itsdone_task_path(@task), :class => 'btn btn-mini btn-danger' %>
 
-<br>
 <br>
 <br>
 
