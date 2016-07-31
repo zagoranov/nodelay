@@ -6,14 +6,16 @@
     
     <%   @sizetag1 = ""
     @sizetag2 = ""
-    if tsk.tasktip.name == "Высокий"
-       @sizetag1 = "<strong>"
-       @sizetag2 = "</strong>"
-    else 
-      if tsk.tasktip.name == "Низкий" 
-        @sizetag1 = "<small>"
-        @sizetag2 = "</small>"
-      end 
+    if tsk.tasktip and tsk.tasktip.name
+      if tsk.tasktip.name == "Высокий"
+        @sizetag1 = "<strong>"
+        @sizetag2 = "</strong>"
+      else
+        if tsk.tasktip.name == "Низкий"
+          @sizetag1 = "<small>"
+          @sizetag2 = "</small>"
+        end
+      end
     end %>
 
     <tr>

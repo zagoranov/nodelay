@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails buzz: production" uuid="1e0cbf79-bb76-41b5-a6fd-7dd7450a71e6">
+      <first-sync>true</first-sync>
+    </data-source>
+    <data-source name="Rails buzz: development" uuid="4015ec0c-237d-4542-b5d7-6a8487859f44">
+      <auth-required>false</auth-required>
+    </data-source>
+  </component>
+</project>
