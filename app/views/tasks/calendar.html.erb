@@ -19,7 +19,10 @@
     <tr>
       <td><%= tsk.dt.strftime("%H:%M") %></td>
       <td><%= link_to tsk.object, edit_task_path(tsk) %></td>
-      <td><%= tsk.action %></td>
+      <td><% if(tsk.project.name == "Links") %>
+          <%= link_to tsk.action, ext_link(tsk.action), :target => "_blank" %>
+      <%else%>
+          <%= tsk.action %><%end%></td>
       <td><%= if tsk.tasktip
                 tsk.tasktip.name 
               end  %></td>

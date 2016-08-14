@@ -23,10 +23,9 @@
          <%= raw @sizetag1 %><%= tsk.dt.strftime("%d.%m.%y %H:%M") %><%= raw @sizetag2 %>
       <% end %></td>
       <td><%= raw @sizetag1 %><%= link_to tsk.object, edit_task_path(tsk) %><%= raw @sizetag2 %></td>
-      <td>
-        <%= raw @sizetag1 %>
+      <td><%= raw @sizetag1 %>
         <% if(tsk.project.name == "Links") %>
-              <%= link_to tsk.action, ext_link(tsk.action) %>
+              <%= link_to tsk.action, ext_link(tsk.action), :target => "_blank" %>
           <%else%>
               <%= tsk.action %><%end%><%= raw @sizetag2 %></td>
       <% if(@showproject) %> 
