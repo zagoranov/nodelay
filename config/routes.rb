@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :sessions do
       member do
         get 'load'
-        post 'sethumidity'
+        get 'sethumidity'
         get 'gethumidity'
       end
   end
@@ -62,7 +62,7 @@ Rails.application.routes.draw do
   get "tldr" => "tasks#help", :as => "tldr"
   
   get "loadthatshit" => "sessions#load", :as => "loadthatshit"
-  post "sethumidity" => "sessions#sethumidity", :as => "sethumidity"
+  get "sethumidity" => "sessions#sethumidity", :as => "sethumidity"
   get "gethumidity" => "sessions#gethumidity", :as => "gethumidity"
   
 end
