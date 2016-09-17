@@ -79,7 +79,7 @@ def sethumidity
   @env.temperature = params[:temp]
   @env.dt = DateTime.now
   @env.save
-  #redirect_to '/gethumidity', notice: 'Данные записаны!'
+  redirect_to '/gethumidity', notice: 'Данные записаны!'
 end
 
 end
