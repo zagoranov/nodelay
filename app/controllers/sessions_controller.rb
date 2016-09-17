@@ -56,10 +56,30 @@ def load  #sql loading stuff
      #CONN.execute("delete from treats where impulsetreattype_id is null")
     CONN.execute("delete from tasks where done = true")
 
-
     redirect_to root_path, :notice => "Ол райт!"
   end
 end
 
+
+def gethumidity
+  @env = Enviro.last
+  if !@env
+    @env = Enviro.new
+    @env.humidity = 40
+    @env.temperature = 20
+    @env.dt = DateTime.now
+    @env.save
+  end
+end
+
+def sethumidity
+  #  params[:hum]  params[:temp]    /sethumidity?hum=43&temp=23
+  @env = Enviro.last
+  @env.humidity = params[:hum]
+  @env.temperature = params[:temp]
+  @env.dt = DateTime.now
+  @env.save
+  redirect_to '/gethumidity', notice: 'Данные записаны!'
+end
 
 end

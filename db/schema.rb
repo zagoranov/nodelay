@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227083100) do
+ActiveRecord::Schema.define(version: 20160917113405) do
+
+  create_table "enviros", force: :cascade do |t|
+    t.integer  "humidity"
+    t.integer  "temperature"
+    t.datetime "dt"
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
