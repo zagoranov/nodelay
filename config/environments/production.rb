@@ -98,6 +98,7 @@ Rails.application.configure do
     authentication:       'login',
     enable_starttls_auto: true  
 }
-
+   
+   config.serve_static_files = true     #what df?
 
 end
