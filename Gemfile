@@ -40,7 +40,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem "twitter-bootstrap-rails"
 
 gem 'bcrypt', '~> 3.1.9'
-gem 'rails_admin'
+#gem 'rails_admin', '~> 1.0'
 gem 'responders', '~> 2.0' 
 gem 'coffee-script-source', '1.8.0'
 
