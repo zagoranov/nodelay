@@ -1,0 +1,50 @@
+
+<h3>Состояние окружающей среды</h3>
+
+<br><br>
+<br><br>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Дата, время</th>
+    <th>Влажность</th>
+    <th>Температура</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% sdate = nil %>
+  <% @envs.each do |env| %> 
+  <% if env.dt.to_date >= DateTime.now.to_date 
+  	   day_date = env.dt.to_date 
+  	 else
+  	   day_date = DateTime.now.to_date 
+  	 end %>
+  <% if sdate != day_date %>
+    <tr> <td> <h4><%=  env.dt.strftime("%d.%m.%Y") %></h4> </td>
+    <td><h4><%= week_day2(day_date.wday) %></h4></td> 
+    <td><h4><% if day_date == DateTime.now.to_date %> Сегодня!<% end %></h4></td> <td></td> <td></td></tr>
+    <% sdate = day_date %>
+  <% end %>
+    <tr>
+      <td><%= env.dt.strftime("%H:%M") %></td>
+
+      <td><%= env.humidity %></td>
+      <td><%= env.temperature %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>

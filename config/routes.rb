@@ -45,14 +45,18 @@ Rails.application.routes.draw do
     end
   end
   
-
   resources :friendships do
-    member do         
+    member do
       post 'wellhello'
       post 'byebye'
     end
   end
 
+  resources :enviros do
+    member do
+      post 'add'
+    end
+  end
 
 
   get "log_in" => "sessions#new", :as => "log_in"
