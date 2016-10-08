@@ -42,6 +42,8 @@ Rails.application.routes.draw do
       post 'undone'      
       post 'delay'
       post 'undelay'
+      post 'totoday'
+      post 'totomorrow'
     end
   end
   

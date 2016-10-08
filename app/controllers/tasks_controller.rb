@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class TasksController < ApplicationController
 
-before_action :set_product, only: [:itsdone, :undone, :delay, :undelay, :edit, :update, :destroy]
+before_action :set_product, only: [:itsdone, :undone, :delay, :undelay, :edit, :update, :destroy, :totoday, :totomorrow]
   
 respond_to :html, :js
 
@@ -127,11 +127,29 @@ def undelay
   @task.actual = true
   @task.save
   respond_to do |format|
-    format.js { render partial: 'listrefresh'  }
+    format.js { render partial: 'listrefresh' }
     format.html { redirect_to :back, notice: 'Задача актуализирована.' }
   end
 end
 
+
+def totoday
+  @task.dt = DateTime.now
+  @task.save
+  respond_to do |format|
+    format.js { render partial: 'listrefresh' }
+    format.html { redirect_to :back, notice: 'Уоа! Задача перенесена на сегодня!' }
+  end
+end
+
+def totomorrow
+  @task.dt = DateTime.now + 1.days
+  @task.save
+  respond_to do |format|
+    format.js { render partial: 'listrefresh' }
+    format.html { redirect_to :back, notice: 'Делегировано завтрашнему вам, так ему и надо.' }
+  end
+end
 
 def edit
   #@task = Task.find(params[:id])

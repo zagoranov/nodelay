@@ -35,8 +35,12 @@
 
   <br><br>
   <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %>
+  <% if(@task.actual) %>
+        <%= button_to("Отложить", delay_task_path(@task), :method => "post", :class => 'btn btn-large btn-primary') %>
+  <% else %>
+      <%= button_to("В актуальные", undelay_task_path(@task), :method => "post", :class => 'btn btn-large btn-primary') %>
+  <% end %>
   <%= link_to "Вернуться", :back, :method => "get", :class => 'btn btn-large btn-primary' %> </p>
-
 <% end %>
 
 <br><br>

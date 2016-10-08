@@ -31,11 +31,13 @@
       <% if(@showproject) %> 
         <td><%= raw @sizetag1 %><%= link_to tsk.project.name, edit_project_path(tsk.project) %><%= raw @sizetag2 %></td>
       <% end %>
-      <td><% if(tsk.actual) %>
- <%= button_to("Отложить", delay_task_path(tsk), :method => "post", remote: is_root, :class => 'btn btn-large btn-primary') %>
+      <td>
+      <% if(tsk.actual) %>
+          <%= button_to("Отложить", delay_task_path(tsk), :method => "post", remote: is_root, :class => 'btn btn-large btn-primary') %>
       <% else %>
-<%= button_to("В актуальные", undelay_task_path(tsk), :method => "post", remote: is_root, :class => 'btn btn-large btn-primary') %>
-       <% end %></td>
+          <%= button_to("В актуальные", undelay_task_path(tsk), :method => "post", remote: is_root,:class => 'btn btn-large btn-primary') %>
+      <% end %>
+      </td>      
       <td><% if(tsk.done) %>
  <%= button_to("Вернуть", undone_task_path(tsk), :method => "post", remote: is_root, :class => 'btn btn-large btn-primary') %>
       <% else %>
