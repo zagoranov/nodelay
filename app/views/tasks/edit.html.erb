@@ -34,22 +34,24 @@
    <p><strong>Создано:</strong> <%= @task.created_at.strftime("%d.%m.%y %H:%M") %></p>
 
   <br><br>
-  <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %>
-  <% if(@task.actual) %>
-        <%= button_to("Отложить", delay_task_path(@task), :method => "post", :class => 'btn btn-large btn-primary') %>
-  <% else %>
-      <%= button_to("В актуальные", undelay_task_path(@task), :method => "post", :class => 'btn btn-large btn-primary') %>
-  <% end %>
-  <%= link_to "Вернуться", :back, :method => "get", :class => 'btn btn-large btn-primary' %> </p>
+  <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %></p>
 <% end %>
 
-<br><br>
-
-<%= link_to "Удалить",  @task,  method: :delete, data: { confirm: "Вы серьезно?" }, :class => 'btn btn-mini btn-danger'  %> 
-<%= link_to "Завершить", itsdone_task_path(@task), :class => 'btn btn-mini btn-danger' %>
-
 <br>
-<br>
+  <%= link_to "Вернуться", :back, :method => "get", :class => 'btn btn-large btn-primary' %>
+<br><br><br>
+
+ <p>
+  <%= link_to "Удалить",  @task,  method: :delete, data: { confirm: "Вы серьезно?" }, :class => 'btn btn-mini btn-danger'  %> 
+  <% if(@task.actual) %>
+        <%= link_to "Отложить", delay_task_path(@task), :class => 'btn btn-mini btn-danger' %>
+  <% else %>
+        <%= link_to "В актуальные", undelay_task_path(@task), :class => 'btn btn-mini btn-danger' %>
+  <% end %>
+  <%= link_to "Завершить", itsdone_task_path(@task), :class => 'btn btn-mini btn-danger' %>
+  </p>
+
+<br><br><br><br>
 
 <% if @tags.size > 0 %>
 <h4>Тэги</h4>
