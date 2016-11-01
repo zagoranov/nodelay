@@ -134,7 +134,7 @@ end
 
 
 def totoday
-  @task.dt = DateTime.now
+  @task.dt = @task.dt - 1.day
   @task.save
   respond_to do |format|
     format.js { render partial: 'listrefresh' }
@@ -143,13 +143,17 @@ def totoday
 end
 
 def totomorrow
-  @task.dt = DateTime.now + 1.days
+  dd = DateTime.now.midnight + 1.days
+  while @task.dt <= dd do
+    @task.dt = @task.dt + 1.days
+  end
   @task.save
   respond_to do |format|
     format.js { render partial: 'listrefresh' }
     format.html { redirect_to :back, notice: 'Делегировано завтрашнему вам, так ему и надо.' }
   end
 end
+
 
 def edit
   #@task = Task.find(params[:id])
