@@ -67,6 +67,8 @@ def gethumidity
     @env = Enviro.new
     @env.humidity = 40
     @env.temperature = 20
+    @env.co2 = 100
+    @env.light = 1
     @env.dt = DateTime.now
     @env.save
   end
@@ -77,6 +79,8 @@ def sethumidity
   @env = Enviro.last
   @env.humidity = params[:hum]
   @env.temperature = params[:temp]
+  @env.co2 = params[:co2]
+  @env.light = params[:light]
   @env.dt = DateTime.now
   @env.save
   redirect_to '/gethumidity', notice: 'Данные записаны!'
