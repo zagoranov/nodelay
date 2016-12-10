@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         get 'load'
         get 'sethumidity'
         get 'gethumidity'
+	get 'sendatelegram'
       end
   end
 
@@ -70,6 +71,7 @@ Rails.application.routes.draw do
   get "loadthatshit" => "sessions#load", :as => "loadthatshit"
   get "sethumidity" => "sessions#sethumidity", :as => "sethumidity"
   get "gethumidity" => "sessions#gethumidity", :as => "gethumidity"
+  get "sendatelegram" => "sessions#sendatelegram", :as => "sendatelegram"
   
 end
 

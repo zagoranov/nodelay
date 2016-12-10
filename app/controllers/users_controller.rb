@@ -17,7 +17,7 @@ def create
   if @user.save
      session[:user_id] = @user.id
      #UserMailer.newreg_email(@user).deliver    #mail notification
-     pontificate(@user)                         #telegram notification
+     pontificate("New+User+on+NoDelay+" + @user.username)                         #telegram notification
      redirect_to impulsetreattypes_path, :notice => "Всё готово!"
   else
     render "new"

@@ -74,6 +74,12 @@ def gethumidity
   end
 end
 
+def sendatelegram
+  pontificate(params[:mess])
+  redirect_to '/gethumidity', notice: 'Данные записаны!'
+end
+
+
 def sethumidity
   #  params[:hum]  params[:temp]    /sethumidity?hum=43&temp=23
   @env = Enviro.last
