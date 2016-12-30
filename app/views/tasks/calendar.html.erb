@@ -5,6 +5,21 @@
   <tbody>
   <% sdate = nil %>
   <% @tasks.each do |tsk| %> 
+
+    <%   @sizetag1 = ""
+    @sizetag2 = ""
+    if tsk.tasktip and tsk.tasktip.name
+      if tsk.tasktip.name == "Высокий"
+        @sizetag1 = "<strong>"
+        @sizetag2 = "</strong>"
+      else
+        if tsk.tasktip.name == "Низкий"
+          @sizetag1 = "<small>"
+          @sizetag2 = "</small>"
+        end
+      end
+    end %>
+
   <% if tsk.dt.to_date >= DateTime.now.to_date 
   	   day_date = tsk.dt.to_date 
   	 else
@@ -16,17 +31,18 @@
     <td><h4><% if day_date == DateTime.now.to_date %> Сегодня!<% end %></h4></td> <td></td> <td></td></tr>
     <% sdate = day_date %>
   <% end %>
+
     <tr>
-      <td><%= tsk.dt.strftime("%H:%M") %></td>
-      <td><%= link_to tsk.object, edit_task_path(tsk) %></td>
-      <td><% if(tsk.project.name == "Links") %>
+      <td><%= raw @sizetag1 %><%= tsk.dt.strftime("%H:%M") %><%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %><%= link_to tsk.object, edit_task_path(tsk) %><%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %><% if(tsk.project.name == "Links") %>
           <%= link_to tsk.action, ext_link(tsk.action), :target => "_blank" %>
       <%else%>
-          <%= tsk.action %><%end%></td>
-      <td><%= if tsk.tasktip
+          <%= tsk.action %><%end%><%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %><%= if tsk.tasktip
                 tsk.tasktip.name 
-              end  %></td>
-      <td><%= link_to tsk.project.name, edit_project_path(tsk.project) %></td>
+              end  %><%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %><%= link_to tsk.project.name, edit_project_path(tsk.project) %><%= raw @sizetag2 %></td>
     </tr>
   <% end %>
  </tbody>

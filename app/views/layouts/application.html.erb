@@ -60,10 +60,10 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
           <% if current_user %>
-                <li><%= link_to "Inbox", inbox_tasks_path  %></li>
-                <li><%= link_to "Links", links_tasks_path  %></li>
-                <li><%= link_to "Delegated", delegated_tasks_path  %></li>
-                <li><%= link_to "Someday", someday_tasks_path  %></li>
+                <li><%= link_to "Календарь", calendar_tasks_path  %></li>              
+                <li><%= link_to "Завершенные задания", donelist_tasks_path  %></li>
+                <li><%= link_to "Отложенные задания", delayed_tasks_path  %></li>
+                <li><%= link_to "Проекты", projects_path  %></li>
             <% if current_user.admin %>
                 <li><%= link_to "Админ", "/admin", :target => "_blank"  %></li>
             <% end %>            
@@ -93,10 +93,10 @@
 
             <ul class="nav nav-list">
               <li class="nav-header"><strong>Штуки</strong></li> 
-                <li><%= link_to "Календарь", calendar_tasks_path  %></li>              
-                <li><%= link_to "Завершенные задания", donelist_tasks_path  %></li>
-                <li><%= link_to "Отложенные задания", delayed_tasks_path  %></li>
-                <li><%= link_to "Проекты", projects_path  %></li>
+                <li><%= link_to "Inbox", inbox_tasks_path  %></li>
+                <li><%= link_to "Links", links_tasks_path  %></li>
+                <li><%= link_to "Delegated", delegated_tasks_path  %></li>
+                <li><%= link_to "Someday", someday_tasks_path  %></li>
                 <li><br></li>
                 <li>
                   <%= form_tag(tagsearch_tasks_path, :method => "get", id: "search-form") do %>
@@ -153,7 +153,7 @@
         
       <footer>
         <br><br><br>
-        <p><small>&copy; Labile Mobile, 2016</small> </p>
+        <p><small>&copy; Labile Mobile, 2016 - 2017</small> </p>
 
        </footer>
 
