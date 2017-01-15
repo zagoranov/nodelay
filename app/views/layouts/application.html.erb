@@ -60,9 +60,10 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
           <% if current_user %>
-                <li><%= link_to "Календарь", calendar_tasks_path  %></li>              
-                <li><%= link_to "Завершенные задания", donelist_tasks_path  %></li>
-                <li><%= link_to "Отложенные задания", delayed_tasks_path  %></li>
+                <li><%= link_to "Календарь", calendar_tasks_path  %></li>
+                <li><%= link_to "Некалендарное", nocalendar_tasks_path  %></li>
+                <li><%= link_to "Отложенное", delayed_tasks_path  %></li>                
+                <li><%= link_to "Завершенное", donelist_tasks_path  %></li>
                 <li><%= link_to "Проекты", projects_path  %></li>
             <% if current_user.admin %>
                 <li><%= link_to "Админ", "/admin", :target => "_blank"  %></li>
@@ -92,7 +93,7 @@
           <div class="well sidebar-nav">
 
             <ul class="nav nav-list">
-              <li class="nav-header"><strong>Штуки</strong></li> 
+              <li class="nav-header"><strong>Штуки</strong></li>
                 <li><%= link_to "Inbox", inbox_tasks_path  %></li>
                 <li><%= link_to "Links", links_tasks_path  %></li>
                 <li><%= link_to "Delegated", delegated_tasks_path  %></li>

@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       get 'gtd'
       get 'inbox'
       get 'calendar'
+      get 'nocalendar'
       get 'delayed'
       get 'links'
       get 'delegated'
