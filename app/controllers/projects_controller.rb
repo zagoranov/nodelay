@@ -49,7 +49,7 @@ end
 
 
 def project_params
-    params.require(:project).permit(:name, :projecttip_id, :description)
+    params.require(:project).permit(:name, :projecttip_id, :description, :hideincalend)
 end
 
 

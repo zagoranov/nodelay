@@ -29,7 +29,7 @@ def inbox
 end
 
 def calendar
-  @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, true).order('tasks.dt, tasks.tasktip_id desc')
+  @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and projects.hideincalend = ?', current_user.id, false, false, true, true, false).order('tasks.dt, tasks.tasktip_id desc')
 end
 
 def delayed

@@ -13,6 +13,7 @@
                 proj.projecttip.name 
               end %></td>      
       <td><%= proj.created_at.strftime("%d.%m.%Y") %></td>
+      <td><% if proj.hideincalend %>Прятать в календаре<% else %>Показывать в календаре<% end %></td>
     </tr>
   <% end %>
  </tbody>

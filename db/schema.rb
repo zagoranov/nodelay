@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113222928) do
+ActiveRecord::Schema.define(version: 20170115150809) do
 
   create_table "enviros", force: :cascade do |t|
     t.integer  "humidity"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20161113222928) do
     t.boolean  "done",          default: false
     t.datetime "donedt"
     t.integer  "projecttip_id"
+    t.boolean  "hideincalend",  default: false
   end
 
   create_table "projecttips", force: :cascade do |t|

@@ -4,6 +4,7 @@
 <%= form_for([current_user, current_user.projects.build]) do |f| %>  
     <%= f.text_field :name, placeholder: "Название" %>
     Тип: <%= f.collection_select :projecttip_id, Projecttip.all, :id, :name %><br>
-    <%= f.text_area :description, placeholder: "Описание", :size => '70x2' %><br><br>
+    <%= f.text_area :description, placeholder: "Описание", :size => '70x2' %><br>
+    <%= f.check_box :hideincalend %> Прятать в календаре<br><br>
     <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
 <% end %>       
