@@ -93,11 +93,11 @@
           <div class="well sidebar-nav">
 
             <ul class="nav nav-list">
-              <li class="nav-header"><strong>Штуки</strong></li>
+              <li class="nav-header"><strong>По типу проекта</strong></li>
+                <li><%= link_to "Someday", someday_tasks_path  %></li>                
                 <li><%= link_to "Inbox", inbox_tasks_path  %></li>
                 <li><%= link_to "Links", links_tasks_path  %></li>
                 <li><%= link_to "Delegated", delegated_tasks_path  %></li>
-                <li><%= link_to "Someday", someday_tasks_path  %></li>
                 <li><br></li>
                 <li>
                   <%= form_tag(tagsearch_tasks_path, :method => "get", id: "search-form") do %>

@@ -2,7 +2,7 @@
   <h4>Сегодня (<%= DateTime.now.strftime("%d.%m.%Y") %>)</h4>
   <% @daytasks = @caltoday %>
   <div id="today_tasks">
-    <%= render 'calendform' %>
+    <%= render 'onedaylist' %>
   </div>
 <% end %>
 
@@ -10,7 +10,7 @@
 <h4>Завтра (<%= DateTime.now.tomorrow.strftime("%d.%m.%Y") %>)</h4>
   <% @daytasks = @caltomorrow %>
   <div id="today_tasks">
-    <%= render 'calendform' %>
+    <%= render 'onedaylist' %>
   </div>
 <% end %>
 

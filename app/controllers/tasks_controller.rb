@@ -103,7 +103,7 @@ def itsdone
   @task.donedt = DateTime.now
   @task.save
   respond_to do |format|
-    format.html { redirect_to root_path, notice: 'Задача побеждена!' }
+    format.html { redirect_to :back, notice: 'Задача побеждена!' }
     format.js { render partial: 'listrefresh'  }
   end
 end
