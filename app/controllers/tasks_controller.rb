@@ -168,7 +168,7 @@ end
 
 def update
   if @task.update(task_params)
-    redirect_to root_path
+    redirect_to :back, notice: 'Исправлено, верить.'
   else
     render 'edit'
   end
@@ -177,7 +177,7 @@ end
 
 def destroy
   @task.destroy
-  redirect_to root_path
+  redirect_to :back, notice: 'Задача удалена.'
   #respond_to do |format|
   #  format.js { render partial: 'taskslistrefresh'  }
   #end
