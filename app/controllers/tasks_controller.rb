@@ -154,7 +154,7 @@ def totomorrow
   @task.save
   respond_to do |format|
     format.js { render partial: 'listrefresh' }
-    format.html { redirect_to :back, notice: 'Делегировано завтрашнему вам, так ему и надо.' }
+    format.html { redirect_to :back, notice: 'Делегировано завтрашнему вам, так ему и надо.' } 
   end
 end
 
