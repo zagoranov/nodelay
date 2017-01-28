@@ -6,6 +6,7 @@ before_action :set_product, only: [:itsdone, :undone, :delay, :undelay, :edit, :
 respond_to :html, :js
 
 def gtd
+  $backroute = "/tasks/gtd"
   if current_user  
     if Rails.env.production? 
       date_str = 'tasks.dt::date <= current_date'
@@ -25,34 +26,42 @@ def gtd
 end
 
 def nocalendar
+  $backroute = "/tasks/nocalendar"
   @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, false).order('tasks.tasktip_id desc')
 end
 
 def inbox
-   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Inbox").order('tasks.tasktip_id desc')
+  $backroute = "/tasks/inbox"
+  @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Inbox").order('tasks.tasktip_id desc')
 end
 
 def calendar
+  $backroute = "/tasks/calendar"
   @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and projects.hideincalend = ?', current_user.id, false, false, true, true, false).order('tasks.dt, tasks.tasktip_id desc')
 end
 
 def delayed
+  $backroute = "/tasks/delayed"
   @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ?', current_user.id, false, false, false).order('tasks.tasktip_id desc')
 end
 
 def links
+  $backroute = "/tasks/links"
   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Links").order('tasks.tasktip_id desc')
 end
 
 def delegated
+  $backroute = "/tasks/delegated"
   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Delegated").order('tasks.tasktip_id desc')
 end
 
 def someday
+  $backroute = "/tasks/someday"
   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Someday").order('tasks.tasktip_id desc')
 end
 
 def donelist
+  $backroute = "/tasks/donelist"
   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ?', current_user.id, true).order('tasks.donedt DESC').limit(20)
 end
 
@@ -103,7 +112,7 @@ def itsdone
   @task.donedt = DateTime.now
   @task.save
   respond_to do |format|
-    format.html { redirect_to :back, notice: 'Задача побеждена!' }
+    format.html { redirect_to $backroute, notice: 'Задача побеждена!' }
     format.js { render partial: 'listrefresh'  }
   end
 end
@@ -112,7 +121,7 @@ def undone
   @task.done = false
   @task.save
   respond_to do |format|
-    format.html { redirect_to :back, notice: 'Задача вернулась!' }
+    format.html { redirect_to $backroute, notice: 'Задача вернулась!' }
     format.js { render partial: 'listrefresh'  }
   end
 end
@@ -123,7 +132,7 @@ def delay
   @task.save
   respond_to do |format|
     format.js { render partial: 'listrefresh'  }
-    format.html { redirect_to :back, notice: 'Задача отложена.' }
+    format.html { redirect_to $backroute, notice: 'Задача отложена.' }   #:back
   end
 end
 
@@ -132,7 +141,7 @@ def undelay
   @task.save
   respond_to do |format|
     format.js { render partial: 'listrefresh' }
-    format.html { redirect_to :back, notice: 'Задача актуализирована.' }
+    format.html { redirect_to $backroute, notice: 'Задача актуализирована.' }
   end
 end
 
@@ -142,7 +151,7 @@ def totoday
   @task.save
   respond_to do |format|
     format.js { render partial: 'listrefresh' }
-    format.html { redirect_to :back, notice: 'Уоа! Задача перенесена на сегодня!' }
+    format.html { redirect_to $backroute, notice: 'Уоа! Задача перенесена на сегодня!' }
   end
 end
 
@@ -154,7 +163,7 @@ def totomorrow
   @task.save
   respond_to do |format|
     format.js { render partial: 'listrefresh' }
-    format.html { redirect_to :back, notice: 'Делегировано завтрашнему вам, так ему и надо.' } 
+    format.html { redirect_to $backroute, notice: 'Делегировано завтрашнему вам, так ему и надо.' } 
   end
 end
 
@@ -168,7 +177,7 @@ end
 
 def update
   if @task.update(task_params)
-    redirect_to :back, notice: 'Исправлено, верить.'
+    redirect_to $backroute, notice: 'Исправлено, верить.'
   else
     render 'edit'
   end
@@ -177,7 +186,7 @@ end
 
 def destroy
   @task.destroy
-  redirect_to :back, notice: 'Задача удалена.'
+  redirect_to $backroute, notice: 'Задача удалена.'
   #respond_to do |format|
   #  format.js { render partial: 'taskslistrefresh'  }
   #end
