@@ -1,6 +1,15 @@
-<br><br>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-<h4>Добавить проект</h4>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Добавить проект</h4>
+      </div>
+      <div class="modal-body">
+
 <%= form_for([current_user, current_user.projects.build]) do |f| %>  
     <%= f.text_field :name, placeholder: "Название" %>
     Тип: <%= f.collection_select :projecttip_id, Projecttip.all, :id, :name %><br>
@@ -8,3 +17,13 @@
     <%= f.check_box :hideincalend %> Прятать в календаре<br><br>
     <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
 <% end %>       
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

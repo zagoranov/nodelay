@@ -18,16 +18,26 @@ def gtd
     @caltoday = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str, current_user.id, false, false, true, true).order('tasks.dt, tasks.tasktip_id desc')
     @caltomorrow = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str2, current_user.id, false, false, true, true).order('tasks.dt, tasks.tasktip_id desc')
 #    @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, false).order('tasks.tasktip_id desc')
-    @projects = current_user.projects.all
-    @task = Task.new
+    @projects = current_user.projects.all         #   для формы
+    @task = Task.new                              # "Новое задание"
  else 
   redirect_to '/log_in'
  end
 end
 
+def calendar
+  $backroute = "/tasks/calendar"
+  @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and projects.hideincalend = ?', current_user.id, false, false, true, true, false).order('tasks.dt, tasks.tasktip_id desc')
+  @task = Task.new                                  #   для формы
+  @projects = current_user.projects.all             # "Новое задание"
+end
+
+
 def nocalendar
   $backroute = "/tasks/nocalendar"
   @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, false).order('tasks.tasktip_id desc')
+  @task = Task.new                                  #   для формы
+  @projects = current_user.projects.all             # "Новое задание"
 end
 
 def inbox
@@ -35,10 +45,6 @@ def inbox
   @tasks = Task.joins(:project).where('projects.user_id = ? and tasks.done = ? and projects.name = ?', current_user.id, false, "Inbox").order('tasks.tasktip_id desc')
 end
 
-def calendar
-  $backroute = "/tasks/calendar"
-  @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and projects.hideincalend = ?', current_user.id, false, false, true, true, false).order('tasks.dt, tasks.tasktip_id desc')
-end
 
 def delayed
   $backroute = "/tasks/delayed"

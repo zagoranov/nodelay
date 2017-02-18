@@ -1,7 +1,19 @@
-<h4>Добавить задание</h4>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Добавить задание</h4>
+      </div>
+      <div class="modal-body">
+
+
 <%= form_for(@task, remote: true) do |f| %>  
     Проект: <%= f.collection_select :project_id, @projects, :id, :name %><br>
-    <%= f.text_field :object, placeholder: "Объект" %>
+    <%= f.text_field :object, placeholder: "Объект" %> 
     Приоритет: <%= f.collection_select :tasktip_id, Tasktip.all, :id, :name %><br>
     <%= f.text_field :action, placeholder: "Действие" %>
     <%= f.check_box :actual %> Актуальное<br>
@@ -9,3 +21,14 @@
     <%= f.check_box :calendarity %> Календарное, дата: <%= f.datetime_select :dt, { :default => DateTime.now, :use_month_names => ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"], :order => [:day, :month, :year, :hour, :minute] } %><br><br>
     <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
 <% end %> 
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
