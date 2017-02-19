@@ -1,23 +1,24 @@
 <h4>Задание</h4>
 
 <br><br>
-<%= form_for @task do |f| %>
-  <p>
+
+<%= form_for @task, html: { class: 'form-horizontal' } do |f| %>
+  <div class="form-group">
     <strong>Проект</strong><br>
-    <%= f.collection_select :project_id, @projects, :id, :name %><br>
-  </p>
-  <p>
+    <%= f.collection_select :project_id, @projects, :id, :name, {class: "form-control"} %>
+  </div>
+  <div class="form-group">
     <strong>Объект</strong><br>
-    <%= f.text_field :object %>
-  </p>
-  <p>
+    <%= f.text_field :object, :class=>"form-control" %>
+  </div>
+  <div class="form-group">
     <strong>Действие</strong><br />
-    <%= f.text_field :action %>
-  </p>
-   <p>
+    <%= f.text_field :action, :class=>"form-control" %>
+  </div>
+  <div class="form-group">
     <strong>Описание</strong><br />
-    <%= f.text_area :description, :size => "60x5" %>
-  </p>
+    <%= f.text_area :description, :size => "60x5", :class=>"form-control" %>
+  </div>
 
   <p>
     <strong>Приоритет</strong><br>
@@ -33,29 +34,40 @@
 
    <p><strong>Создано:</strong> <%= @task.created_at.strftime("%d.%m.%y %H:%M") %></p>
   <br><br>
-    <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %></p>
+  
+  <table><tr><td>
+    <p class="button"><%= f.submit "Записать и закрыть", :class => 'btn btn-large btn-primary' %></p></td>
 <% end %>
 
-<br>
-  <%= link_to "Вернуться", $backroute, :method => "get", :class => 'btn btn-large btn-primary' %>
+<td><p>
+  <%= link_to "Вернуться", $backroute, :method => "get", :class => 'btn btn-large btn-primary' %></p>
+</td>
+</tr>
+</table>
+
 <br><br><br>
 
-
- <p>
+<table><tr>
+<td>
+<p>  
   <%= button_to("Удалить",  @task,  method: :delete, data: { confirm: "Вы серьезно?" }, :class => 'btn btn-mini btn-danger')  %> 
-<br>
+</p></td>  
+<td><p>
   <% if(@task.actual) %>
         <%= button_to("Отложить", delay_task_path(@task), :class => 'btn btn-mini btn-danger') %>
   <% else %>
         <%= button_to("В актуальные", undelay_task_path(@task), :class => 'btn btn-mini btn-danger') %>
   <% end %>
-<br>
+</p></td>
+<td><p>
   <% if(@task.done) %>
         <%= button_to("Вернуть", undone_task_path(@task), :class => 'btn btn-mini btn-danger') %>
   <% else %>
         <%= button_to("Завершить", itsdone_task_path(@task), :class => 'btn btn-mini btn-danger') %>
   <% end %>
-  </p>
+</p></td>
+</tr></table>
+
 
 <br><br><br><br>
 
