@@ -35,15 +35,11 @@
    <p><strong>Создано:</strong> <%= @task.created_at.strftime("%d.%m.%y %H:%M") %></p>
   <br><br>
   
-  <table><tr><td>
-    <p class="button"><%= f.submit "Записать и закрыть", :class => 'btn btn-large btn-primary' %></p></td>
-<% end %>
+    <p class="button"><%= f.submit "Записать и закрыть", :class => 'btn btn-large btn-primary' %></p>
 
-<td><p>
-  <%= link_to "Вернуться", $backroute, :method => "get", :class => 'btn btn-large btn-primary' %></p>
-</td>
-</tr>
-</table>
+<% end %> 
+
+<p><%= link_to "Вернуться", $backroute, :method => "get", :class => 'btn btn-large btn-primary' %></p>
 
 <br><br><br>
 

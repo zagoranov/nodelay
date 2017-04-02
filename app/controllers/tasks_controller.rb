@@ -153,7 +153,8 @@ end
 
 
 def totoday
-  @task.dt = @task.dt - 1.day
+  days_ago = @task.dt.to_date - Date.today
+  @task.dt = @task.dt - days_ago.days
   @task.save
   respond_to do |format|
     format.js { render partial: 'listrefresh' }
@@ -175,7 +176,7 @@ end
 
 
 def edit
-  #@task = Task.find(params[:id])
+  @task = Task.find(params[:id])
   @projects = current_user.projects.all
   @tags = @task.tags
 end
