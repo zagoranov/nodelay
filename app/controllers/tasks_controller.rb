@@ -105,7 +105,7 @@ def create
     #end
     task.save
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Задача добавлена!' }
+      format.html { redirect_to $backroute, notice: 'Задача добавлена!' }  #was root_path
       format.js { render partial: 'listrefresh'  }
     end
   end
