@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115150809) do
+ActiveRecord::Schema.define(version: 20171025180830) do
 
   create_table "enviros", force: :cascade do |t|
     t.integer  "humidity"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20170115150809) do
     t.text     "description"
     t.string   "schedulerid"
     t.integer  "tasktip_id"
+    t.boolean  "itislink",    default: false
   end
 
   create_table "tasks_tags", force: :cascade do |t|
@@ -92,16 +93,16 @@ ActiveRecord::Schema.define(version: 20170115150809) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",          limit: 255
+    t.string   "name"
     t.datetime "lastmove"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",         limit: 255
-    t.string   "password_hash", limit: 255
-    t.string   "password_salt", limit: 255
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
     t.boolean  "admin"
     t.string   "schedule_url"
-    t.boolean  "schedules",                 default: false
+    t.boolean  "schedules",     default: false
   end
 
 end

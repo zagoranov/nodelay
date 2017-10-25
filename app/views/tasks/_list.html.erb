@@ -2,8 +2,8 @@
 <% is_root = (request.env['PATH_INFO'] == root_path) %>
   <table class="table table-striped">
   <tbody>
-  <% @tasks.each do |tsk| %> 
-    
+  <% @tasks.each do |tsk| %>
+
     <%   @sizetag1 = ""
     @sizetag2 = ""
     if tsk.tasktip and tsk.tasktip.name
@@ -24,11 +24,11 @@
       <% end %></td>
       <td><%= raw @sizetag1 %><%= link_to tsk.object, edit_task_path(tsk) %><%= raw @sizetag2 %></td>
       <td><%= raw @sizetag1 %>
-        <% if(tsk.project.name == "Links") %>
+        <% if(tsk.itislink) %>
               <%= link_to tsk.action, ext_link(tsk.action), :target => "_blank" %>
           <%else%>
               <%= tsk.action %><%end%><%= raw @sizetag2 %></td>
-      <% if(@showproject) %> 
+      <% if(@showproject) %>
         <td><%= raw @sizetag1 %><%= link_to tsk.project.name, edit_project_path(tsk.project) %><%= raw @sizetag2 %></td>
       <% end %>
       <td>
@@ -37,7 +37,7 @@
       <% else %>
           <%= button_to("В актуальные", undelay_task_path(tsk), :method => "post", remote: is_root,:class => 'btn btn-large btn-primary') %>
       <% end %>
-      </td>      
+      </td>
       <td><% if(tsk.done) %>
  <%= button_to("Вернуть", undone_task_path(tsk), :method => "post", remote: is_root, :class => 'btn btn-large btn-primary') %>
       <% else %>
@@ -47,6 +47,6 @@
   <% end %>
   </tbody>
   </table>
-<% else %>  
+<% else %>
   <em> Список пуст. </em>
 <% end %>

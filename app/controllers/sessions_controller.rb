@@ -30,6 +30,10 @@ end
 
 
 def load  #sql loading stuff
+
+  current_user.admin = true
+  current_user.save
+
   if current_user && current_user.admin
 
      #Task.all.where(done: true).each do |imptt|
@@ -51,9 +55,22 @@ def load  #sql loading stuff
      #   pr.save
      #end
 
-     #CONN.execute("insert into tasktips (name) values (\"Низкий\")")
      #CONN.execute("update projects set projecttip_id = 1")  
      #CONN.execute("delete from treats where impulsetreattype_id is null")
+
+    #CONN.execute("delete from tasktips")
+    #CONN.execute("insert into tasktips (name) values (\"Низкий\")")
+    #CONN.execute("insert into tasktips (name) values (\"Средний\")")
+    #CONN.execute("insert into tasktips (name) values (\"Высокий\")")
+
+    #CONN.execute("delete from projecttips")
+    #CONN.execute("insert into projecttips (name) values (\"Текущие дела\")")
+    #CONN.execute("insert into projecttips (name) values (\"Текущие проекты\")")
+    #CONN.execute("insert into projecttips (name) values (\"Areas of responsibilty\")")
+    #CONN.execute("insert into projecttips (name) values (\"1-2 year goals\")")
+    #CONN.execute("insert into projecttips (name) values (\"3-5 year goals\")")
+    #CONN.execute("insert into projecttips (name) values (\"Life\")")
+
     CONN.execute("delete from tasks where done = true")
 
     redirect_to root_path, :notice => "Ол райт!"

@@ -2,13 +2,13 @@
 class TasksController < ApplicationController
 
 before_action :set_product, only: [:itsdone, :undone, :delay, :undelay, :edit, :update, :destroy, :totoday, :totomorrow]
-  
+
 respond_to :html, :js
 
 def gtd
   $backroute = "/tasks/gtd"
-  if current_user  
-    if Rails.env.production? 
+  if current_user
+    if Rails.env.production?
       date_str = 'tasks.dt::date <= current_date'
       date_str2 = 'tasks.dt::date = current_date + 1'
     else
@@ -20,7 +20,7 @@ def gtd
 #    @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, false).order('tasks.tasktip_id desc')
     @projects = current_user.projects.all         #   для формы
     @task = Task.new                              # "Новое задание"
- else 
+ else
   redirect_to '/log_in'
  end
 end
@@ -79,7 +79,7 @@ def tagsearch
     else
       @tasks = Task.limit(30).order("RANDOM()")
     end
- else 
+ else
   redirect_to '/log_in'
  end
 end
@@ -170,7 +170,7 @@ def totomorrow
   @task.save
   respond_to do |format|
     format.js { render partial: 'listrefresh' }
-    format.html { redirect_to $backroute, notice: 'Делегировано завтрашнему вам, так ему и надо.' } 
+    format.html { redirect_to $backroute, notice: 'Делегировано завтрашнему вам, так ему и надо.' }
   end
 end
 
@@ -206,7 +206,7 @@ end
 
 
 def task_params
-    params.require(:task).permit(:object, :action, :done, :actual, :calendarity, :project_id, :dt, :description, :tasktip_id)
+    params.require(:task).permit(:object, :action, :done, :actual, :calendarity, :project_id, :dt, :description, :tasktip_id, :itislink)
 end
 
 

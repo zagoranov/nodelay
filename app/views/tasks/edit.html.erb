@@ -22,10 +22,13 @@
 
   <p>
     <strong>Приоритет</strong><br>
-    <%= f.collection_select :tasktip_id, Tasktip.all, :id, :name %>    
+    <%= f.collection_select :tasktip_id, Tasktip.all, :id, :name %>
   </p>
   <p>
       <%= f.check_box :actual %> <strong>Актуальное</strong>
+  </p>
+  <p>
+      <%= f.check_box :itislink %> <strong>Ссылка</strong>
   </p>
   <p>
       <%= f.check_box :calendarity %> <strong>Календарное, дата: </strong>
@@ -34,10 +37,10 @@
 
    <p><strong>Создано:</strong> <%= @task.created_at.strftime("%d.%m.%y %H:%M") %></p>
   <br><br>
-  
+
     <p class="button"><%= f.submit "Записать и закрыть", :class => 'btn btn-large btn-primary' %></p>
 
-<% end %> 
+<% end %>
 
 <p><%= link_to "Вернуться", $backroute, :method => "get", :class => 'btn btn-large btn-primary' %></p>
 
@@ -45,9 +48,9 @@
 
 <table><tr>
 <td>
-<p>  
-  <%= button_to("Удалить",  @task,  method: :delete, data: { confirm: "Вы серьезно?" }, :class => 'btn btn-mini btn-danger')  %> 
-</p></td>  
+<p>
+  <%= button_to("Удалить",  @task,  method: :delete, data: { confirm: "Вы серьезно?" }, :class => 'btn btn-mini btn-danger')  %>
+</p></td>
 <td><p>
   <% if(@task.actual) %>
         <%= button_to("Отложить", delay_task_path(@task), :class => 'btn btn-mini btn-danger') %>
@@ -71,9 +74,9 @@
 <h4>Тэги</h4>
 <table class="table table-striped">
   <tbody>
-  <% @tags.each do |tag| %> 
+  <% @tags.each do |tag| %>
     <tr>
-      <td><%= tag.name %></td>  
+      <td><%= tag.name %></td>
       <td><%= link_to "Удалить", tag,  method: :delete, :class => 'btn btn-mini btn-danger'  %> </td>
     </tr>
   <% end %>
@@ -84,7 +87,7 @@
 <br>
 
 <p><strong>Добавить тэг</strong></p>
-<%= form_for([@task, @task.tags.build]) do |f| %>  
+<%= form_for([@task, @task.tags.build]) do |f| %>
     <%= f.text_field :name, placeholder: "Новый тэг" %>
-    <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %> 
-<% end %>       
+    <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %>
+<% end %>

@@ -43,7 +43,7 @@
 
     <%= javascript_include_tag "application" %>
 
-    
+
   </head>
   <body>
 
@@ -62,14 +62,14 @@
           <% if current_user %>
                 <li><%= link_to "Календарь", calendar_tasks_path  %></li>
                 <li><%= link_to "Некалендарное", nocalendar_tasks_path  %></li>
-                <li><%= link_to "Отложенное", delayed_tasks_path  %></li>                
+                <li><%= link_to "Отложенное", delayed_tasks_path  %></li>
                 <li><%= link_to "Завершенное", donelist_tasks_path  %></li>
                 <li><%= link_to "Проекты", projects_path  %></li>
             <% if current_user.admin %>
                 <li><%= link_to "Админ", "/admin", :target => "_blank"  %></li>
-            <% end %>            
+            <% end %>
             <li><%= link_to "Выйти", "/log_out" %></li>
-         <%else%>   
+         <%else%>
             <li><%= link_to "Войти", "/log_in" %></li>
          <%end%>
          </ul>
@@ -94,9 +94,8 @@
 
             <ul class="nav nav-list">
               <li class="nav-header"><strong>По типу проекта</strong></li>
-                <li><%= link_to "Someday", someday_tasks_path  %></li>                
+                <li><%= link_to "Someday", someday_tasks_path  %></li>
                 <li><%= link_to "Inbox", inbox_tasks_path  %></li>
-                <li><%= link_to "Links", links_tasks_path  %></li>
                 <li><%= link_to "Delegated", delegated_tasks_path  %></li>
                 <li><br></li>
                 <li>
@@ -116,16 +115,16 @@
               <li><%= link_to current_user.name, user_path(current_user) %>
               <li><%= link_to "Другие пользователи", users_path  %></li>
             </ul>
-    
+
              <br>
 
 
-            <% if current_user.inverse_friendships %>            
+            <% if current_user.inverse_friendships %>
               <ul class="nav nav-list">
-              <li class="nav-header"><strong>Новые подписчики</strong></li> 
+              <li class="nav-header"><strong>Новые подписчики</strong></li>
               <% for fr in Friendship.joins(:user).where('friend_id in (?)', current_user.id).order('friendships.created_at DESC').limit(5)
                 usern = User.find_by_id(fr.user_id) %>
-                <li><strong><%= link_to usern.name, usern %></strong> 
+                <li><strong><%= link_to usern.name, usern %></strong>
                   подписался <%= day_distance(fr.created_at) %>
                 </li>
               <% end %>
@@ -134,11 +133,11 @@
 
             <% if Profilecomment.find_by_user_id(current_user.id) %>
               <ul class="nav nav-list">
-              <li class="nav-header"><strong>Комментарии</strong></li> 
+              <li class="nav-header"><strong>Комментарии</strong></li>
               <% for comm in Profilecomment.where(user_id: current_user.id).order('created_at DESC').limit(5)
                 usern = User.find_by_id(comm.commenter_id) %>
-                <li><strong><%= link_to usern.name, usern %></strong> 
-                  оставил комментарий <%= day_distance(comm.created_at) %>                  
+                <li><strong><%= link_to usern.name, usern %></strong>
+                  оставил комментарий <%= day_distance(comm.created_at) %>
                 </li>
               <% end %>
               </ul><br>
@@ -151,7 +150,7 @@
       <% end %>
 
       </div>
-        
+
       <footer>
         <br><br><br>
         <p><small>&copy; Labile Mobile, 2016 - 2017</small> </p>

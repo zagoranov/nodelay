@@ -39,10 +39,13 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 # New stuff!!!!!!!!
 gem "twitter-bootstrap-rails"
 
-gem 'bcrypt', '~> 3.1.9'
-#gem 'rails_admin', '~> 1.0'
+gem 'bcrypt', '~> 3.1.11'
+
+
+# gem 'rails_admin', '~> 1.0'
+
 gem 'responders', '~> 2.0' 
 gem 'coffee-script-source', '1.8.0'
 
-#gem 'rspec', '~> 3.0'
+# gem 'rspec', '~> 3.0'
 
