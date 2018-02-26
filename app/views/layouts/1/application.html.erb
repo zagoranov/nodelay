@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NoDelay</title>
+    <title>Bring</title>
 
     <%= csrf_meta_tags %>
 
@@ -60,11 +60,8 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
           <% if current_user %>
-                <li><%= link_to "Календарь", calendar_tasks_path  %></li>
-                <li><%= link_to "Некалендарное", nocalendar_tasks_path  %></li>
-                <li><%= link_to "Отложенное", delayed_tasks_path  %></li>
-                <li><%= link_to "Завершенное", donelist_tasks_path  %></li>
-                <li><%= link_to "Проекты", projects_path  %></li>
+                <li><%= link_to "Заказы", orders_path  %></li>
+                <li><%= link_to "Клиенты", receivers_path  %></li>
             <% if current_user.admin %>
                 <li><%= link_to "Админ", "/admin", :target => "_blank"  %></li>
             <% end %>
@@ -94,56 +91,10 @@
 
             <ul class="nav nav-list">
               <li class="nav-header"><strong>По типу проекта</strong></li>
-                <li><%= link_to "Someday", someday_tasks_path  %></li>
-                <li><%= link_to "Inbox", inbox_tasks_path  %></li>
-                <li><%= link_to "Delegated", delegated_tasks_path  %></li>
-                <li><br></li>
-                <li>
-                  <%= form_tag(tagsearch_tasks_path, :method => "get", id: "search-form") do %>
-                    <%= text_field_tag :search, params[:search], placeholder: "Поиск по тэгу" %>
-                    <%= submit_tag "Искать", :name => nil, :class => 'btn btn-mini' %>
-                  <% end %>
-                </li>
-                <li><%= link_to "Условия каб.254", "/gethumidity" %></li>
-                <li><%= link_to "Данные моего датчика", enviros_path %></li>
+                <li><%= link_to "Персонал", workers_path  %></li>
+                <li><%= link_to "Товары", goods_path  %></li>
+                <li><%= link_to "Базы", bases_path  %></li>
             </ul><br>
-
-             <br>
-
-            <ul class="nav nav-list">
-              <li class="nav-header"><strong>Социальность</strong></li>
-              <li><%= link_to current_user.name, user_path(current_user) %>
-              <li><%= link_to "Другие пользователи", users_path  %></li>
-            </ul>
-
-             <br>
-
-
-            <% if current_user.inverse_friendships %>
-              <ul class="nav nav-list">
-              <li class="nav-header"><strong>Новые подписчики</strong></li>
-              <% for fr in Friendship.joins(:user).where('friend_id in (?)', current_user.id).order('friendships.created_at DESC').limit(5)
-                usern = User.find_by_id(fr.user_id) %>
-                <li><strong><%= link_to usern.name, usern %></strong>
-                  подписался <%= day_distance(fr.created_at) %>
-                </li>
-              <% end %>
-              </ul><br>
-            <% end %>
-
-            <% if Profilecomment.find_by_user_id(current_user.id) %>
-              <ul class="nav nav-list">
-              <li class="nav-header"><strong>Комментарии</strong></li>
-              <% for comm in Profilecomment.where(user_id: current_user.id).order('created_at DESC').limit(5)
-                usern = User.find_by_id(comm.commenter_id) %>
-                <li><strong><%= link_to usern.name, usern %></strong>
-                  оставил комментарий <%= day_distance(comm.created_at) %>
-                </li>
-              <% end %>
-              </ul><br>
-            <% end %>
-
-
 
           </div>
         </div>
@@ -153,7 +104,7 @@
 
       <footer>
         <br><br><br>
-        <p><small>&copy; Labile Mobile, 2016 - 2018</small> </p>
+        <p><small>&copy; Labile Mobile, 2010 - 2018</small> </p>
 
        </footer>
 
