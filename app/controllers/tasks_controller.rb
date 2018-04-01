@@ -104,6 +104,9 @@ def create
       #task.schedulerid = sch_id
     #end
     task.save
+    if !$backroute
+      $backroute = root_path
+    end
     respond_to do |format|
       format.html { redirect_to $backroute, notice: 'Задача добавлена!' }  #was root_path
       format.js { render partial: 'listrefresh'  }
@@ -112,11 +115,13 @@ def create
 end
 
 
-
 def itsdone
   @task.done = true
   @task.donedt = DateTime.now
   @task.save
+  if !$backroute
+    $backroute = root_path
+  end
   respond_to do |format|
     format.html { redirect_to $backroute, notice: 'Задача побеждена!' }
     format.js { render partial: 'listrefresh'  }
@@ -126,6 +131,9 @@ end
 def undone
   @task.done = false
   @task.save
+  if !$backroute
+    $backroute = root_path
+  end
   respond_to do |format|
     format.html { redirect_to $backroute, notice: 'Задача вернулась!' }
     format.js { render partial: 'listrefresh'  }
@@ -136,6 +144,9 @@ end
 def delay
   @task.actual = false
   @task.save
+  if !$backroute
+    $backroute = root_path
+  end
   respond_to do |format|
     format.js { render partial: 'listrefresh'  }
     format.html { redirect_to $backroute, notice: 'Задача отложена.' }   #:back
@@ -145,6 +156,9 @@ end
 def undelay
   @task.actual = true
   @task.save
+  if !$backroute
+    $backroute = root_path
+  end
   respond_to do |format|
     format.js { render partial: 'listrefresh' }
     format.html { redirect_to $backroute, notice: 'Задача актуализирована.' }
@@ -156,6 +170,9 @@ def totoday
   days_ago = @task.dt.to_date - Date.today
   @task.dt = @task.dt - days_ago.days
   @task.save
+  if !$backroute
+    $backroute = root_path
+  end
   respond_to do |format|
     format.js { render partial: 'listrefresh' }
     format.html { redirect_to $backroute, notice: 'Уоа! Задача перенесена на сегодня!' }
@@ -168,6 +185,9 @@ def totomorrow
     @task.dt = @task.dt + 1.days
   end
   @task.save
+  if !$backroute
+    $backroute = root_path
+  end
   respond_to do |format|
     format.js { render partial: 'listrefresh' }
     format.html { redirect_to $backroute, notice: 'Делегировано завтрашнему вам, так ему и надо.' }
@@ -184,7 +204,11 @@ end
 
 def update
   if @task.update(task_params)
-    redirect_to $backroute, notice: 'Исправлено, верить.'
+    if $backroute
+     redirect_to $backroute, notice: 'Исправлено, верить.'
+   else
+     redirect_to root_path, notice: 'Исправлено, верить.'
+   end
   else
     render 'edit'
   end
@@ -193,7 +217,11 @@ end
 
 def destroy
   @task.destroy
-  redirect_to $backroute, notice: 'Задача удалена.'
+  if $backroute
+    redirect_to $backroute, notice: 'Задача удалена.'
+   else
+     redirect_to root_path, notice: 'Исправлено, верить.'
+   end
   #respond_to do |format|
   #  format.js { render partial: 'taskslistrefresh'  }
   #end
