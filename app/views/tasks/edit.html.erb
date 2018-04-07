@@ -22,7 +22,7 @@
 
   <p>
     <strong>Приоритет</strong><br>
-    <%= f.collection_select :tasktip_id, Tasktip.all, :id, :name %>
+    <%= f.collection_select :tasktip_id, Tasktip.all, :id, :name, {}, {class: "form-control"}  %>
   </p>
   <p>
       <%= f.check_box :actual %> <strong>Актуальное</strong>
@@ -32,7 +32,7 @@
   </p>
   <p>
       <%= f.check_box :calendarity %> <strong>Календарное, дата: </strong>
-      <%= f.datetime_select :dt, { :default => DateTime.now, :use_month_names => ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"], :order => [:day, :month, :year, :hour, :minute] } %>
+      <%= f.datetime_local_field :dt  %>
   </p>
 
    <p><strong>Создано:</strong> <%= @task.created_at.strftime("%d.%m.%y %H:%M") %></p>
