@@ -36,7 +36,7 @@
       <% else %>
         <%= button_to("На сегодня", totoday_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
       <% end %></td>
-      <td><%= button_to("Завершить", itsdone_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %></td>
+      <td><%= button_to("Завершить", itsdone_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-success') %></td>
     </tr>
   <% end %>
  </tbody>

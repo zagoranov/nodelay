@@ -5,7 +5,7 @@
 <%= form_for @task, html: { class: 'form-horizontal' } do |f| %>
   <div class="form-group">
     <strong>Проект</strong><br>
-    <%= f.collection_select :project_id, @projects, :id, :name, {class: "form-control"} %>
+    <%= f.collection_select :project_id, @projects, :id, :name, {}, {class: "form-control"} %>
   </div>
   <div class="form-group">
     <strong>Объект</strong><br>
@@ -42,7 +42,7 @@
 
 <% end %>
 
-<p><%= link_to "Вернуться", $backroute, :method => "get", :class => 'btn btn-large btn-primary' %></p>
+<p><%= link_to "Вернуться", $backroute, :method => "get", :class => 'btn btn-default' %></p>
 
 <br><br><br>
 
@@ -62,7 +62,7 @@
   <% if(@task.done) %>
         <%= button_to("Вернуть", undone_task_path(@task), :class => 'btn btn-mini btn-danger') %>
   <% else %>
-        <%= button_to("Завершить", itsdone_task_path(@task), :class => 'btn btn-mini btn-danger') %>
+        <%= button_to("Завершить", itsdone_task_path(@task), :class => 'btn btn-success') %>
   <% end %>
 </p></td>
 </tr></table>

@@ -39,7 +39,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 # New stuff!!!!!!!!
 gem "twitter-bootstrap-rails"
 
-gem 'bcrypt', '~> 3.1.11'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt'
 
 
 # gem 'rails_admin', '~> 1.0'

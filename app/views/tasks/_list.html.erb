@@ -41,7 +41,7 @@
       <td><% if(tsk.done) %>
  <%= button_to("Вернуть", undone_task_path(tsk), :method => "post", remote: is_root, :class => 'btn btn-large btn-primary') %>
       <% else %>
-<%= button_to("Завершить", itsdone_task_path(tsk), :method => "post", remote: is_root, :class => 'btn btn-large btn-primary') %>
+<%= button_to("Завершить", itsdone_task_path(tsk), :method => "post", remote: is_root, :class => 'btn btn-success') %>
        <% end %></td>
     </tr>
   <% end %>

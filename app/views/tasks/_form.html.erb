@@ -12,13 +12,14 @@
 
 
 <%= form_for(@task) do |f| %>  <!-- (@task, remote: true) -->
-    Проект: <%= f.collection_select :project_id, @projects, :id, :name %><br>
-    <%= f.text_field :object, placeholder: "Объект" %>
-    Приоритет: <%= f.collection_select :tasktip_id, Tasktip.all, :id, :name %><br>
-    <%= f.text_field :action, placeholder: "Действие" %>
-    <%= f.check_box :actual %> Актуальное &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <%= f.check_box :itislink %> Ссылка<br>
-    <%= f.text_area :description, placeholder: "Описание", :size => '70x2' %><br>
-    <%= f.check_box :calendarity %> Календарное, дата: <%= f.datetime_select :dt, { :default => DateTime.now, :use_month_names => ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"], :order => [:day, :month, :year, :hour, :minute] } %><br><br>
+    <strong>Проект:</strong> <%= f.collection_select :project_id, @projects, :id, :name, {}, {class: "form-control"} %><br>
+    <strong>Приоритет:</strong> <%= f.collection_select :tasktip_id, Tasktip.all, :id, :name, {}, {class: "form-control"} %><br>
+    <div class="field"><%= f.text_field :object, placeholder: "Объект", class: "form-control" %></div>
+    <div class="field"><%= f.text_field :action, placeholder: "Действие", class: "form-control" %></div>
+    <div class="field"><label><%= f.check_box :actual, class: "checkbox" %>Актуальное</label></div>
+    <div class="field"><%= f.check_box :itislink, class: "checkbox" %> <strong>Ссылка</strong></div>
+    <div class="field"><%= f.text_area :description, placeholder: "Описание", :size => '70x2', class: "form-control"  %></div>
+    <div class="field"><%= f.check_box :calendarity, class: "checkbox"  %> <strong> Календарное, дата:</strong> <%= f.datetime_local_field :dt, { :default => DateTime.now } %></div>
     <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %>
 <% end %>
 

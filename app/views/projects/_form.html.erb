@@ -5,7 +5,7 @@
   </p>
   <p>
     <strong>Тип</strong><br>
-    <%= f.collection_select :projecttip_id, Projecttip.all, :id, :name %>
+    <%= f.collection_select :projecttip_id, Projecttip.all, :id, :name, {}, {class: "form-control"} %>
   </p>
   <p>
     <strong>Описание</strong><br>
@@ -17,5 +17,5 @@
   </p>
   <br>
   <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %>
-  <%= link_to "Вернуться", :back, :method => "get", :class => 'btn btn-large btn-primary' %> </p>
+  <%= link_to "Вернуться", :back, :method => "get", :class => 'btn btn-default' %> </p>
 <% end %>
