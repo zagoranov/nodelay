@@ -20,6 +20,7 @@ def gtd
 #    @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, false).order('tasks.tasktip_id desc')
     @projects = current_user.projects.all         #   для формы
     @task = Task.new                              # "Новое задание"
+    @task.dt = DateTime.now
  else
   redirect_to '/log_in'
  end
