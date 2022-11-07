@@ -9,6 +9,7 @@ ruby on rails + sqlite
 
 ## Creating DB
 ```console
+bundle install
 rake db:migrate
 ```
 
