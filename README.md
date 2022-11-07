@@ -4,8 +4,8 @@ ruby on rails + sqlite
 ## Env stuff
 * Interface mostly in russian, sorry.
 * You should fill config/secret.yml with secret key bases
-* You should fill config/secret.yml with secret key bases
 * If you want use telegtam notifications, you should fill app/controller/application_controller.rb telegram chat data in method def pontificate(mess)
+* Replace my email with yours in app/mailer/mailers
 
 ## Creating DB
 ```console
