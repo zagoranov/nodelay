@@ -1,0 +1,14 @@
+$("#agenda").html("<% 
+
+    if Rails.env.production? 
+      date_str = 'tasks.dt::date <= current_date'
+      date_str2 = 'tasks.dt::date = current_date + 1'
+    else
+      date_str = 'Date(tasks.dt) <= Date(\'now\')'
+      date_str2 = 'Date(tasks.dt) = Date(\'now\', \'+1 day\')'
+    end
+    @caltoday = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str, current_user.id, false, false, true, true).order('tasks.dt, tasks.tasktip_id desc')
+    @caltomorrow = Task.select('tasks.*').joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ? and ' + date_str2, current_user.id, false, false, true, true).order('tasks.dt, tasks.tasktip_id desc')
+    @tasks = Task.joins(:project).where('projects.user_id = ? and projects.done = ? and tasks.done = ? and tasks.actual = ? and tasks.calendarity = ?', current_user.id, false, false, true, false).order('tasks.tasktip_id desc')
+%><%= escape_javascript(render partial: 'agendaform' ) %>"); 
+

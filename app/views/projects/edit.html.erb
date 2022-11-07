@@ -1,0 +1,19 @@
+<h3>Проект</h3>
+
+<br><br>
+
+<div id="project_form">
+  <%= render 'form' %>
+</div>
+
+<br>
+<br>
+
+<%= link_to "Удалить",  @project,  method: :delete, data: { confirm: "Вы серьезно?" }, :class => 'btn btn-mini btn-danger'  %> </td>
+
+
+<% @showproject = false %>
+<div id="list_table">
+  <%= render 'tasks/list' %>
+</div>
+

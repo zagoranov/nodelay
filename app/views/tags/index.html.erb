@@ -1,0 +1,12 @@
+<% if @tags.size > 0 %>
+<h4>Тэги</h4>
+<table class="table table-striped">
+  <tbody>
+  <% @tags.each do |tag| %> 
+    <tr>
+      <td><%= tag.name %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+<% end %>

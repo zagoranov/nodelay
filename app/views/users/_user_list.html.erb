@@ -1,0 +1,27 @@
+<%= form_tag(users_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Поиск" %>
+  <%= submit_tag "Искать", :name => nil, :class => 'btn btn-mini' %>
+<% end %>
+<br><br>
+<table class="table table-striped">
+<tbody>
+<% for user in @users %>
+<%if user != current_user %>
+    <tr>
+      <td><strong><%= link_to user.name, user %></strong></td> 
+      <td><%= @fr = current_user.friendships.where('friend_id = ?', user.id).first
+         if @fr
+            link_to "Отписаться", byebye_friendship_path(id: @fr.id, from: "list"), remote: true, method: "post", :class => 'btn btn-mini btn-danger'
+		      else
+	          link_to "Подписаться", wellhello_friendship_path(id: user.id, from: "list"), remote: true, method: "post",:class => 'btn btn-primary' 
+          end %>
+      </td> 
+      <% if current_user.admin? %>
+      <td><%= link_to "Удалить", user, method: :delete, data: { confirm: "Вы уверены, что хотите удалить это классного человека?" },:class => 'btn btn-mini btn-danger' %>
+      </td> 
+      <% end %>
+    </tr>
+   <%end %>
+ <% end %>
+</tbody>
+</table>

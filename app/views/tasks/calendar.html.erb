@@ -1,0 +1,64 @@
+<h3>Календарь</h3>
+<br>
+
+<table class="table">
+  <tbody>
+  <% sdate = nil %>
+  <% @tasks.each do |tsk| %>
+
+    <%   @sizetag1 = ""
+    @sizetag2 = ""
+    if tsk.tasktip and tsk.tasktip.name
+      if tsk.tasktip.name == "Высокий"
+        @sizetag1 = "<strong>"
+        @sizetag2 = "</strong>"
+      else
+        if tsk.tasktip.name == "Низкий"
+          @sizetag1 = "<small>"
+          @sizetag2 = "</small>"
+        end
+      end
+    end %>
+
+  <% if tsk.dt.to_date >= DateTime.now.to_date
+  	   day_date = tsk.dt.to_date
+  	 else
+  	   day_date = DateTime.now.to_date
+  	 end %>
+  <% if sdate != day_date %>
+    <tr> <td> <h4><%=  tsk.dt.strftime("%d.%m.%Y") %></h4> </td>
+    <td><h4><%= week_day2(day_date.wday) %></h4></td>
+    <td><h4><% if day_date == DateTime.now.to_date %> Сегодня!<% end %></h4></td> <td></td> <td></td></tr>
+    <% sdate = day_date %>
+  <% end %>
+
+    <tr>
+      <td><%= raw @sizetag1 %><%= tsk.dt.strftime("%H:%M") %><%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %><%= link_to tsk.object, edit_task_path(tsk) %><%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %>
+        <% if(tsk.itislink) %>
+          <%= link_to tsk.action, ext_link(tsk.action), :target => "_blank" %>
+      <%else%>
+          <%= tsk.action %><%end%><%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %><%= if tsk.tasktip
+                tsk.tasktip.name
+              end  %><%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %><%= link_to tsk.project.name, edit_project_path(tsk.project) %><%= raw @sizetag2 %></td>
+      <td><% if tsk.dt.to_date <= DateTime.now.to_date %>
+        <%= button_to("На завтра", totomorrow_task_path(tsk), :class => 'btn btn-large btn-primary') %>
+      <% else %>
+        <%= button_to("На сегодня", totoday_task_path(tsk), :class => 'btn btn-large btn-primary') %>
+      <% end %></td>
+      <td><%= button_to("Завершить", itsdone_task_path(tsk), :class => 'btn btn-success') %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+
+<br><br><br>
+
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Добавить задание</button>
+
+<div id="new_task">
+  <%= render 'form' %>
+</div>

@@ -1,0 +1,21 @@
+<%= form_for @project do |f| %>
+  <p>
+    <strong>Название</strong><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <strong>Тип</strong><br>
+    <%= f.collection_select :projecttip_id, Projecttip.all, :id, :name, {}, {class: "form-control"} %>
+  </p>
+  <p>
+    <strong>Описание</strong><br>
+    <%= f.text_area :description , :size => '70x4'%>
+  </p>
+  <p>
+    <strong>Прятать в календаре</strong><br>
+    <%= f.check_box :hideincalend %>
+  </p>
+  <br>
+  <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %>
+  <%= link_to "Вернуться", :back, :method => "get", :class => 'btn btn-default' %> </p>
+<% end %>

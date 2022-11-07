@@ -1,0 +1,26 @@
+
+<h3>Состояние окружающей среды кабинета 254</h3>
+
+<br><br>
+<br><br>
+
+<p>
+  <span style="color:gray">Влажность: </span><%= @env.humidity %><br><br>
+  <span style="color:gray">Температура: </span><%= @env.temperature %><br><br>
+  <span style="color:gray">CO2: </span><%= @env.co2 %><br><br>
+  <span style="color:gray">Освещение: </span><% if @env.light == 0 %>Включено<% else %>Выключено<% end %><br><br>
+  <span style="color:gray">Данные обновлены: </span><%= @env.dt.strftime("%d.%m.%y %H:%M") %><br>
+</p>
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>

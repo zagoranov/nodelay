@@ -1,0 +1,43 @@
+<table class="table table-striped">
+  <tbody>
+  <% @daytasks.each do |tsk| %>
+
+    <%   @sizetag1 = ""
+    @sizetag2 = ""
+    if tsk.tasktip and tsk.tasktip.name
+      if tsk.tasktip.name == "Высокий"
+        @sizetag1 = "<strong>"
+        @sizetag2 = "</strong>"
+      else
+        if tsk.tasktip.name == "Низкий"
+          @sizetag1 = "<small>"
+          @sizetag2 = "</small>"
+        end
+      end
+    end %>
+
+    <tr>
+      <td><%= raw @sizetag1 %><% if tsk.dt.to_date >= DateTime.now.to_date %>
+        <%= tsk.dt.strftime("%H:%M") %>
+      <% else %>
+        <%= tsk.dt.strftime("%d.%m %H:%M") %>
+      <% end %>
+      <%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %><%= link_to tsk.object, edit_task_path(tsk) %><%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %>
+        <% if(tsk.itislink) %>
+          <%= link_to tsk.action, ext_link(tsk.action), :target => "_blank" %>
+        <%else%>
+          <%= tsk.action %><%end%>
+        <%= raw @sizetag2 %></td>
+      <td><%= raw @sizetag1 %><%= link_to tsk.project.name, edit_project_path(tsk.project) %><%= raw @sizetag2 %></td>
+      <td><% if tsk.dt.to_date <= DateTime.now.to_date %>
+        <%= button_to("На завтра", totomorrow_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+      <% else %>
+        <%= button_to("На сегодня", totoday_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-large btn-primary') %>
+      <% end %></td>
+      <td><%= button_to("Завершить", itsdone_task_path(tsk), :method => "post", remote: true, :class => 'btn btn-success') %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>

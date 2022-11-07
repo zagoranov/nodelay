@@ -1,0 +1,21 @@
+<%= form_for @user do |f| %>
+  <p>
+    <span style="color:black">Имя</span><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <span style="color:black">E-mail</span><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <span style="color:black">Пароль</span><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <span style="color:black">Еще раз раз пароль</span><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <br>  
+  <p class="button"><%= f.submit "Далее", :class => 'btn btn-large btn-primary' %></p>
+
+<% end %>

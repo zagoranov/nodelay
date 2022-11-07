@@ -1,0 +1,36 @@
+
+<h3>Логин</h3>
+
+<br><br>
+
+<%= form_tag sessions_path, :class => "form-horizontal" do %>
+
+<div class="form-group">    
+  <%= text_field_tag :email, params[:email], :class=>"form-control", :placeholder=>"Введите email" %>
+</div>
+
+<div class="form-group">    
+  <%= text_field_tag :password, params[:password], :type=>"password", :class=>"form-control", :placeholder=>"Введите пароль" %>
+</div>
+
+<div class="form-group">        
+    <%= submit_tag "Войти", :class => 'btn btn-large btn-primary' %>
+</div>
+
+<% end %>
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+  Здравствуйте. Вас приветствует NoDelay - сервис для борьбы с прокрастинацией.
+  <br><br>
+    <!--   Если вы еще не зарегистрированы, то перейдите в раздел:</span> <%= link_to "Регистрация", "sign_up" %>   -->  
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>

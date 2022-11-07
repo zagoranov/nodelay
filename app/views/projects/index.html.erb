@@ -1,0 +1,31 @@
+<h3>Проекты</h3>
+
+<br>
+
+<% if @projects.size > 0 %>
+<table class="table table-striped">
+  <tbody>
+  <% @projects.each do |proj| %> 
+    <tr>
+      <td><%= link_to proj.name, edit_project_path(proj) %></td>
+      <td><%= proj.description %></td>
+      <td><%= if proj.projecttip 
+                proj.projecttip.name 
+              end %></td>      
+      <td><%= proj.created_at.strftime("%d.%m.%Y") %></td>
+      <td><% if proj.hideincalend %>Прятать в календаре<% else %>Показывать в календаре<% end %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+<% else %>  
+  <em> Список пуст. </em>
+<% end %>
+
+<br><br><br>
+
+ <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Добавить проект</button>
+
+<div id="new_project">
+   <%= render 'projects/shortform' %>
+</div>

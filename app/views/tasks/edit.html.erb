@@ -1,0 +1,93 @@
+<h4>Задание</h4>
+
+<br><br>
+
+<%= form_for @task, html: { class: 'form-horizontal' } do |f| %>
+  <div class="form-group">
+    <strong>Проект</strong><br>
+    <%= f.collection_select :project_id, @projects, :id, :name, {}, {class: "form-control"} %>
+  </div>
+  <div class="form-group">
+    <strong>Объект</strong><br>
+    <%= f.text_field :object, :class=>"form-control" %>
+  </div>
+  <div class="form-group">
+    <strong>Действие</strong><br />
+    <%= f.text_field :action, :class=>"form-control" %>
+  </div>
+  <div class="form-group">
+    <strong>Описание</strong><br />
+    <%= f.text_area :description, :size => "60x5", :class=>"form-control" %>
+  </div>
+
+  <p>
+    <strong>Приоритет</strong><br>
+    <%= f.collection_select :tasktip_id, Tasktip.all, :id, :name, {}, {class: "form-control"}  %>
+  </p>
+  <p>
+      <%= f.check_box :actual %> <strong>Актуальное</strong>
+  </p>
+  <p>
+      <%= f.check_box :itislink %> <strong>Ссылка</strong>
+  </p>
+  <p>
+      <%= f.check_box :calendarity %> <strong>Календарное, дата: </strong>
+      <%= f.datetime_local_field :dt  %>
+  </p>
+
+   <p><strong>Создано:</strong> <%= @task.created_at.strftime("%d.%m.%y %H:%M") %></p>
+  <br><br>
+
+    <p class="button"><%= f.submit "Записать и закрыть", :class => 'btn btn-large btn-primary' %></p>
+
+<% end %>
+
+<p><%= link_to "Вернуться", $backroute, :method => "get", :class => 'btn btn-default' %></p>
+
+<br><br><br>
+
+<table><tr>
+<td>
+<p>
+  <%= button_to("Удалить",  @task,  method: :delete, data: { confirm: "Вы серьезно?" }, :class => 'btn btn-mini btn-danger')  %>
+</p></td>
+<td><p>
+  <% if(@task.actual) %>
+        <%= button_to("Отложить", delay_task_path(@task), :class => 'btn btn-mini btn-danger') %>
+  <% else %>
+        <%= button_to("В актуальные", undelay_task_path(@task), :class => 'btn btn-mini btn-danger') %>
+  <% end %>
+</p></td>
+<td><p>
+  <% if(@task.done) %>
+        <%= button_to("Вернуть", undone_task_path(@task), :class => 'btn btn-mini btn-danger') %>
+  <% else %>
+        <%= button_to("Завершить", itsdone_task_path(@task), :class => 'btn btn-success') %>
+  <% end %>
+</p></td>
+</tr></table>
+
+
+<br><br><br><br>
+
+<% if @tags.size > 0 %>
+<h4>Тэги</h4>
+<table class="table table-striped">
+  <tbody>
+  <% @tags.each do |tag| %>
+    <tr>
+      <td><%= tag.name %></td>
+      <td><%= link_to "Удалить", tag,  method: :delete, :class => 'btn btn-mini btn-danger'  %> </td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+<% end %>
+
+<br>
+
+<p><strong>Добавить тэг</strong></p>
+<%= form_for([@task, @task.tags.build]) do |f| %>
+    <%= f.text_field :name, placeholder: "Новый тэг" %>
+    <%= f.submit "Добавить", :class => 'btn btn-large btn-primary' %>
+<% end %>
