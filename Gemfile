@@ -35,13 +35,11 @@ gem 'sdoc',          group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 
-# New stuff!!!!!!!!
-gem "twitter-bootstrap-rails"
 
+gem "twitter-bootstrap-rails"
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt'
 
-
-# gem 'rails_admin'
+#gem 'rails_admin'
 
 gem 'responders'
 gem 'coffee-script-source'

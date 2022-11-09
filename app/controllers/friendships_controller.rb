@@ -15,8 +15,10 @@ end
 
 
 def destroy
-  @friendship = current_user.friendships.find(params[:id])
-  @friendship.destroy
+  @friendship = current_user.friendships.find_by_id(params[:id])
+  if @friendship != nil
+    @friendship.destroy
+  end
   flash[:notice] = t(:fr_removed)
   redirect_to current_user, :notice => t(:fr_removed)
  end
@@ -43,8 +45,10 @@ end
 
 
 def byebye
-  @friendship = current_user.friendships.find(params[:id])
-  @friendship.destroy
+  @friendship = current_user.friendships.find_by_id(params[:id])
+  if @friendship != nil
+    @friendship.destroy
+  end
   if params[:from] == 'list'
     @users = User.limit(30).order("RANDOM()")
     respond_to do |format|

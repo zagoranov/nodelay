@@ -40,7 +40,7 @@ end
 
 def show
  if current_user
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
  else 
     redirect_to '/log_in'
  end
@@ -70,8 +70,10 @@ def update
 end
 
 def destroy
-  user = User.find(params[:id])
-  user.destroy
+  user = User.find_by_id(params[:id])
+  if user != nil
+    user.destroy
+  end
   redirect_to users_path
 end
 

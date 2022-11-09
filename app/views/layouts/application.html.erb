@@ -65,9 +65,6 @@
                 <li><%= link_to "Отложенное", delayed_tasks_path  %></li>
                 <li><%= link_to "Завершенное", donelist_tasks_path  %></li>
                 <li><%= link_to "Проекты", projects_path  %></li>
-            <% if current_user.admin %>
-                <li><%= link_to "Админ", "/admin", :target => "_blank"  %></li>
-            <% end %>
             <li><%= link_to "Выйти", "/log_out" %></li>
          <%else%>
             <li><%= link_to "Войти", "/log_in" %></li>
@@ -104,8 +101,6 @@
                     <%= submit_tag "Искать", :name => nil, :class => 'btn btn-mini' %>
                   <% end %>
                 </li>
-                <li><%= link_to "Условия каб.254", "/gethumidity" %></li>
-                <li><%= link_to "Данные моего датчика", enviros_path %></li>
             </ul><br>
 
              <br>

@@ -12,14 +12,14 @@ def pontificate(mess)  	#Send message to my Telegram bot
   require 'nokogiri'
   require 'open-uri'
   require 'net/https'
-  @doc = Nokogiri::HTML(open("https://api.telegram.org/BOTNAME:UID/sendMessage?chat_id=CHAT_ID&text=" + mess,  :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE))
+  #@doc = Nokogiri::HTML(open("https://api.telegram.org/BOTNAME:UID/sendMessage?chat_id=CHAT_ID&text=" + mess,  :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE))
 end
 
 
 public
 
 def current_user
-  @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
 end
 
 

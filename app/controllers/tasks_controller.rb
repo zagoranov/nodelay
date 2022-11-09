@@ -97,14 +97,16 @@ end
 
 def create
   if current_user
-    proj = Project.find(task_params[:project_id])
-    task = proj.tasks.create(task_params)
-    #if (task.calendarity && current_user.schedules)
-      #Delayed::Job.enqueue TelegramJob.new(task.object + " " + task.action)
-      #Delayed::Job.enqueue(TelegramJob.new(task.object + " " + task.action), 0, task.dt.getutc)
-      #task.schedulerid = sch_id
-    #end
-    task.save
+    proj = Project.find_by_id(task_params[:project_id])
+    if proj != nil
+      task = proj.tasks.create(task_params)
+      #if (task.calendarity && current_user.schedules)
+        #Delayed::Job.enqueue TelegramJob.new(task.object + " " + task.action)
+        #Delayed::Job.enqueue(TelegramJob.new(task.object + " " + task.action), 0, task.dt.getutc)
+        #task.schedulerid = sch_id
+      #end
+      task.save
+    end
     if !$backroute
       $backroute = root_path
     end
@@ -197,9 +199,13 @@ end
 
 
 def edit
-  @task = Task.find(params[:id])
+  @task = Task.find_by_id(params[:id])
+  if @task != nil
+    @tags = @task.tags
+  else 
+    redirect_to root_path, notice: 'Ошибка!'
+  end
   @projects = current_user.projects.all
-  @tags = @task.tags
 end
 
 
@@ -230,7 +236,10 @@ end
 
 private
 def set_product
-  @task = Task.find(params[:id])
+  task = Task.find_by_id(params[:id])
+  if task != nil
+    @task = task
+  end
 end
 
 

@@ -44,7 +44,10 @@ end
 
 private
 def set_product
-  @project = Project.find(params[:id])
+  project = Project.find_by_id(params[:id])
+  if project != nil
+     @project = project
+  end
 end
 
 
