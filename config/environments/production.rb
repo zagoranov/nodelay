@@ -94,8 +94,8 @@ Rails.application.configure do
     address:              "smtp.timeweb.ru",
     port:                 25,
     domain:               "inter-activity.ru",               #inter-activity.ru
-    user_name:            "announcer@inter-activity.ru",
-    password:             "IntAnnoShtuka960",
+    user_name:            "hello@inter-activity.ru",
+    password:             "",
     authentication:       'login',
     enable_starttls_auto: true  
 }
