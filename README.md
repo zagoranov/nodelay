@@ -8,10 +8,11 @@ Ruby on rails + Sqlite
 * Replace my email with yours in app/mailer/mailers
 * Mail account settings for email announcing in config/environments
 
-## Creating DB
+## Preparing to start
 ```console
 bundle install
 rake db:migrate
+bundle exec rake rails:update:bin
 ```
 
 ## Run
