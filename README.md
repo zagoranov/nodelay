@@ -23,3 +23,6 @@ rails s
 ## Requires
 * ruby 2.3.3
 * rails 4.2.1
+
+## Best using with
+Docker image: kolosek/ruby-2.3.3
