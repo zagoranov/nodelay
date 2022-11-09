@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
@@ -37,7 +37,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 
 gem "twitter-bootstrap-rails"
-gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt'
+gem 'bcrypt', git: 'http://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt'
 
 #gem 'rails_admin'
 

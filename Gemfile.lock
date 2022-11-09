@@ -1,11 +1,11 @@
 GIT
-  remote: https://github.com/codahale/bcrypt-ruby.git
-  revision: f2db689ba567d1a018f4dacb1ccf909adc93e887
+  remote: http://github.com/codahale/bcrypt-ruby.git
+  revision: 4268ac86c45fa4b313a1bb1b878f0b8bc85e9d0c
   specs:
-    bcrypt (3.1.11)
+    bcrypt (3.1.18)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actionmailer (4.2.1)
       actionpack (= 4.2.1)
@@ -175,26 +175,23 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt!
-  coffee-rails (~> 4.0.0)
-  coffee-script-source (= 1.8.0)
-  jbuilder (~> 2.0)
+  coffee-rails
+  coffee-script-source
+  jbuilder
   jquery-rails
-  pg (~> 0.21)
-  rails (= 4.2.1)
+  pg
+  rails
   rails_12factor
-  responders (~> 2.0)
-  sass-rails (~> 4.0.3)
-  sdoc (~> 0.4.0)
+  responders
+  sass-rails
+  sdoc
   sqlite3
   therubyracer
   thin
   turbolinks
   twitter-bootstrap-rails
   tzinfo-data
-  uglifier (>= 1.3.0)
-
-RUBY VERSION
-   ruby 2.3.3p222
+  uglifier
 
 BUNDLED WITH
    1.16.1

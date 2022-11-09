@@ -7,7 +7,7 @@ def new
   if current_user
     redirect_to root_path, :notice => 'Привет, ленивец!'
   end 
-  @backimage = "nodoshit.jpg"
+  #@backimage = "nodoshit.jpg"
 end
 
 def create

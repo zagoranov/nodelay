@@ -3,31 +3,7 @@
 <br>
 <br>
 
-<%= form_for @user do |f| %>
-
-  <p>
-    <strong>Имя</strong><br>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <strong>Емейл/логин</strong><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <strong>Оповещения</strong><br />
-    <%= f.check_box :schedules %>, url для POST-сообщения: <%= f.text_field :schedule_url %>
-  </p>
-  <p>
-    <strong>Пароль</strong><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <strong>Еще раз пароль</strong><br />
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <br>  
-  <p class="button"><%= f.submit "Записать", :class => 'btn btn-large btn-primary' %></p>
-<% end %>
+<%= render 'form' %>
 
 <br>
 <br>

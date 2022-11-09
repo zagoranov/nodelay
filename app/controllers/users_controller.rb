@@ -7,7 +7,7 @@ def new
     redirect_to root_path, :notice => 'Привет, прокрастинатор!'
   end 
   @user = User.new
-  @backimage = "nodoshit.jpg"
+  #@backimage = "images/nodoshit.jpg"
 end
 
 
@@ -17,8 +17,8 @@ def create
   if @user.save
      session[:user_id] = @user.id
      #UserMailer.newreg_email(@user).deliver    #mail notification
-     pontificate("New+User+on+NoDelay+" + @user.name)                         #telegram notification
-     redirect_to impulsetreattypes_path, :notice => "Всё готово!"
+     #pontificate("New+User+on+NoDelay+" + @user.name)                         #telegram notification
+     redirect_to root_path, :notice => "Всё готово!"
   else
     render "new"
   end
