@@ -18,7 +18,7 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 
-#gem 'therubyracer',  platforms: :ruby
+gem 'therubyracer',  platforms: :ruby
 
 
 gem 'jquery-rails'
