@@ -1,0 +1,11 @@
+﻿version: '3.8'
+
+services:
+  nodelay:
+    image: nodelay:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    restart: unless-stopped
